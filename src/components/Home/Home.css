@@ -1,7 +1,7 @@
 /* LANDING PAGE STYLESHEET */
 
-/* General Reset 
-Reset margin, padding, and box-sizing for all elements */
+/* General Reset */
+/* Reset margin, padding, and box-sizing for all elements */
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@ Reset margin, padding, and box-sizing for all elements */
 
 /* Global body styles */
 body {
-  font-family: "Roboto-flex" ,Arial, sans-serif; /* Default font family */
+  font-family: "Roboto-flex", Arial, sans-serif; /* Default font family */
   line-height: 1.6; /* Improves readability */
 }
 
@@ -35,7 +35,6 @@ body {
   color: #fff; /* White text color */
   box-shadow: 0px 2px 15px 5px rgba(255, 0, 0, 0.3);
 }
-
 
 /* Left side of hero section */
 .hero-left {
@@ -123,10 +122,12 @@ body {
 
 .learn-more:hover {
   background-color: #333; /* Darker blue on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+  transition: all 0.3s ease-in-out;
 }
 
 /* Section Styles for the Two New Content Sections */
-.clicksmart-info{
+.clicksmart-info {
   background: white; /* Dark blue background */
   padding: 2.5rem 0; /* Adjust padding */
   color: rgba(0, 0, 0, 0.7);
@@ -135,8 +136,7 @@ body {
   z-index: 3;
 }
 
-
- .clicksmart-work {
+.clicksmart-work {
   background: #1a1a3e; /* Dark blue background */
   padding: 2.5rem 0; /* Adjust padding */
   color: white;
@@ -160,7 +160,6 @@ body {
   margin: 0 6rem;
 }
 
-
 .clicksmart-left .p1, .clicksmart-right .p1 {
   font-size: 1.125rem;
   line-height: 1.6;
@@ -172,9 +171,6 @@ body {
   line-height: 1.6;
   margin-top: 1rem;
 }
-
-
-
 
 /* For Responsive Design */
 /* Media Query for smaller screens (max-width: 768px) */
@@ -189,4 +185,72 @@ body {
     padding-right: 0; /* Removes padding */
     margin-bottom: 2rem; /* Adds spacing below */
   }
+
+  /* Adjusting Topics section */
+  .topics .container {
+    flex-direction: column; /* Stack the topics vertically */
+    align-items: center; /* Center content */
+  }
+
+  .topic {
+    margin: 1rem 0; /* Adds space between topics */
+    width: 80%; /* Controls width on small screens */
+  }
+
+  .topic img {
+    height: 12rem; /* Resize the image */
+    width: auto;
+  }
+
+  .clicksmart-left, .clicksmart-right {
+    margin: 0 1rem; /* Adjust margin on smaller screens */
+  }
+
+  /* Image responsiveness */
+  .hero-right img,
+  .clicksmart-left img,
+  .clicksmart-right img {
+    max-width: 100%; /* Ensure images are fully responsive */
+    height: auto;
+  }
+
+  /* Adjust flex layout on smaller screens */
+  .clicksmart-info .container, .clicksmart-work .container {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center content */
+  }
+
+  .clicksmart-left, .clicksmart-right {
+    margin: 0; /* Remove extra margins */
+    width: 90%; /* Ensure content is responsive */
+  }
+
+  /* Adjust padding and margin on smaller screens */
+  .clicksmart-left, .clicksmart-right {
+    margin: 0;
+    width: 100%; /* Ensure full width */
+    padding: 0 2rem; /* Adds space inside the content */
+  }
+
+  /* Font adjustments on mobile */
+  .hero-left h1 {
+    font-size: 2rem; /* Smaller font for hero section */
+  }
+
+  .hero-left p,
+  .clicksmart-left .p1, .clicksmart-right .p1,
+  .clicksmart-left .p2, .clicksmart-right .p2 {
+    font-size: 1rem; /* Adjust paragraph font size */
+  }
+
+  .topic h2 {
+    font-size: 1.25rem; /* Slightly smaller heading */
+  }
+}
+
+/* Add subtle hover effect for topics */
+.topic:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Larger shadow on hover */
+  transform: translateY(-5px); /* Slightly lift the topic */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
 }

@@ -1,0 +1,66 @@
+/* Navbar Styles */
+.navbar {
+  background: #f4f4f4;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.navbar .logo img {
+  max-width: 150px;
+  height: auto;
+}
+
+/* Navbar links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 0 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #007BFF; /* Optional: Accent color */
+}
+
+/* Language Selector */
+.language-selector select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    text-align: center;
+    width: 100%; /* Makes the links span the full width */
+    padding: 1rem 0; /* Adds padding around the links */
+    background-color: #f4f4f4; /* Match navbar background */
+  }
+
+  .nav-links li {
+    margin: 1rem 0; /* Adjust margin for stacked items */
+  }
+
+  .navbar .logo img {
+    max-width: 120px; /* Slightly reduce logo size on mobile */
+  }
+}
