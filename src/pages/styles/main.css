@@ -1,0 +1,192 @@
+/* LANDING PAGE STYLESHEET */
+
+/* General Reset 
+Reset margin, padding, and box-sizing for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global body styles */
+body {
+  font-family: "Roboto-flex" ,Arial, sans-serif; /* Default font family */
+  line-height: 1.6; /* Improves readability */
+}
+
+/* Central container for consistent width */
+.container {
+  width: auto;
+  margin: 0 auto; /* Centers the container */
+  margin-left: 5%;
+  margin-right: 3%;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  z-index: 5;
+  display: flex; /* Side-by-side layout */
+  justify-content: space-between; /* Equal space on both sides */
+  align-items: center; /* Aligns vertically */
+  padding: 12rem 0; /* Adds spacing */
+  margin-bottom: 0;
+  background: #1a1a3e; /* Dark blue background */
+  color: #fff; /* White text color */
+  box-shadow: 0px 2px 15px 5px rgba(255, 0, 0, 0.3);
+}
+
+
+/* Left side of hero section */
+.hero-left {
+  flex: 1; /* Takes up equal space */
+  padding-right: 2rem; /* Adds spacing on the right */
+}
+
+.hero-left h1 {
+  line-height: .95;
+  font-style: italic;
+  font-size: 2.916rem; /* Larger font for emphasis */
+  margin-bottom: 0.8rem; /* Adds spacing below */
+  padding-left: 5rem;
+}
+
+.hero-left p {
+  font-size: 1.125rem; /* Slightly larger text */
+  line-height: 1.66; /* Improves readability */
+  padding-left: 5rem;
+}
+
+/* Right side of hero section */
+.hero-right {
+  flex: 1; /* Takes up equal space */
+  display: flex;
+  justify-content: center; /* Centers image horizontally */
+}
+
+.hero-right img {
+  width: 450px;
+  max-width: 100%; /* Ensures image is responsive */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 8px; /* Adds rounded corners */
+}
+
+/* Floating Topics Section */
+.topics {
+  position: relative;
+  z-index: 1;
+  background-color: #f4f4f4; /* Different background color */
+  padding: 4rem 0; /* Adjust padding as needed */
+  text-align: center; /* Center content */
+}
+
+.topics .container {
+  display: flex;
+  justify-content: space-between; /* Space between the two columns */
+  align-items: center;
+}
+
+.topic {
+  flex: 1;
+  margin: 0 2rem; /* Adds space between the columns */
+  background-color: #ffffff; /* White background for each topic box */
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+.topic img {
+  width: auto;
+  height: 17rem;
+}
+
+.topic h2 {
+  font-size: 1.5rem;
+  color: #1a1a3e; /* Dark blue color for headings */
+  margin-bottom: 1rem;
+}
+
+.topic p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333; /* Dark text for readability */
+}
+
+.learn-more {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  background-color: #1a1a3e; /* Dark blue button */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.learn-more:hover {
+  background-color: #333; /* Darker blue on hover */
+}
+
+/* Section Styles for the Two New Content Sections */
+.clicksmart-info{
+  background: white; /* Dark blue background */
+  padding: 2.5rem 0; /* Adjust padding */
+  color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 3px 15px 5px rgba(255, 0, 0, 0.3);
+  position: relative;
+  z-index: 3;
+}
+
+
+ .clicksmart-work {
+  background: #1a1a3e; /* Dark blue background */
+  padding: 2.5rem 0; /* Adjust padding */
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.clicksmart-work h2, .clicksmart-info h2 {
+  font-size: 2.5rem;
+}
+
+.clicksmart-info .container, .clicksmart-work .container {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clicksmart-left, .clicksmart-right {
+  flex: 1;
+  margin: 0 6rem;
+}
+
+
+.clicksmart-left .p1, .clicksmart-right .p1 {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-top: 2rem;
+}
+
+.clicksmart-left .p2, .clicksmart-right .p2 {
+  font-size: 1.12rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+
+
+
+/* For Responsive Design */
+/* Media Query for smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Stacks hero section vertically */
+  .hero {
+    flex-direction: column;
+    text-align: center; /* Centers text */
+  }
+
+  .hero-left {
+    padding-right: 0; /* Removes padding */
+    margin-bottom: 2rem; /* Adds spacing below */
+  }
+}
