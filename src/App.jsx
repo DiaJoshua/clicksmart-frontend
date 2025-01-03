@@ -8,19 +8,19 @@ import AssessmentForm from "./components/AssessmentForm/AssessmentForm"
 import NewsArticles from "./components/NewsArticles/NewsArticles"
 import About from "./components/About/About"
 import Reporting from "./components/Reporting/Reporting"
-import CybercrimeStatistics from "./components/CybercrimeStatistics/CybercrimeStatistics"
+import CybercrimeStats from "./components/CybercrimeStats/CybercrimeStats"
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/AssessmentForm" element={<AssessmentForm />} />
         <Route path="/NewsArticles" element={<NewsArticles />} />
         <Route path="/About" element={<About />} />
         <Route path="/Reporting" element={<Reporting />} />
-        <Route path="/CybercrimeStatistics" element={<CybercrimeStatistics />} />
+        <Route path="/CybercrimeStatistics" element={<CybercrimeStats />} />
       </Routes>
       <Footer />
     </BrowserRouter>
