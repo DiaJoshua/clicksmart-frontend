@@ -1,5 +1,6 @@
 import React from "react";
 import "./Reporting.css";
+import { Link } from "react-router-dom"
 import identify from "../../assets/icons/identify.png";
 import evidence from "../../assets/icons/cevidence.png";
 import contactcop from "../../assets/icons/contactcop.png";
@@ -12,7 +13,7 @@ const Reporting = () => {
         <div className="container">
           <h1>Have anything to report?</h1>
           <p>Here's a step-by-step guide in reporting cybercrime activities in your area.</p>
-          <a href="#" className="quiz-btn">Take a quiz</a>
+          <Link to="/AssessmentForm" className="quiz-btn">Take a Quick Assessment</Link>
         </div>
       </section>
 

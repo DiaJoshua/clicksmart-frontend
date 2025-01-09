@@ -13,7 +13,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "survey-core": "^1.12.17",
+    "survey-react-ui": "^1.12.17"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

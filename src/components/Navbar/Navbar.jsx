@@ -14,7 +14,7 @@ const Navbar = () => {
       <nav className="nav-center" aria-label="Main Navigation">
         <ul className="nav-links">
           <li><Link to="/Reporting">Reporting Guide</Link></li>
-          <li><Link to="/CybercrimeStatistics">Cybercrime Statistics</Link></li>
+          <li><Link to="/CybercrimeStats">Cybercrime Statistics</Link></li>
           <li><Link to="/About">About Us</Link></li>
           <li><Link to="/NewsArticles">Help Center</Link></li>
         </ul>

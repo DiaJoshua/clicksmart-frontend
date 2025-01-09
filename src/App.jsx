@@ -10,6 +10,7 @@ import About from "./components/About/About"
 import Reporting from "./components/Reporting/Reporting"
 import CybercrimeStats from "./components/CybercrimeStats/CybercrimeStats"
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,7 +21,7 @@ function App() {
         <Route path="/NewsArticles" element={<NewsArticles />} />
         <Route path="/About" element={<About />} />
         <Route path="/Reporting" element={<Reporting />} />
-        <Route path="/CybercrimeStatistics" element={<CybercrimeStats />} />
+        <Route path="/CybercrimeStats" element={<CybercrimeStats />} />
       </Routes>
       <Footer />
     </BrowserRouter>
