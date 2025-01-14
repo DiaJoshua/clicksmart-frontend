@@ -2,8 +2,12 @@ import React, { useState }  from "react";
 import { Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 import "survey-core/defaultV2.min.css";
+import "./AssessmentForm.css";
 
 const AssessmentForm = () => {
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [score, setScore] = useState(0);
+
   const surveyJson = {
     "title": "Cybercrime Assessment Form",
     "description": "This Cybercrime Assessment Form is designed to evaluate your knowledge and awareness of cybercrime, its various forms, and the appropriate actions to prevent and report incidents. Through this quiz, we aim to assess your understanding of the Philippine laws, key cybercrime concepts, and best practices for staying safe online.",
@@ -514,11 +518,12 @@ const customTheme = {
 };
 
 
-
 const survey = new Model(surveyJson);
 survey.showCorrectAnswers = false;
 
 survey.applyTheme(customTheme);
+
+
 
 survey.onComplete.add((sender) => {
   const results = sender.data;
@@ -539,23 +544,44 @@ survey.onComplete.add((sender) => {
   (results.question14 === "10" ? 10 : 0) +
   (results.question15 === "10" ? 10 : 0) +
   (results.question16 === "10" ? 10 : 0);
-
-
-  let feedback;
-  if (totalScore === 100) {
-    feedback = "Excellent! You have great cybersecurity knowledge.";
-  } else if (totalScore >= 60) {
-    feedback = "Good effort, but there's room for improvement.";
-  } else {
-    feedback = "You need to improve your cybersecurity awareness.";
-  }
-
-  alert(`Your score: ${totalScore}\n${feedback}`);
 });
 
-  return (
-    <Survey model={survey} />
+
+const handleComplete = (sender) => {
+  const result = sender.data;
+  const calculatedScore = Object.values(result).reduce(
+    (total, value) => total + parseInt(value),
+    0
   );
+  setScore(calculatedScore);
+  setIsCompleted(true);
+};
+
+const getScoreMessage = () => {
+  if (score > 100) return "Excellent! You have a strong understanding of cybercrime awareness.";
+  if (score > 60) return "Good job! You have a decent understanding, but there's room for improvement.";
+  return "Keep learning! Consider reviewing cybercrime concepts and best practices.";
+};
+
+const handleTryAgain = () => {
+  setIsCompleted(false);
+  setScore(0);
+};
+
+return (
+  <div>
+    {!isCompleted ? (
+      <Survey model={survey} onComplete={handleComplete} />
+    ) : (
+      <div className="try-again-container">
+        <h3 className="try-again-message">{getScoreMessage()}</h3>
+        <button className="try-again-button" onClick={handleTryAgain}>
+          Try Again
+        </button>
+      </div>
+    )}
+  </div>
+);
 };
 
 export default AssessmentForm;

@@ -1,112 +1,191 @@
-/* General Reset 
-Reset margin, padding, and box-sizing for all elements */
+/* General Reset */
+/* Reset margin, padding, and box-sizing for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.3s ease; /* Smooth transitions for all elements */
 }
 
 /* Global body styles */
 body {
-  font-family: "Roboto-flex" ,Arial, sans-serif; /* Default font family */
+  font-family: "Roboto-flex", Arial, sans-serif; /* Default font family */
   line-height: 1.6; /* Improves readability */
+  min-height: 100vh; /* Ensures the body takes full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distributes content */
+  background-color: #f9f9f9; /* Light background for better contrast */
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Central container for consistent width */
 .container {
-  width: auto;
+  width: 95%; /* Increased width to 95% of the viewport */
+  max-width: 1300px; /* Max width to prevent it from becoming too wide */
   margin: 0 auto; /* Centers the container */
-  margin-left: 5%;
-  margin-right: 3%;
 }
 
 /* Hero Section */
 .report-page {
-text-align: center;
-padding: 4rem 0;
-background: #ffffff;
-margin-top: 3rem;
-margin-bottom: 2rem;
+  text-align: center;
+  padding: 5rem 0; /* Increased padding for more space */
+  background: #ffffff;
+  margin-top: 2rem; /* Reduced margin for better alignment */
+  margin-bottom: 2rem;
+  min-height: 100vh; /* Full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  animation: fadeIn 1s ease-in-out; /* Animation for fade-in effect */
 }
 
 .report-page h1 {
-font-size: 2.5rem;
-margin-bottom: 1rem;
-color: #111;
+  font-size: 3.5rem; /* Increased font size */
+  margin-bottom: 1.5rem;
+  color: #111;
+  animation: slideInLeft 1s ease-out; /* Slide-in effect for title */
 }
 
 .report-page p {
-font-size: 1.125rem;
-line-height: 1.8;
-color: #555;
-text-shadow: 0px 1px 2px black;;
+  font-size: 1.375rem; /* Slightly larger font size */
+  line-height: 1.8;
+  color: #555;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2); /* Light shadow for text */
+  animation: fadeInUp 1.5s ease-in-out; /* Animation for fade-in from below */
 }
 
 .report-page .quiz-btn {
-display: inline-block;
-margin-top: 1rem;
-padding: 0.8rem 1.5rem;
-background: #e63946;
-color: #fff;
-text-decoration: none;
-font-size: 1rem;
-border-radius: 5px;
-box-shadow: 1px 2px 5px black;
+  display: inline-block;
+  margin-top: 1.5rem; /* Increased margin for spacing */
+  padding: 1rem 2.5rem; /* Larger padding for better button size */
+  background: #e63946;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem; /* Larger font for button */
+  border-radius: 6px; /* Larger border radius */
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2); /* Larger shadow */
+  transition: transform 0.3s ease; /* Smooth button hover effect */
 }
 
 .report-page .quiz-btn:hover {
-background: #d62839;
+  background: #d62839;
+  transform: scale(1.1); /* Slight zoom effect on hover */
 }
 
 /* Steps Section */
 .steps-section {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 2rem;
-padding: 2rem 0;
-padding-top: 10rem;
-margin-bottom: 200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Increased min-width for columns */
+  gap: 3.5rem; /* Increased gap for spacious layout */
+  padding: 4rem 0; /* Increased padding for a more balanced layout */
+  padding-top: 4rem;
+  margin-bottom: 0; /* Removed extra margin */
+  min-height: 100vh; /* Full height */
+  animation: fadeInUp 2s ease-in-out; /* Animation for fade-in from below */
 }
 
 .step-card {
-background: #ffffff;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-padding: 1.5rem;
-text-align: center;
+  background: #ffffff;
+  border-radius: 12px; /* Larger border radius */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Stronger shadow for cards */
+  padding: 2.5rem; /* Increased padding for more spacious cards */
+  text-align: center;
+  transition: transform 0.3s ease; /* Smooth transform effect */
+}
+
+.step-card:hover {
+  transform: translateY(-10px); /* Slight upward movement on hover */
 }
 
 .step-card img {
-width: 100%;
-max-width: 150px;
-height: auto;
-margin-bottom: 1rem;
+  width: 100%;
+  max-width: 220px; /* Larger images */
+  height: auto;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease; /* Smooth image hover effect */
+}
+
+.step-card img:hover {
+  transform: scale(1.1); /* Zoom-in effect for images */
 }
 
 .step-card h3 {
-font-size: 1.25rem;
-margin-bottom: 0.5rem;
-color: #333;
+  font-size: 1.75rem; /* Larger font size for headings */
+  margin-bottom: 1rem;
+  color: #333;
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
 .step-card p {
-font-size: 1rem;
-color: #666;
+  font-size: 1.125rem; /* Increased font size */
+  color: #666;
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
-
+.step-card:hover h3,
+.step-card:hover p {
+  color: #e63946; /* Change color on hover */
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
-.steps-section {
-  grid-template-columns: 1fr;
+  .steps-section {
+    grid-template-columns: 1fr; /* Single column layout on small screens */
+  }
+
+  .report-page h1 {
+    font-size: 2.5rem; /* Adjusted font size for smaller screens */
+  }
+
+  .report-page p {
+    font-size: 1.125rem; /* Adjusted font size */
+  }
+
+  .step-card {
+    padding: 1.5rem; /* Reduced padding for smaller screens */
+  }
+
+  .step-card h3 {
+    font-size: 1.25rem; /* Adjusted for smaller screens */
+  }
+
+  .step-card p {
+    font-size: 1rem; /* Adjusted for smaller screens */
+  }
 }
 
-.report-page h1 {
-  font-size: 2rem;
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.report-page p {
-  font-size: 1rem;
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
