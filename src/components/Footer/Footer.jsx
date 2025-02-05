@@ -7,39 +7,42 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
+        {/* Quick Links */}
         <div className="footer-column">
-          <h3>Resources</h3>
+          <h3>Quick Links</h3>
           <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">News</a></li>
-            <li><a href="#">Articles</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/reporting">Cybercrime Guide</Link></li>
+            <li><Link to="/about">About ClickSmart</Link></li>
+            <li><Link to="/helpcenter">Resources Hub</Link></li>
           </ul>
         </div>
+
+        {/* Support */}
         <div className="footer-column">
           <h3>Support</h3>
           <ul>
-            <li><a href="#">PNP Branch</a></li>
-            <li><a href="#">PNP Contact</a></li>
-            <li><a href="#">Emails</a></li>
-            <li><a href="https://www.facebook.com/anticybercrimegroup" target="_blank">Social Media Links</a></li>
+            <li><Link to="#">PNP Branches</Link></li>
+            <li><Link to="#">Developer Team Contacts</Link></li>
+            <li><Link to="#">Downloadable Material</Link></li>
+            <li><a href="https://www.facebook.com/messages/t/880299735387855" target="_blank" rel="noopener noreferrer">Direct Message PNP-ACG</a></li>
+            <li><a href="https://www.facebook.com/anticybercrimegroup" target="_blank" rel="noopener noreferrer">ACG Social Media Link</a></li>
           </ul>
         </div>
 
+        {/* Logo Section */}
         <div className="logo">
-          <a href="index.html">
-            <Link to="/" aria-label="Navigate to Homepage">
+          <Link to="/" aria-label="Navigate to Homepage">
             <img src={logo2} alt="ClickSmart" />
-            </Link>
-          </a>
+          </Link>
         </div>
-
       </div>
+
+      {/* Footer Bottom */}
       <div className="footer-bottom">
         <p>
-          Privacy Policy | Cookie Policy | Do Not Sell Any Personal Information | Terms & Conditions
+          <Link to="/privacy-policy">Privacy Policy</Link> | <Link to="/terms-of-use">Terms of Use</Link> | &copy; 2025 ClickSmart. All Rights Reserved.
         </p>
-        <p>All Rights Reserved &copy;2025</p>
       </div>
     </footer>
   );

@@ -3,7 +3,7 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import Chatbot from "../Chatbot/Chatbot";
 import NewsArticles from "../NewsArticles/NewsArticles";
-import cybercrime from "../../assets/cybercrime.jpg";
+import heroSection from "../../assets/heroSection.png";
 import whatBG from "../../assets/background/whatBG.svg";
 import circleArrowBtn from "../../assets/circleArrowBtn.svg";
 
@@ -67,9 +67,14 @@ const Home = () => {
         <div className="container">
           <div className="hero-left">
             <h1>
-              In the first quarter of 2024, Cybercrime cases in the Philippines
-              rose by 22%, with thousands falling victim to scams, identity
-              theft, and online fraud.
+              <span style={{ color: "#7F7EFC" }}>
+                Experiencing a cybercrime
+              </span>{" "}
+              <span style={{ fontWeight: 450 }}>
+                from a careless click can cost you, but a smart click can save
+                you.
+              </span>{" "}
+              <span style={{ fontWeight: 600 }}>ClickSmart!</span>
             </h1>
             <p>
               ClickSmart is here to empower you by providing tools, knowledge,
@@ -79,13 +84,7 @@ const Home = () => {
             </p>
           </div>
           <div className="hero-right">
-            <a
-              href="https://www.facebook.com/PhilippineSTAR/photos/from-january-to-march-2024-the-acg-recorded-4469-cybercrimes-compared-to-3668-ca/842508764579671/?_rdr"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={cybercrime} alt="Cybercrime Awareness" />
-            </a>
+            <img src={heroSection} alt="Cybercrime Awareness" />
           </div>
         </div>
       </section>
@@ -99,11 +98,17 @@ const Home = () => {
           <div className="clicksmart-right">
             <h1>What is ClickSmart?</h1>
             <p className="p1">
-              ClickSmart is your <strong>free online ally</strong> against cybercrime, designed specifically for Filipinos. Our platform features an <strong>AI-powered chatbot</strong> that answers your questions about cyber threats and guides you on reporting incidents to the Philippine National Police (PNP) Anti-Cybercrime Group.
+              ClickSmart is your <strong>free online ally</strong> against
+              cybercrime, designed specifically for Filipinos. Our platform
+              features an <strong>AI-powered chatbot</strong> that answers your
+              questions about cyber threats and guides you on reporting incidents
+              to the Philippine National Police (PNP) Anti-Cybercrime Group.
             </p>
 
             <p className="p2">
-              Cybercrime can affect anyone, but with ClickSmart's resources, you can stay informed and protected. Join us today and take charge of your digital safety!
+              Cybercrime can affect anyone, but with ClickSmart's resources, you
+              can stay informed and protected. Join us today and take charge of
+              your digital safety!
             </p>
           </div>
         </div>
@@ -114,8 +119,11 @@ const Home = () => {
 
       {/* How It Works */}
       <section className="how-it-works">
-        <h2>Here's how it works:</h2>
+        <h2>
+          Here's how <span style={{ color: "#7F7EFC" }}>ClickSmart</span> works...
+        </h2>
         <div className="accordion">
+          
           {/* Learn Section */}
           <div className="accordion-item">
             <div className="accordion-header" onClick={() => toggleAccordion(1)}>
@@ -149,7 +157,7 @@ const Home = () => {
             >
               <h4>Gauge Your Knowledge</h4>
               <ul>
-                <li>Before or after going through our guides, take a <strong>Cybercrime Awareness Quiz.</strong></li>
+                <li>Before or after going through our guides, take a <Link to="/AssessmentForm"><strong>Cybercrime Awareness Quiz.</strong></Link></li>
                 <li>The quiz evaluates your current understanding of cybercrime and suggests areas for improvement.</li>
                 <li>Results include tailored recommendations to strengthen your knowledge and security practices.</li>
                 <li>Challenge yourself with periodic assessments to track your learning progress over time.</li>
@@ -170,9 +178,7 @@ const Home = () => {
             >
               <h4>Take Action When It Matters</h4>
               <ul>
-                <li>
-                  If you suspect or know you’ve been targeted by cybercrime, use our <Link to="/Reporting">Reporting Guide</Link> to find step-by-step guidance on how to report incidents.
-                </li>
+                <li>If you suspect or know you’ve been targeted by cybercrime, use our <Link to="/Reporting">Reporting Guide</Link> to find step-by-step guidance on how to report incidents.</li>
                 <li>Direct links to relevant authorities or agencies in the Philippines are available to ensure prompt action.</li>
                 <li>If unsure about the reporting process, ask ChatBot to guide you through it interactively.</li>
               </ul>
