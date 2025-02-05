@@ -46,7 +46,7 @@ const NewsArticles = () => {
       {error && <p>{error}</p>}
       {!loading && !error && (
         <>
-          <h1 className="news-articles-title">News Articles</h1>
+          <h1 className="news-articles-title">News and Articles</h1>
           <div className="news-articles-container">
             {displayedArticles.map((article, index) => (
               <a

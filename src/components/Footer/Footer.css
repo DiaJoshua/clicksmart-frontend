@@ -1,97 +1,93 @@
+/* Footer Styles */
 .footer {
   border-top: 2px solid gray;
-  background: #f4f4f4;
-  padding: 2rem 0;
-  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.1); 
+  position: relative;
+  z-index: 5;
+  background: #f4f4f4; /* Light gray background */
+  padding: 2rem 0; /* Spacing around content */
+  box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.5);
 }
 
+/* Footer content layout */
 .footer .container {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: center; /* Center everything */
+  align-items: center;
+  flex-wrap: wrap; /* Wraps content on smaller screens */
+  text-align: center; /* Ensures text is aligned */
+}
+
+/* Logo Centering */
+.footer .logo {
+  display: flex;
+  justify-content: center; /* Centers the logo horizontally */
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem; /* Adds spacing below */
 }
 
 .footer .logo img {
-  max-height: 100px; /* Adjusted for consistency */
   display: block;
-  margin: 0 auto; /* Centers the logo */
+  max-height: 100px; /* Reduces the size */
+  width: auto;
 }
 
+/* Footer column styles */
 .footer-column {
-  flex: 1;
-  min-width: 200px;
-  margin: 1rem;
+  flex: 1; /* Each column takes equal space */ 
+  min-width: 250px; /* Minimum width for each column */
+  margin: 1rem 0; /* Spacing around columns */
 }
 
 .footer-column h3 {
-  font-size: 1.5rem; /* Increased font size for better visibility */
-  color: #333;
+  margin-bottom: 0.75rem; /* Adds spacing below heading */
+  font-size: 1.2rem; /* Slightly larger font size */
 }
 
 .footer-column ul {
-  list-style: none;
+  list-style: none; /* Removes bullets */
   padding: 0;
 }
 
 .footer-column ul li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem; /* Adds spacing between items */
 }
 
 .footer-column ul a {
-  text-decoration: none;
-  color: #007bff; /* Subtle blue for links */
-  font-weight: bold;
+  text-decoration: none; /* Removes underline */
+  color: #333; /* Matches text color */
+  font-size: 1rem;
 }
 
-.footer-column ul a:hover {
-  text-decoration: underline;
-}
-
+/* Footer bottom text */
 .footer-bottom {
-  text-align: center;
+  text-align: center; /* Centers the text */
   font-size: 0.875rem;
   color: #666;
   margin-top: 1rem;
   border-top: 1px solid #ddd;
   padding-top: 1rem;
+  width: 100%;
 }
 
+/* Media Query for Mobile (Max 768px) */
 @media (max-width: 768px) {
   .footer .container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
   }
 
   .footer-column {
-    margin: 1rem 0;
+      width: 100%;
+  }
+
+  .footer .logo {
+      justify-content: center;
+      margin-bottom: 1rem;
+  }
+
+  .footer .logo img {
+      max-height: 80px; /* Adjust logo size */
   }
 }
-
-@media (max-width: 768px) {
-  /* Adjust the footer layout for smaller screens */
-  .footer .container {
-    flex-direction: column; /* Stack footer columns vertically */
-    align-items: center; /* Center the content */
-    text-align: center; /* Center the text */
-  }
-
-  .footer-column {
-    margin: 1rem 0; /* Adds space between columns */
-    min-width: 100%; /* Make each footer column take up full width */
-  }
-
-  .footer-column h3 {
-    font-size: 1.25rem; /* Slightly smaller headings */
-  }
-
-  .footer-column ul li {
-    margin-bottom: 0.5rem; /* Reduce spacing between list items */
-  }
-
-  .footer-bottom {
-    font-size: 0.75rem; /* Smaller text for the footer bottom */
-    padding-top: 1rem; /* Adjust padding for better spacing */
-  }
-}
-

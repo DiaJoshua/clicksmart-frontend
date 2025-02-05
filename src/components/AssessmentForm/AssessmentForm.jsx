@@ -126,6 +126,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question5",
             "title": "What is the best way to ensure the security of your online accounts?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -149,6 +150,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question6",
             "title": "Which of the following is a sign of an online scam?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -172,6 +174,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question7",
             "title": "If you encounter a suspicious link, what should you do?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -195,6 +198,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question8",
             "title": "What should you avoid doing to minimize risks of cyberbullying?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -224,6 +228,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question9",
             "title": "What is the first step you should take if you are a victim of cybercrime?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -247,6 +252,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question10",
             "title": "Where can you officially report cybercrime incidents in the Philippines?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -270,6 +276,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question11",
             "title": "What is the importance of reporting cybercrime?\n",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -293,6 +300,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question12",
             "title": "If you witness someone being cyberbullied, what is the best course of action?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -322,6 +330,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question13",
             "title": "You receive an email from your bank asking for your account password to \"verify your identity.\" What should you do?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -345,6 +354,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question14",
             "title": "A friend tells you they won an online raffle but needs your account to claim the prize. What should you do?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -368,6 +378,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question15",
             "title": "You discover unauthorized transactions in your online banking account. What is your first step?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "10",
@@ -397,6 +408,7 @@ const AssessmentForm = () => {
             "type": "radiogroup",
             "name": "question16",
             "title": "Why is cybersecurity awareness critical in the Philippines, especially in the digital age?",
+            "isRequired": true,
             "choices": [
               {
                 "value": "2",
@@ -428,6 +440,20 @@ const customTheme = {
   "backgroundImage": "",
   "backgroundOpacity": 1,
   "backgroundImageAttachment": "scroll",
+  "backgroundImageRepeat": "no-repeat",
+  "backgroundImageSize": "cover",
+  "showProgressBar": "top",
+  "showQuestionNumbers": "off",
+  "showTimerPanel": "none",
+  "maxTimeToFinish": 0,
+  "showTimerPanelMode": "page",
+  "goNextPageAutomatic": false,
+  "showNavigationButtons": "bottom",
+  "showPrevButton": true,
+  "showTitle": true,
+  "showPageTitles": true,
+  "showCompletedPage": true,
+  "showPageNumbers": false,
   "backgroundImageFit": "cover",
   "cssVariables": {
       "--sjs-corner-radius": "12px",
@@ -568,6 +594,7 @@ const handleTryAgain = () => {
   setScore(0);
 };
 
+
 return (
   <div>
     {!isCompleted ? (
@@ -575,8 +602,9 @@ return (
     ) : (
       <div className="try-again-container">
         <h3 className="try-again-message">{getScoreMessage()}</h3>
+        <h4 className="score-display">Your Score: {score} / 160</h4>
         <button className="try-again-button" onClick={handleTryAgain}>
-          Try Again
+          Try Again?
         </button>
       </div>
     )}

@@ -9,6 +9,7 @@ import NewsArticles from "./components/NewsArticles/NewsArticles"
 import About from "./components/About/About"
 import Reporting from "./components/Reporting/Reporting"
 import CybercrimeStats from "./components/CybercrimeStats/CybercrimeStats"
+import ResourcesHub from "./components/ResourcesHub/ResourcesHub";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Reporting" element={<Reporting />} />
         <Route path="/CybercrimeStats" element={<CybercrimeStats />} />
+        <Route path="/ResourcesHub" element={<ResourcesHub />} />
       </Routes>
       <Footer />
     </BrowserRouter>

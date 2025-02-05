@@ -1,256 +1,675 @@
 /* LANDING PAGE STYLESHEET */
 
-/* General Reset */
-/* Reset margin, padding, and box-sizing for all elements */
+/* General Reset 
+Reset margin, padding, and box-sizing for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Global body styles */
 body {
-  font-family: "Roboto-flex", Arial, sans-serif; /* Default font family */
+  font-family: 'Roboto Flex', sans-serif;
   line-height: 1.6; /* Improves readability */
 }
 
 /* Central container for consistent width */
 .container {
   width: auto;
+  max-width: 1400px;
   margin: 0 auto; /* Centers the container */
   margin-left: 5%;
   margin-right: 3%;
 }
-
-/* Hero Section */
+/*
+======================================
+            HERO Section
+======================================        
+*/
 .hero {
-  position: relative;
-  z-index: 5;
-  display: flex; /* Side-by-side layout */
-  justify-content: space-between; /* Equal space on both sides */
-  align-items: center; /* Aligns vertically */
-  padding: 12rem 0; /* Adds spacing */
-  margin-bottom: 0;
-  background: #1a1a3e; /* Dark blue background */
-  color: #fff; /* White text color */
-  box-shadow: 0px 2px 15px 5px rgba(255, 0, 0, 0.3);
-}
-
-/* Left side of hero section */
-.hero-left {
-  flex: 1; /* Takes up equal space */
-  padding-right: 2rem; /* Adds spacing on the right */
-}
-
-.hero-left h1 {
-  line-height: .95;
-  font-style: italic;
-  font-size: 2.916rem; /* Larger font for emphasis */
-  margin-bottom: 0.8rem; /* Adds spacing below */
-  padding-left: 5rem;
-}
-
-.hero-left p {
-  font-size: 1.125rem; /* Slightly larger text */
-  line-height: 1.66; /* Improves readability */
-  padding-left: 5rem;
-}
-
-/* Right side of hero section */
-.hero-right {
-  flex: 1; /* Takes up equal space */
   display: flex;
-  justify-content: center; /* Centers image horizontally */
-}
-
-.hero-right img {
-  width: 450px;
-  max-width: 100%; /* Ensures image is responsive */
-  height: auto; /* Maintains aspect ratio */
-  border-radius: 8px; /* Adds rounded corners */
-}
-
-/* Floating Topics Section */
-.topics {
-  position: relative;
-  z-index: 1;
-  background-color: #f4f4f4; /* Different background color */
-  padding: 4rem 0; /* Adjust padding as needed */
-  text-align: center; /* Center content */
-}
-
-.topics .container {
-  display: flex;
-  justify-content: space-between; /* Space between the two columns */
+  justify-content: center;
   align-items: center;
+  text-align: left;
+  min-height: 100vh;
+  padding: 5rem 5%;
+  background: url('../../assets/background/donutBG.svg') no-repeat right center, 
+              url('../../assets/background/indexBG.png') no-repeat center;
+  background-size: 58%, cover;
+  color: #fff;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+  gap: 3rem; /* Adds spacing between text and image */
 }
 
-.topic {
-  flex: 1;
-  margin: 0 2rem; /* Adds space between the columns */
-  background-color: #ffffff; /* White background for each topic box */
-  padding: 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
-}
-
-.topic img {
-  width: auto;
-  height: 17rem;
-}
-
-.topic h2 {
-  font-size: 1.5rem;
-  color: #1a1a3e; /* Dark blue color for headings */
-  margin-bottom: 1rem;
-}
-
-.topic p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #333; /* Dark text for readability */
-}
-
-.learn-more {
-  display: inline-block;
-  margin-top: 1rem;
-  text-decoration: none;
-  background-color: #1a1a3e; /* Dark blue button */
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-}
-
-.learn-more:hover {
-  background-color: #333; /* Darker blue on hover */
-  transform: translateY(-2px); /* Lift effect on hover */
-  transition: all 0.3s ease-in-out;
-}
-
-/* Section Styles for the Two New Content Sections */
-.clicksmart-info {
-  background: white; /* Dark blue background */
-  padding: 2.5rem 0; /* Adjust padding */
-  color: rgba(0, 0, 0, 0.7);
-  box-shadow: 0px 3px 15px 5px rgba(255, 0, 0, 0.3);
-  position: relative;
-  z-index: 3;
-}
-
-.clicksmart-work {
-  background: #1a1a3e; /* Dark blue background */
-  padding: 2.5rem 0; /* Adjust padding */
-  color: white;
-  position: relative;
-  z-index: 2;
-}
-
-.clicksmart-work h2, .clicksmart-info h2 {
-  font-size: 2.5rem;
-}
-
-.clicksmart-info .container, .clicksmart-work .container {
-  padding: 2rem;
+.hero .container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+
+/* Left side */
+.hero-left {
+  flex: 1;
+  max-width: 750px; /* Prevents excessive stretching */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Ensures top alignment */
+  align-items: flex-start; /* Keeps text aligned left */
+  gap: 1rem; /* Adds spacing between h1 and p */
+}
+
+/* Ensure <p> is aligned with <h1> */
+.hero-left h1,
+.hero-left p {
+  max-width: 750px;
+  text-align: left;
+  margin: 0; /* Remove auto margin */
+  padding-left: 0; /* Prevents unnecessary indentation */
+}
+
+/* Hero Section Heading */
+.hero-left h1 {
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.048rem;
+  line-height: 3rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+  max-width: 600px; /* Prevents shrinking */
+  white-space: normal; /* Ensures it stays multi-line */
+}
+/* Hero Section Paragraph */
+.hero-left p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  max-width: 750px; /* Prevents it from collapsing */
+  text-align: left; /* Keeps text left-aligned */
+}
+
+/* Right side */
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 52%;
+}
+
+.hero-right img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Section Link Styling */
+.hero-left a {
+  display: inline-block;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #ff9800; /* Accent color */
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.hero-left a:hover {
+  background-color: #e68900; /* Slightly darker on hover */
+}
+
+/*
+======================================
+     What is ClickSmart Section
+======================================        
+*/
+/* ClickSmart Left & Right */
 .clicksmart-left, .clicksmart-right {
   flex: 1;
-  margin: 0 6rem;
+  justify-content: space-between;
+  margin: 0 2%;
 }
 
-.clicksmart-left .p1, .clicksmart-right .p1 {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  margin-top: 2rem;
+/* Section Styles for ClickSmart Info */
+.clicksmart-info {
+  background: #F1F1F1; 
+  padding: 3rem 0; /* Slightly increase padding */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers content */
+  margin: auto;
+  position: relative;
+  z-index: 3;
+  min-height: 70vh; /* Reduce default height */
+  transition: min-height 0.3s ease-in-out;
 }
 
-.clicksmart-left .p2, .clicksmart-right .p2 {
-  font-size: 1.12rem;
-  line-height: 1.6;
-  margin-top: 1rem;
+.clicksmart-info .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1450px;
 }
 
-/* For Responsive Design */
-/* Media Query for smaller screens (max-width: 768px) */
-@media (max-width: 768px) {
-  /* Stacks hero section vertically */
-  .hero {
-    flex-direction: column;
-    text-align: center; /* Centers text */
+/* LEFT: SVG IMAGE */
+.clicksmart-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* Aligns image properly */
+}
+
+.clicksmart-info img {
+  display: block;
+  width: 700px; /* Reduce width */
+  max-width: 110%;
+  height: auto;
+  margin-left: -60px; /* Push left */
+  transition: margin 0.3s ease-in-out;
+}
+
+/* RIGHT: TEXT */
+.clicksmart-right {
+  flex: 1;
+  text-align: left;
+  padding-left: 3rem; /* Add spacing */
+}
+
+.clicksmart-info h1 {
+  font-size: 3rem; /* Reduce slightly */
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 1.2rem;
+}
+
+.clicksmart-info .clicksmart-right p {
+  font-size: 1.32rem; /* Reduce font size */
+  line-height: 1.8rem; /* Adjust spacing */
+  max-width: 650px; /* Prevent text from being too wide */
+  text-align: left;
+  margin-bottom: 1rem; /* Add spacing */
+}
+
+/*
+======================================
+      News and Article Section
+======================================        
+*/
+.news-section {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4rem 1rem;
+  background: url('../../assets/background/newsBG.png') no-repeat center;
+  background-size: cover;
+  min-height: 80vh; 
+  transition: height 0.3s ease-in-out;
+}
+
+.news-section h2 {
+  font-size: 2.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+  color: #FFF9E0;
+  font-weight: bold;
+}
+
+/* News Grid */
+.news-grid {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  gap: 2rem;
+  justify-content: space-around;
+  padding-bottom: 1rem;
+}
+
+/* News Card */
+.news-card {
+  flex: 1 1 calc(25% - 2rem);
+  max-width: calc(25% - 2rem);
+  min-width: 250px;
+  box-sizing: border-box;
+  color: #f4f4f4;
+  text-align: left;
+  background: none;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* News Card Image */
+.news-card img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 400px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* News Card Heading */
+.news-card h3 {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  color: #FFF9E0;
+  text-decoration: none;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+/* News Card Paragraph */
+.news-card p {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #b3b3b3;
+}
+
+/* News Card Hover */
+.news-card:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Accessibility: Focus Outline */
+.news-card {
+  outline: none;
+  color: #fff;
+}
+
+/* News Card Links */
+.news-card a {
+  color: #f4f4f4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.news-card a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.news-card a:focus {
+  outline: none;
+}
+
+
+/*
+======================================
+        How it Works Section
+======================================        
+*/
+.how-it-works {
+  width: 100vw; /* Full viewport width */
+  max-width: 100%; /* Ensures it does not shrink */
+  padding: 60px 5%; /* Responsive padding */
+  background: url('../../assets/background/howitworkBG.svg') no-repeat right center, 
+              url('../../assets/background/indexBG.png') no-repeat center;
+  background-size: 20%, cover;
+  color: #F1F1F1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto; /* Centers the content */
+}
+
+/* Section Title */
+.how-it-works h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  padding-left: 3rem;
+}
+
+/* Accordion Container */
+.accordion {
+  width: 100%;
+  padding-left: 3rem; /* Aligns with the title */
+}
+
+/* Individual Accordion Item */
+.accordion-item {
+  margin-bottom: 20px;
+}
+
+/* Accordion Header (Title + Button) */
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 350;
+  cursor: pointer;
+}
+
+/* Circle Button */
+.circle-arrow-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.circle-arrow-btn img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Accordion Content */
+.accordion-content {
+  margin-left: 2rem;
+  max-height: 0;
+  max-width: 65%;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.open {
+  max-height: 500px;
+}
+
+/* Subtitles Inside Accordion */
+.accordion-content h4 {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* Links */
+.accordion-content a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #F1F1F1;
+}
+
+/* Unordered List */
+.accordion-content ul {
+  font-size: 1.1rem;
+  list-style: none;
+  padding: 0 20px;
+}
+
+/* List Items */
+.accordion-content ul li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Bullet Point */
+.accordion-content ul li:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #F1F1F1;
+}
+
+/*
+======================================
+       MEDIA QUERIES Section
+======================================        
+*/
+/* Responsive Adjustments for Larger Desktops */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .news-card {
+    flex: 1 1 calc(25% - 2rem); /* Four cards per row */
+    max-width: calc(25% - 2rem);
+  }
+
+  /* Adjust Hero Section for Larger Screens */
+  .hero .container {
+    max-width: 1450px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
   }
 
   .hero-left {
-    padding-right: 0; /* Removes padding */
-    margin-bottom: 2rem; /* Adds spacing below */
+    min-width: 500px;
+    max-width: 1200px;
   }
 
-  /* Adjusting Topics section */
-  .topics .container {
-    flex-direction: column; /* Stack the topics vertically */
-    align-items: center; /* Center content */
+  .hero-left h1, .hero-left p {
+    max-width: 750px;
   }
 
-  .topic {
-    margin: 1rem 0; /* Adds space between topics */
-    width: 80%; /* Controls width on small screens */
-  }
-
-  .topic img {
-    height: 12rem; /* Resize the image */
-    width: auto;
-  }
-
-  .clicksmart-left, .clicksmart-right {
-    margin: 0 1rem; /* Adjust margin on smaller screens */
-  }
-
-  /* Image responsiveness */
-  .hero-right img,
-  .clicksmart-left img,
-  .clicksmart-right img {
-    max-width: 100%; /* Ensure images are fully responsive */
-    height: auto;
-  }
-
-  /* Adjust flex layout on smaller screens */
-  .clicksmart-info .container, .clicksmart-work .container {
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center content */
-  }
-
-  .clicksmart-left, .clicksmart-right {
-    margin: 0; /* Remove extra margins */
-    width: 90%; /* Ensure content is responsive */
-  }
-
-  /* Adjust padding and margin on smaller screens */
-  .clicksmart-left, .clicksmart-right {
-    margin: 0;
-    width: 100%; /* Ensure full width */
-    padding: 0 2rem; /* Adds space inside the content */
-  }
-
-  /* Font adjustments on mobile */
-  .hero-left h1 {
-    font-size: 2rem; /* Smaller font for hero section */
-  }
-
-  .hero-left p,
-  .clicksmart-left .p1, .clicksmart-right .p1,
-  .clicksmart-left .p2, .clicksmart-right .p2 {
-    font-size: 1rem; /* Adjust paragraph font size */
-  }
-
-  .topic h2 {
-    font-size: 1.25rem; /* Slightly smaller heading */
+  .hero-left p {
+    max-width: 600px;
   }
 }
 
-/* Add subtle hover effect for topics */
-.topic:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Larger shadow on hover */
-  transform: translateY(-5px); /* Slightly lift the topic */
-  transition: all 0.3s ease-in-out; /* Smooth transition */
+/* Tablets and smaller desktops (768px - 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  /* Ensure the hero section is centered */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-left {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-left h1, 
+  .hero-left p {
+    max-width: 90%;
+    text-align: center !important;
+  }
+
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-right img {
+    max-width: 400px;
+    width: 90%;
+  }
+
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two news cards per row */
+  }
+  
+}
+
+/* Hide menu toggle button by default (for desktops) */
+.menu-toggle {
+  display: none;
+}
+
+/* Mobile Devices (below 768px) */
+@media (max-width: 768px) {
+  /* General Container Adjustment */
+  .container {
+    max-width: 95%;
+  }
+
+  /* Hero Section */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures everything is centered */
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 95%;
+  }
+
+  /* Centering Hero Left Content */
+  .hero-left {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers all elements inside */
+    text-align: center !important; /* Force center alignment */
+    gap: 1rem;
+  }
+
+  .hero-left h1,
+  .hero-left p {
+    max-width: 90%;
+    text-align: center !important; /* Forces text to center */
+  }
+
+  .hero-left h1 {
+    font-size: 2rem; /* Adjusts font size for better fit */
+    line-height: 2.4rem;
+  }
+
+  .hero-left p {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+
+  .hero-left a {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  /* Hero Right (Image) */
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-right img {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  /* News Grid */
+  .news-grid {
+    grid-template-columns: 1fr; /* One news card per row */
+    gap: 1.5rem;
+  }
+
+  .clicksmart-info {
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+    text-align: center;
+    min-height: auto;
+    padding: 1rem 0 0 1.5rem;
+    max-width: 45rem;
+  }
+
+  /* Hide SVG Image */
+  .clicksmart-left {
+    display: none; /* Remove SVG when zoomed */
+  }
+
+  /* Center Align Content */
+  .clicksmart-right {
+    max-width: 90%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .clicksmart-info h1 {
+    font-size: 2.4rem; /* Adjust font size */
+  }
+
+  .clicksmart-info .clicksmart-right p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .how-it-works {
+    padding: 40px 5%; /* Adjust padding for small screens */
+    align-items: left;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .how-it-works h2 {
+    font-size: 1.8rem;
+    padding-left: 0; /* Remove excessive left padding */
+    text-align: center;
+  }
+
+  .accordion {
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .accordion-content {
+    max-width: 90%;
+    text-align: left; /* Keeps text aligned */
+    margin-left: 0;
+  }
+
+  .accordion-header {
+    justify-content: left; /* Centers icons and text */
+  }
+
+  .circle-arrow-btn {
+    width: 25px;
+    height: 25px;
+  }  
 }

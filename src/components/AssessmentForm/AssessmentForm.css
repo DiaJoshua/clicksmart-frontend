@@ -43,6 +43,12 @@
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Adjust shadow */
 }
 
+.score-display {
+  font-size: 20px;
+  color: #fff;
+  margin-top: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .try-again-container {

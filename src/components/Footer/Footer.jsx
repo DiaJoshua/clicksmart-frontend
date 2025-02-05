@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import logo2 from "../../assets/logo2.png";
+import logo2 from "../../assets/logo/logo2.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -22,24 +22,18 @@ const Footer = () => {
             <li><a href="#">PNP Branch</a></li>
             <li><a href="#">PNP Contact</a></li>
             <li><a href="#">Emails</a></li>
-            <li>
-              <a
-                href="https://www.facebook.com/anticybercrimegroup"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Social Media Links
-              </a>
-            </li>
+            <li><a href="https://www.facebook.com/anticybercrimegroup" target="_blank">Social Media Links</a></li>
           </ul>
         </div>
+
         <div className="logo">
           <a href="index.html">
             <Link to="/" aria-label="Navigate to Homepage">
-            <img src={logo2} alt="ClickSmart Logo" />
+            <img src={logo2} alt="ClickSmart" />
             </Link>
           </a>
         </div>
+
       </div>
       <div className="footer-bottom">
         <p>
