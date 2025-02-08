@@ -1,24 +1,4 @@
 /* LANDING PAGE STYLESHEET */
-
-/* General Reset 
-Reset margin, padding, and box-sizing for all elements */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Global body styles */
-body {
-  font-family: 'Roboto Flex', sans-serif;
-  line-height: 1.6; /* Improves readability */
-}
-
 /* Central container for consistent width */
 .container {
   width: auto;
@@ -42,10 +22,14 @@ body {
   background: url('../../assets/background/donutBG.svg') no-repeat right center, 
               url('../../assets/background/indexBG.png') no-repeat center;
   background-size: 58%, cover;
-  color: #fff;
+  color: #fff !important;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
-  gap: 3rem; /* Adds spacing between text and image */
+  gap: 3rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInPage 1s ease-in-out forwards;
+  will-change: transform, opacity;
 }
 
 .hero .container {
@@ -65,9 +49,13 @@ body {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Ensures top alignment */
-  align-items: flex-start; /* Keeps text aligned left */
-  gap: 1rem; /* Adds spacing between h1 and p */
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeft 1.5s ease-in-out forwards 0.5s;
+  will-change: transform, opacity;
 }
 
 /* Ensure <p> is aligned with <h1> */
@@ -108,6 +96,10 @@ body {
   justify-content: center;
   align-items: center;
   max-width: 52%;
+  opacity: 0;
+  transform: scale(0.9);
+  animation: fadeInImage 1.2s ease-in-out forwards 0.8s;
+  will-change: transform, opacity;
 }
 
 .hero-right img {
@@ -116,6 +108,12 @@ body {
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.hero-right img:hover {
+  transform: scale(1.05) rotateY(-3deg);
 }
 
 /* Hero Section Link Styling */
@@ -128,11 +126,14 @@ body {
   font-weight: 600;
   padding: 12px 24px;
   border-radius: 5px;
-  transition: background 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  transform: scale(0.9);
+  animation: buttonPop 1s ease-in-out forwards 1s;
 }
 
 .hero-left a:hover {
-  background-color: #e68900; /* Slightly darker on hover */
+  background-color: #e68900;
+  transform: scale(1);
 }
 
 /*
@@ -157,8 +158,12 @@ body {
   margin: auto;
   position: relative;
   z-index: 3;
-  min-height: 70vh; /* Reduce default height */
+  min-height: 70vh;
   transition: min-height 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 1.2s ease-in-out forwards 1.2s;
+  will-change: transform, opacity;
 }
 
 .clicksmart-info .container {
@@ -174,6 +179,29 @@ body {
   flex: 1;
   display: flex;
   justify-content: flex-end; /* Aligns image properly */
+}
+
+/* ClickSmart Image */
+.clicksmart-left img {
+  width: 700px;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease;
+  transform-origin: center;
+  perspective: 1000px;
+  transform: scale(1.1) rotateY(8deg) rotateX(4deg);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+}
+
+/* Smooth 3D Hover Effect */
+.clicksmart-left img:hover {
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Add More Realistic Perspective */
+.clicksmart-left {
+  perspective: 1500px;
 }
 
 .clicksmart-info img {
@@ -206,119 +234,6 @@ body {
   text-align: left;
   margin-bottom: 1rem; /* Add spacing */
 }
-
-/*
-======================================
-      News and Article Section
-======================================        
-*/
-.news-section {
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 4rem 1rem;
-  background: url('../../assets/background/newsBG.png') no-repeat center;
-  background-size: cover;
-  min-height: 80vh; 
-  transition: height 0.3s ease-in-out;
-}
-
-.news-section h2 {
-  font-size: 2.5rem;
-  text-align: left;
-  margin-bottom: 2rem;
-  color: #FFF9E0;
-  font-weight: bold;
-}
-
-/* News Grid */
-.news-grid {
-  display: flex;
-  flex-wrap: wrap;
-  overflow-x: hidden;
-  gap: 2rem;
-  justify-content: space-around;
-  padding-bottom: 1rem;
-}
-
-/* News Card */
-.news-card {
-  flex: 1 1 calc(25% - 2rem);
-  max-width: calc(25% - 2rem);
-  min-width: 250px;
-  box-sizing: border-box;
-  color: #f4f4f4;
-  text-align: left;
-  background: none;
-  border: none;
-  box-shadow: none;
-  overflow: hidden;
-}
-
-/* News Card Image */
-.news-card img {
-  width: 100%;
-  max-width: 100%;
-  max-height: 400px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.news-card img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
-}
-
-/* News Card Heading */
-.news-card h3 {
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
-  color: #FFF9E0;
-  text-decoration: none;
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  line-height: 1.4;
-  transition: color 0.3s ease;
-}
-
-/* News Card Paragraph */
-.news-card p {
-  text-decoration: none;
-  font-size: 1rem;
-  color: #b3b3b3;
-}
-
-/* News Card Hover */
-.news-card:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* Accessibility: Focus Outline */
-.news-card {
-  outline: none;
-  color: #fff;
-}
-
-/* News Card Links */
-.news-card a {
-  color: #f4f4f4;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.news-card a:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-.news-card a:focus {
-  outline: none;
-}
-
 
 /*
 ======================================
@@ -365,6 +280,8 @@ body {
   font-size: 1.2rem;
   font-weight: 350;
   cursor: pointer;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
 }
 
 /* Circle Button */
@@ -392,10 +309,12 @@ body {
   max-width: 65%;
   overflow: hidden;
   transition: max-height 0.3s ease;
+  will-change: max-height;
 }
 
 .accordion-content.open {
   max-height: 500px;
+  animation: bounceIn 0.5s ease-in-out;
 }
 
 /* Subtitles Inside Accordion */
@@ -431,6 +350,11 @@ body {
   position: absolute;
   left: 0;
   color: #F1F1F1;
+}
+
+/* Rotate Icon on Expand */
+.accordion-header.open .circle-arrow-btn img {
+  transform: rotate(180deg);
 }
 
 /*
@@ -672,4 +596,33 @@ body {
     width: 25px;
     height: 25px;
   }  
+}
+
+/* ====================================== */
+/*             ANIMATIONS                 */
+/* ====================================== */
+@keyframes fadeInPage {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInImage {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes buttonPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
 }

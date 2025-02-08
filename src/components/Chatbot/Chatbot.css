@@ -13,7 +13,6 @@
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   width: 60px;
   height: 60px;
-  box-shadow: none;
   border: none; 
   outline: none; 
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
@@ -25,16 +24,9 @@
   height: 40px;
 }
 
-.chatbot-widget:focus,
-.chatbot-widget:active {
-  outline: none; 
-  box-shadow: none;
-}
-
 .chatbot-widget:hover {
   transform: scale(1.1);
-  outline: none;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.5);
 }
 
 .chatbot-widget:active {
@@ -47,8 +39,8 @@
   position: fixed;
   bottom: 90px;
   right: 20px;
-  width: 300px;
-  height: 400px;
+  width: 320px;
+  height: 420px;
   background: #fff;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -56,12 +48,12 @@
   flex-direction: column;
   z-index: 999;
   overflow: hidden;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: slideIn 0.3s ease-in-out;
 }
 
 /* Chatbox Header */
 .chatbox-header {
-  background: #1a1a3e; /* Light gray */
+  background: #1a1a3e;
   color: #fff;
   padding: 12px;
   font-size: 16px;
@@ -93,13 +85,16 @@
   flex-direction: column;
 }
 
-/* Message Styling */
+/* Chat Messages */
 .chat-message {
   padding: 8px 12px;
   margin: 6px 0;
   border-radius: 8px;
   max-width: 75%;
   word-wrap: break-word;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInMessage 0.3s ease-in-out forwards;
 }
 
 .chat-message.bot {
@@ -113,16 +108,19 @@
   align-self: flex-end;
 }
 
-/* Chatbox Body */
-.chatbox-body {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
+/* Typing Animation */
+.bot-typing {
+  background: #e3eafc;
+  padding: 6px 12px;
+  border-radius: 8px;
+  width: fit-content;
+  align-self: flex-start;
+  opacity: 0.6;
   font-size: 14px;
-  color: #333;
+  animation: blink 1.5s infinite;
 }
 
-/* Chatbox Input */
+/* Chatbox Footer */
 .chatbox-footer {
   padding: 10px;
   border-top: 1px solid #ddd;
@@ -148,29 +146,116 @@
   cursor: pointer;
 }
 
-/* Animation */
-@keyframes fadeIn {
+/* Animations */
+@keyframes fadeInMessage {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Chatbox */
-@media (max-width: 1024px) {
+@keyframes blink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
   .chatbot-widget {
-    display: none;
+    width: 50px;
+    height: 50px;
+  }
+
+  .chatbot-widget img {
+    width: 35px;
+    height: 35px;
   }
 
   .chatbox-container {
-    display: none;
+    width: 280px;
+    height: 380px;
+    bottom: 80px;
+  }
+
+  .chatbox-footer input {
+    font-size: 13px;
+    padding: 7px;
+  }
+
+  .chatbox-footer button {
+    padding: 7px 10px;
+    font-size: 13px;
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
   .chatbot-widget {
-    display: none;
+    width: 45px;
+    height: 45px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .chatbot-widget img {
+    width: 30px;
+    height: 30px;
   }
 
   .chatbox-container {
-    display: none;
+    width: 90%;
+    height: 350px;
+    right: 5%;
+    left: 5%;
+    bottom: 75px;
+  }
+
+  .chatbox-header {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .chatbox-footer input {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .chatbox-footer button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Smallest Screens (320px and below) */
+@media (max-width: 320px) {
+  .chatbot-widget {
+    width: 40px;
+    height: 40px;
+  }
+
+  .chatbot-widget img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .chatbox-container {
+    width: 95%;
+    height: 300px;
+    bottom: 70px;
+  }
+
+  .chatbox-footer input {
+    font-size: 11px;
+    padding: 5px;
+  }
+
+  .chatbox-footer button {
+    padding: 5px 8px;
+    font-size: 11px;
   }
 }

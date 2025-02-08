@@ -1,147 +1,107 @@
-/* LANDING PAGE STYLESHEET */
-
-/* General Reset 
-Reset margin, padding, and box-sizing for all elements */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Global body styles */
-body {
-  font-family: 'Roboto Flex', sans-serif;
-  line-height: 1.6; /* Improves readability */
-}
-
-/* Central container for consistent width */
-.container {
-  width: auto;
-  max-width: 1400px;
-  margin: 0 auto; /* Centers the container */
-  margin-left: 5%;
-  margin-right: 3%;
-}
-/*
-======================================
-            HERO Section
-======================================        
-*/
-.about-hero {
+/* ====================================== */
+/*         ABOUT PAGE - HERO SECTION      */
+/* ====================================== */
+.about-page-hero {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: left;
   min-height: 100vh;
-  background-color: white; 
-  color: #000000;
-  overflow: hidden;
-  transition: height 0.3s ease-in-out;
-  gap: 10rem; /* Adds spacing between text and image */
+  background: white;
+  color: black;
+  gap: 8rem; /* Reduced gap slightly for better spacing */
+  transition: all 0.4s ease-in-out;
+  animation: fadeIn 1s ease-in-out;
+  width: 100vw;
+  padding: 4rem 8%; /* Adds padding on both sides */
 }
 
-.about-hero .container {
-  max-width: 1500px;
-  width: 100%;
-  margin: 0 auto;
+.about-page-hero .about-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-
-/* Left side */
-.hero-left {
+/* Left Side */
+.about-hero-left {
   flex: 1;
-  max-width: auto; /* Prevents excessive stretching */
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Ensures top alignment */
-  align-items: flex-start; /* Keeps text aligned left */
-  gap: 1rem; /* Adds spacing between h1 and p */
+  gap: 1rem;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeft 1s ease-in-out forwards;
 }
 
-/* Ensure <p> is aligned with <h1> */
-.hero-left h1,
-.hero-left p {
-  max-width: 750px;
-  text-align: left;
-  margin: 0; /* Remove auto margin */
-  padding-left: 0; /* Prevents unnecessary indentation */
-}
-
-/* Hero Section Heading */
-.hero-left h1 {
-  font-family: 'Roboto Flex', sans-serif;
+.about-hero-left h1 {
   font-size: 4.5rem;
   font-weight: 700;
-  letter-spacing: 0.088rem;
   line-height: 4.5rem;
   font-style: italic;
-  margin-bottom: 5rem;
-  max-width: 600px; /* Prevents shrinking */
-  white-space: normal; /* Ensures it stays multi-line */
+  max-width: 600px;
+  color: black;
 }
 
-/* Hero Section Paragraph */
-.hero-left p {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+.about-hero-left p {
   font-size: 1.2rem;
   line-height: 1.8rem;
-  max-width: 600px; /* Prevents it from collapsing */
-  text-align: left; /* Keeps text left-aligned */
-  margin-bottom: 1rem
+  max-width: 600px;
 }
 
-/* Right side */
-.hero-right {
+/* Right Side (Image) */
+.about-hero-right {
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 0 1.5rem;
   max-width: 40%;
-  user-select: none;
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideInRight 1s ease-in-out forwards;
+  position: relative;
 }
 
-.hero-right img {
+/* Hero Image */
+.about-hero-right img {
   width: 100%;
-  max-width: 550px;
+  max-width: 500px; /* Limits the width */
   height: auto;
+  border-radius: 12px; /* Rounded corners for a modern look */
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* Lifelike shadow */
+  transition: all 0.3s ease-in-out;
 }
 
+/* Image Hover Effect */
+.about-hero-right img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.3);
+}
 
-/*
-======================================
-  Who made ClickSmart Section
-======================================        
-*/
-/* This Section Style */
-/* Made by Students Section */
-.made-students {
+/* ====================================== */
+/*       ABOUT PAGE - WHO MADE IT         */
+/* ====================================== */
+.about-page-made {
   background: url('../../assets/background/aboutBG.png') no-repeat center;
   background-size: cover;
-  min-height: auto; /* Allows dynamic height */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: left;
   padding: 5rem 0;
   color: #FFF9E0;
-  gap: 10rem; /* Keeps spacing */
-  flex-wrap: wrap; /* Ensures items wrap properly */
-  min-height: 100vh;
+  gap: 8rem;
+  flex-wrap: wrap;
+  animation: fadeIn 1.2s ease-in-out;
+  width: 100vw;
 }
 
-/* Container resizes based on content */
-.made-students .container {
+/* Container */
+.about-page-made .about-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -150,191 +110,179 @@ body {
   max-width: 1400px;
 }
 
-/* LEFT Container */
-.made-left {
+/* Left */
+.about-made-left {
   flex: 1;
-  max-width: 55%;
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: zoomIn 1s ease-in-out forwards;
 }
 
-/* RIGHT Container */
-.made-right {
+/* Right */
+.about-made-right {
   flex: 1;
-  max-width: 45%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  transform: translateY(30px);
+  opacity: 0;
+  animation: slideUp 1s ease-in-out forwards;
 }
 
 /* Heading */
-.made-students h1 {
-  font-family: 'Roboto Flex', sans-serif;
-  font-size: 4.0rem;
+.about-page-made h1 {
+  font-size: 4rem;
   font-weight: 550;
   letter-spacing: 0.088rem;
   line-height: 4.5rem;
-  margin-bottom: 5rem;
-  max-width: 1000px;
-  white-space: normal; /* Ensures it stays multi-line */
+  color: #FFF9E0;
 }
 
 /* Paragraph */
-.made-students .made-right p {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+.about-page-made .about-made-right p {
   font-size: 1.5rem;
   line-height: 1.8rem;
   max-width: 1000px;
-  text-align: left;
-  margin-bottom: 1rem;
 }
 
-/* Strong text inside p */
-.made-students .made-right p strong {
-  font-weight: 450;
-}
-
-
-/*
-======================================
-      MEDIA QUERIES CSS
-======================================        
-*/
+/* ====================================== */
+/*            MEDIA QUERIES               */
+/* ====================================== */
 @media (max-width: 1024px) {
-  .about-hero,
-  .made-students {
+  .about-page-hero,
+  .about-page-made {
       text-align: center;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 4rem 6%;
   }
 
-  .hero-left,
-  .hero-right {
+  .about-hero-left,
+  .about-hero-right {
       max-width: 100%;
       text-align: center;
-      align-items: center;
   }
 
-  .hero-left h1 {
+  .about-hero-left h1 {
+      font-size: 3.5rem;
+  }
+
+  .about-hero-left p {
+      text-align: center;
+      max-width: 100%;
+  }
+
+  .about-hero-right {
+      max-width: 100%;
+  }
+
+  .about-hero-right img {
+      width: 80%;
+      max-width: 350px;
+      transform: none;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .about-made-left,
+  .about-made-right {
+      max-width: 100%;
+      text-align: center;
+  }
+
+  .about-made-right h1 {
       font-size: 3rem;
-      text-align: center;
-      margin-bottom: 0;
-  }
-
-  .hero-left p {
-      text-align: center;
-      max-width: 100%;
-  }
-
-  .hero-right {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-width: 100%;
-  }
-
-  .hero-right img {
-      width: 90%;
-      max-width: 400px;
-  }
-
-  .made-students {
-      text-align: center;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .made-left,
-  .made-right {
-      max-width: 100%;
-      text-align: center;
-      align-items: center;
-  }
-
-  .made-right h1 {
-      font-size: 3rem;
-      text-align: center;
-  }
-
-  .made-right p {
-      text-align: center;
-      max-width: 90%;
   }
 }
 
-/*Mobile View */
 @media (max-width: 768px) {
-  .about-hero {
-      display: flex;
+  .about-page-hero {
       flex-direction: column;
-      align-items: center;
       text-align: center;
       padding: 3rem;
       gap: 2rem;
   }
 
-  /* Remove right container */
-  .hero-right {
+  .about-hero-right {
       display: none;
   }
 
-  /* Center left container */
-  .hero-left {
-      max-width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* Centers content */
-      text-align: center;
-  }
-
-  .hero-left h1 {
-      font-size: 2.5rem;
-      text-align: center;
-      line-height: 3rem;
-      margin-bottom: 1.5rem;
-  }
-
-  .hero-left p {
-      font-size: 1.2rem;
-      line-height: 1.6rem;
-      text-align: center;
-  }
-
-  /* Second Section*/
-  .made-students {
-      display: flex;
-      flex-direction: column;
+  .about-hero-left {
       align-items: center;
-      text-align: center;
-      padding: 3rem 2rem;
-      
   }
 
-  /* Remove left container */
-  .made-left {
+  .about-hero-left h1 {
+      font-size: 3rem;
+      line-height: 3.5rem;
+  }
+
+  .about-hero-left p {
+      font-size: 1.2rem;
+  }
+
+  .about-page-made {
+      flex-direction: column;
+      padding: 3rem 2rem;
+  }
+
+  .about-made-left {
       display: none;
   }
 
-  /* Center right container */
-  .made-right {
-      max-width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center !important; /* Forces centering */
-      justify-content: center;
-      text-align: center !important; /* Forces text centering */
+  .about-made-right {
+      align-items: center;
   }
 
-  /* Ensure text is properly centered */
-  .made-right h1,
-  .made-right p {
-      display: block;
-      text-align: center !important;
-      width: 100%; /* Ensures full width for centering */
-      margin: 0 auto; /* Prevents any left alignment */
+  .about-made-right h1, .about-made-right p {
+      text-align: center;
+      width: 100%;
   }
+}
+
+@media (max-width: 480px) {
+  .about-hero-left h1 {
+      font-size: 2.2rem;
+      line-height: 2.5rem;
+  }
+
+  .about-hero-left p {
+      font-size: 1rem;
+  }
+
+  .about-made-right h1 {
+      font-size: 2.2rem;
+  }
+
+  .about-made-right p {
+      font-size: 1.2rem;
+  }
+}
+
+/* ====================================== */
+/*             ANIMATIONS                 */
+/* ====================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }

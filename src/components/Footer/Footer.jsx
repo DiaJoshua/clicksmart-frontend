@@ -11,10 +11,10 @@ const Footer = () => {
         <div className="footer-column">
           <h3>Quick Links</h3>
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/reporting">Cybercrime Guide</Link></li>
-            <li><Link to="/about">About ClickSmart</Link></li>
-            <li><Link to="/helpcenter">Resources Hub</Link></li>
+            <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</Link></li>
+            <li><Link to="/reporting" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Cybercrime Guide</Link></li>
+            <li><Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>About ClickSmart</Link></li>
+            <li><Link to="/ResourcesHub" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Resources Hub</Link></li>
           </ul>
         </div>
 
@@ -28,13 +28,6 @@ const Footer = () => {
             <li><a href="https://www.facebook.com/messages/t/880299735387855" target="_blank" rel="noopener noreferrer">Direct Message PNP-ACG</a></li>
             <li><a href="https://www.facebook.com/anticybercrimegroup" target="_blank" rel="noopener noreferrer">ACG Social Media Link</a></li>
           </ul>
-        </div>
-
-        {/* Logo Section */}
-        <div className="logo">
-          <Link to="/" aria-label="Navigate to Homepage">
-            <img src={logo2} alt="ClickSmart" />
-          </Link>
         </div>
       </div>
 

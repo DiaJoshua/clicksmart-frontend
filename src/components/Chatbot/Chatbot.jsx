@@ -4,9 +4,12 @@ import bot from "../../assets/icons/bot.png";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([{ text: "Hello! How can I help you?", sender: "bot" }]);
+  const [messages, setMessages] = useState([
+    { text: "Hello! How can I help you?", sender: "bot" },
+  ]);
   const [input, setInput] = useState("");
   const chatEndRef = useRef(null);
+  const [botTyping, setBotTyping] = useState(false);
 
   // Auto-scroll to latest message
   useEffect(() => {
@@ -23,11 +26,16 @@ const Chatbot = () => {
     const userMessage = { text: input, sender: "user" };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
+    setBotTyping(true);
 
     // Simulated bot response after delay
     setTimeout(() => {
-      setMessages((prev) => [...prev, { text: "I’m just a simple chatbot! 😊", sender: "bot" }]);
-    }, 1000);
+      setMessages((prev) => [
+        ...prev,
+        { text: "I'm just a simple chatbot! 😊", sender: "bot" },
+      ]);
+      setBotTyping(false);
+    }, 1200);
   };
 
   return (
@@ -47,18 +55,11 @@ const Chatbot = () => {
 
           <div className="chatbox-body">
             {messages.map((msg, index) => (
-              <div key={index} className={`chat-message ${msg.sender}`} style={{
-                alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
-                backgroundColor: msg.sender === "user" ? "#0084ff" : "#e5e5ea",
-                color: msg.sender === "user" ? "white" : "black",
-                borderRadius: "18px",
-                padding: "8px 12px",
-                maxWidth: "75%",
-                margin: "4px 0",
-              }}>
+              <div key={index} className={`chat-message ${msg.sender}`}>
                 {msg.text}
               </div>
             ))}
+            {botTyping && <div className="bot-typing">...</div>}
             <div ref={chatEndRef} />
           </div>
 

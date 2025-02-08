@@ -1,67 +1,266 @@
-/* Try Again Page Styling */
-.try-again-container {
+/* ====================================== */
+/*         ASSESSMENT CONTAINER           */
+/* ====================================== */
+/* Fullscreen Container */
+.assessment-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full viewport height */
-  width: 100%;
-  background-color: #1a1a3e; /* Matches dark blue theme */
-  color: #ffffff; /* White text for contrast */
-  font-family: "Roboto-flex", Arial, sans-serif; /* Consistent font */
+  min-height: 100vh;
+  min-width: 100vw;
+  background: linear-gradient(135deg, #10162F, #1a1a3e);
+  color: #ffffff;
+  font-family: "Roboto Flex", Arial, sans-serif;
   padding: 2rem;
+  box-sizing: border-box;
 }
 
-.try-again-message {
-  font-size: 2.5rem; /* Large, bold text */
-  color: #f4f4f4; /* Slightly off-white text */
-  margin-bottom: 2rem;
-  text-align: center; /* Center align text */
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for emphasis */
+/* ====================================== */
+/*         SURVEY STYLING                 */
+/* ====================================== */
+.sv_main.sv_default_css {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
+  width: 90%;
+  max-width: 800px; /* Limits the width */
 }
 
-.try-again-button {
-  padding: 1rem 2.5rem; /* Larger button for emphasis */
-  font-size: 1.2rem;
-  color: #ffffff; /* White text */
-  background-color: #3b4ba0; /* Slightly lighter blue */
-  border: none;
-  border-radius: 12px; /* Smooth rounded corners */
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  transition: background-color 0.3s ease, transform 0.2s ease;
+/* Ensure survey form expands to fit available space */
+.sv_container {
+  width: 100%;
 }
 
-.try-again-button:hover {
-  background-color: #5064d6; /* Brighter blue on hover */
-  transform: translateY(-3px); /* Lift effect */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+/* ====================================== */
+/*         COMPLETION SECTION             */
+/* ====================================== */
+.completion-section,
+.review-section {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);
+  width: 90%;
+  max-width: 700px;
+  text-align: center;
 }
 
-.try-again-button:active {
-  transform: translateY(0); /* Reset lift */
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Adjust shadow */
+/* Completion Message */
+.completion-message {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #f4f4f4;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.2), 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
+/* Score Display */
 .score-display {
-  font-size: 20px;
-  color: #fff;
-  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f8f8f8;
+  text-align: center;
+  margin-top: 1rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .try-again-container {
-    padding: 1rem; /* Reduce padding for smaller screens */
+/* Buttons Container */
+.completion-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+/* ====================================== */
+/*         BUTTON STYLES                  */
+/* ====================================== */
+.review-button,
+.try-again-button,
+.back-to-results-button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #3b4ba0, #5064d6);
+  transition: 0.3s ease;
+}
+
+.back-to-results-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #5064d6, #6c80d8);
+}
+
+
+.review-button:hover,
+.try-again-button:hover {
+  background: linear-gradient(135deg, #5064d6, #6c7fd8);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.review-button:active,
+.try-again-button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ====================================== */
+/*         REVIEW SECTION                 */
+/* ====================================== */
+.review-section {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  width: 90%;
+  max-width: 800px;
+}
+
+/* Review Title */
+.review-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-shadow: 0px 2px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Review Item */
+.review-item {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Question Text */
+.question-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f4f4f4;
+  margin-bottom: 0.5rem;
+}
+
+/* User Answer */
+.user-answer {
+  font-size: 1rem;
+  padding: 0.8rem;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* Correct Answer */
+.correct-answer {
+  font-size: 1rem;
+  color: #00e676;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+/* Wrong Answer Styling */
+.user-answer.incorrect {
+  color: #ff3d3d;
+}
+
+/* Correct Answer Styling */
+.user-answer.correct {
+  color: #00e676;
+}
+
+/* ====================================== */
+/*          RESPONSIVE DESIGN             */
+/* ====================================== */
+@media (max-width: 1024px) {
+  .assessment-container {
+    padding: 1.5rem;
   }
 
-  .try-again-message {
-    font-size: 2rem; /* Adjust text size for readability */
+  .sv_main.sv_default_css {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .completion-message {
+    font-size: 2rem;
     margin-bottom: 1.5rem;
   }
 
+  .score-display {
+    font-size: 1.2rem;
+  }
+
+  .completion-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .review-section {
+    width: 95%;
+  }
+
+  .review-title {
+    font-size: 1.8rem;
+  }
+
+  .review-item {
+    padding: 1rem;
+  }
+
+  .review-button,
   .try-again-button {
-    padding: 0.8rem 2rem; /* Slightly smaller button */
-    font-size: 1rem; /* Reduce font size */
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .assessment-container {
+    padding: 1.2rem;
+  }
+
+  .sv_main.sv_default_css {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .completion-message {
+    font-size: 1.8rem;
+  }
+
+  .review-section {
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .completion-section,
+  .review-section {
+    width: 100%;
+    padding: 1.2rem;
+  }
+
+  .review-title {
+    font-size: 1.5rem;
+  }
+
+  .completion-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .review-button,
+  .try-again-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
