@@ -128,6 +128,7 @@
   transform: translateY(30px);
   opacity: 0;
   animation: slideUp 1s ease-in-out forwards;
+  padding-left: 5rem;
 }
 
 /* Heading */
