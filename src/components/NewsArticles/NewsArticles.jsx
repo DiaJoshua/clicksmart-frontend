@@ -12,7 +12,7 @@ const NewsArticles = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "https://clicksmart-frontend.onrender.com/fetch-cybercrime-news"
+          "https://clicksmart-backend.onrender.com/fetch-cybercrime-news"
         );
         setArticles(response.data);
         setLoading(false);
