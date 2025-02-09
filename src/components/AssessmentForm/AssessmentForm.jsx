@@ -645,10 +645,16 @@ const AssessmentForm = () => {
     setShowReview(false);
   };
 
+  const handleComplete = () => {
+    setIsCompleted(true);
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top when completed
+  };
+  
+
   return (
     <div className="assessment-container">
       {!isCompleted ? (
-        <Survey model={survey} />
+        <Survey model={survey} onComplete={handleComplete} />
       ) : !showReview ? (
         <div className="completion-section">
           <h3 className="completion-message">{getScoreMessage()}</h3>
