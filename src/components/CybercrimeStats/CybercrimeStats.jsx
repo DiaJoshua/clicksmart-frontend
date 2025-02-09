@@ -38,7 +38,7 @@ const CybercrimeStats = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/cybercrime-stats") // Ensure this matches backend
+      .get("https://clicksmart-backend.onrender.com/api/cybercrime-stats") // Ensure this matches backend
       .then((response) => {
         console.log("Data received:", response.data);
         setCybercrimeData(response.data);
