@@ -237,40 +237,104 @@
 }
 
 
-/* Loading Text */
-.loading-text {
-  font-size: 1.5rem;
-  font-weight: bold;
+/* 🔵 News Articles Loading Screen */
+.news-loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  font-family: 'Courier New', Courier, monospace;
   text-align: center;
-  color: #ffffff;
+  padding: 20px;
+}
+
+/* Spinning Loading Icon */
+.news-loading-icon {
+  width: 70px;
+  height: 70px;
+  border: 6px solid #00ffcc;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animated Loading Text */
+.news-loading-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   background: linear-gradient(90deg, #7F7EFC, #a0a0a0);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: pulse 1.5s infinite;
+  animation: flicker 1.5s infinite;
 }
 
-/* Pulse Animation */
-@keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+/* Flickering Effect */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
-/* Error Text */
-.error-text {
-  font-size: 1.2rem;
-  text-align: center;
+/* 🔴 News Articles Error Screen */
+.news-error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  background: #200f21;
   color: #ff4c4c;
-  background: rgba(255, 0, 0, 0.1);
-  padding: 10px;
-  border-radius: 5px;
-  animation: shake 0.5s ease-in-out;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Error Icon */
+.news-error-icon {
+  font-size: 4rem;
+  animation: shake 1.2s infinite;
 }
 
 /* Shake Animation */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+
+/* Error Text */
+.news-error-text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+/* Retry Button */
+.news-retry-button {
+  background: #ff4c4c;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+.news-retry-button:hover {
+  background: #ff6666;
+  transform: scale(1.1);
 }

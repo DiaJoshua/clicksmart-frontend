@@ -12,7 +12,7 @@ const NewsArticles = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "https://clicksmart-backend.onrender.com/fetch-cybercrime-news"
+          "http://localhost:5000/fetch-cybercrime-news"
         );
         setArticles(response.data);
         setLoading(false);
@@ -45,8 +45,22 @@ const NewsArticles = () => {
 
   return (
     <div className="news-articles">
-      {loading && <p className="loading-text">Loading articles...</p>}
-      {error && <p className="error-text">{error}</p>}
+    {loading && (
+      <div className="news-loading-screen">
+        <div className="news-loading-icon"></div>
+        <p className="news-loading-text">Fetching News Articles...</p>
+      </div>
+    )}
+
+    {error && (
+      <div className="news-error-screen">
+        <div className="news-error-icon">⚠️</div>
+        <p className="news-error-text">{error}</p>
+        <button onClick={() => window.location.reload()} className="news-retry-button">
+          Retry
+        </button>
+      </div>
+    )}
       {!loading && !error && (
         <>
           <h1 className="news-articles-title">News and Articles</h1>

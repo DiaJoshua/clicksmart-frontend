@@ -60,9 +60,16 @@ const CybercrimeStats = () => {
     );
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  /*if (error) {
+    return (
+      <div className="error-screen">
+        <div className="error-icon">⚠️</div>
+        <h1 className="glitch-text">Error Loading Data</h1>
+        <p>{error}</p>
+        <button onClick={() => window.location.reload()} className="retry-button">Retry</button>
+      </div>
+    );
+  }*/
 
   // 🟢 Process barangay-level data
   const processBarangayData = () => {
