@@ -49,11 +49,19 @@ const CybercrimeStats = () => {
         setError("There was an error fetching the data.");
         setLoading(false);
       });
-}, []);
-
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-screen">
+        <div className="cyber-shield"></div>
+        <h1 className="glitch-text">Loading Cybercrime Data...</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   // 🟢 Process barangay-level data
@@ -226,7 +234,7 @@ const CybercrimeStats = () => {
       </div>
 
       {/* Chatbot */}
-    <Chatbot />
+      <Chatbot />
     </div>
   );
 };
