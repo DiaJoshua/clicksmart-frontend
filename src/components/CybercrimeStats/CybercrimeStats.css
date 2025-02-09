@@ -1,28 +1,8 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Global body styles */
-body {
-  font-family: 'Roboto Flex', sans-serif;
-  line-height: 1.6;
-  background: #f7f7f7;
-  color: #333;
-  justify-content: center;
-}
-
 /* Cybercrime Container */
 .cybercrime-container {
   width: auto;
   max-width: 1200px;
+  min-width: 100vw;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;

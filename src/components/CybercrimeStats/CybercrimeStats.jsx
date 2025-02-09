@@ -38,7 +38,7 @@ const CybercrimeStats = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/stats")
+      .get("http://localhost:5000/api/cybercrime-stats") // Ensure this matches backend
       .then((response) => {
         console.log("Data received:", response.data);
         setCybercrimeData(response.data);
@@ -49,7 +49,8 @@ const CybercrimeStats = () => {
         setError("There was an error fetching the data.");
         setLoading(false);
       });
-  }, []);
+}, []);
+
 
   if (loading) {
     return <div>Loading...</div>;
