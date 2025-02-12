@@ -1,168 +1,159 @@
-/* Navbar Styles */
+/* 🔹 General Navbar */
 .navbar {
-  position: fixed; /* Fixes navbar to the top */
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(244, 244, 244, 0.99); /* Semi-transparent effect */
-  padding: 1rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Ensures navbar stays above other elements */
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-  transition: background 0.4s ease-in-out, padding 0.3s ease-in-out;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  background: rgba(244, 244, 244, 0.99) !important;
+  padding: 1rem 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 1000 !important;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2) !important;
+  transition: background 0.4s ease-in-out, padding 0.3s ease-in-out 0s, box-shadow 0.3s ease-in-out 0s !important;
 }
 
-/* Navbar when scrolled */
+/* 🔹 Navbar when scrolled */
 .navbar.scrolled {
-  background: rgba(244, 244, 244, 1); /* Fully opaque when scrolled */
-  padding: 0.5rem 0; /* Slightly reduces padding */
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); /* Increases shadow */
+  background: rgba(255, 255, 255, 1) !important;
+  padding: 0.6rem 0 !important;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* 🔹 Body Adjustments */
 body {
-  padding-top: 70px; /* Adjust this based on your navbar's height */
+  padding-top: 75px !important;
 }
 
-/* Navbar container */
-.navbar .container {
-  display: flex;
-  justify-content: center; /* Centers nav-links */
-  align-items: center;
-  width: 100%;
-  position: relative;
-}
-
-/* LOGO - Moves to the left */
+/* 🔹 Navbar Container */
 .navbar .logo {
-  position: absolute;
-  left: 1rem; /* Keeps it near the left edge */
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
+  position: absolute !important;
+  left: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
 }
 
-/* Logo Styles */
 .navbar .logo img {
-  display: block;
-  max-height: 35px;
+  max-height: 40px !important;
+  transition: transform 0.3s ease-in-out 0s !important; 
 }
 
-/* Centering nav-links */
+.navbar .logo img:hover {
+  transform: scale(1.03) translateY(-2px) !important;
+}
+
+/* 🔹 Centering Nav Links */
 .nav-links {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 16px;
-  font-weight: 450;
-  list-style: none;
-  display: flex;
-  justify-content: space-between; /* Center horizontally */
-  padding: .4rem 0;
-  margin: 0 auto 0 2rem;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 16px !important;
+  font-weight: 450 !important;
+  list-style: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-/* Adjust spacing between nav items */
+/* 🔹 Adjust spacing between nav items */
 .nav-links li {
-  margin: 0 1.5rem;
+  margin: 0 1.5rem !important;
+  position: relative !important;
 }
 
-/* Navbar link styles */
+/* 🔹 Navbar Links */
 .nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-size: 1rem;
+  text-decoration: none !important;
+  color: #333 !important;
+  font-size: 1rem !important;
+  transition: color 0.3s ease-in-out !important;
 }
 
-/* Mobile menu button */
+/* 🔹 Hover Effect */
+.nav-links a::after {
+  content: '' !important;
+  display: block !important;
+  height: 2px !important;
+  width: 0 !important;
+  background: #2a2a3b !important;
+  transition: width 0.3s ease-in-out !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: -5px !important;
+}
+
+.nav-links a:hover::after {
+  width: 100% !important;
+}
+
+.nav-links a:hover {
+  color: #2a2a3b !important;
+}
+
+/* 🔹 Mobile Menu Button */
 .menu-toggle {
-  display: none;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: #333;
-  cursor: pointer;
-  margin-right: 20px;
-  position: relative; /* Ensure it stays in place */
-  z-index: 1001; /* Ensure it's above everything */
-  margin-left: 2rem;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1001 !important;
 }
 
-/* 🔹 Mobile & Tablet Fix */
-@media (max-width: 1024px) {
+.menu-icon {
+  width: 32px !important;
+  height: 32px !important;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
+}
 
+.menu-toggle:hover .menu-icon {
+  transform: scale(1.1) !important;
+}
+
+/* 🔹 Mobile & Tablet Menu */
+@media (max-width: 1024px) {
   .menu-toggle {
     display: block !important;
+    margin-left: auto !important;
+    margin-right: 1.5rem !important;
   }
 
-  .navbar .container {
-    justify-content: space-between; /* Ensures spacing */
-  }
-
-  /* LOGO - Remove absolute positioning when zoomed in/mobile */
-  .navbar .logo {
-    position: relative;
-    left: auto;
-    transform: none;
-    text-align: center;
-    width: 100%;
-  }
-
-  /* Rotate the arrow when the menu is open */
-  .arrow-icon {
-    transition: transform 0.3s ease-in-out;
-    width: 30px; /* Adjust size for tablet */
-    height: 30px;
-  }
-
-  .arrow-icon.rotate {
-    transform: rotate(60deg);
-  }
-
-  /* Mobile nav links */
+  /* Responsive Navbar */
   .nav-links {
-    visibility: hidden;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    background: #f4f4f4;
-    position: absolute;
-    top: 100%; /* Ensures it appears below navbar */
-    left: 0;
-    padding: 1rem 0;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    position: fixed !important;
+    display: block !important;
+    top: 70px !important;
+    right: -100% !important;
+    width: 60% !important;
+    max-width: 300px !important;
+    height: 100vh !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding: 2rem 1.5rem !important;
+    transition: right 0.4s ease-in-out !important;
+    box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.1) !important;
+    display: flex !important;
   }
 
-  /* Show the menu when toggled */
   .nav-links.show {
-    visibility: visible;
-    opacity: 1;
+    right: 0 !important;
   }
 
   .nav-links li {
-    margin: 1rem 0;
-    text-align: center;
+    margin: 1.5rem 0 !important;
+    text-align: center !important;
   }
 
   .nav-links a {
-    font-size: 1.2rem;
-    display: block;
-    padding: 0.5rem;
-  }
-
-  /* LOGO - Center in mobile */
-  .navbar .logo {
-    position: relative;
-    left: auto;
-    transform: none;
-    text-align: center;
-    width: 100%;
+    font-size: 1.2rem !important;
+    display: block !important;
+    padding: 0.5rem !important;
   }
 }
 
-/* Desktop Navbar */
+/* 🔹 Desktop Navbar */
 @media (min-width: 769px) {
   .navbar .container {
     display: flex;
@@ -170,7 +161,7 @@ body {
     align-items: center;
   }
 
-  /* LOGO - Stays left in desktop */
+  /* LOGO - Stays Left in Desktop */
   .navbar .logo {
     position: absolute;
     left: 1rem;
@@ -193,36 +184,10 @@ body {
   }
 
   .nav-links a {
-    font-size: 1rem;
+    transition: transform 0.2s ease-in-out;
   }
 
-  /* Arrow icon size adjustments */
-  .arrow-icon {
-    transition: transform 0.3s ease-in-out;
-    width: 24px; /* Adjust size for desktop */
-    height: 24px;
-  }
-
-  .arrow-icon.rotate {
-    transform: rotate(60deg); /* Rotates the arrow when menu is open */
-  }
-}
-
-/* Arrow icon size adjustments */
-.arrow-icon {
-  transition: transform 0.3s ease-in-out;
-  width: 24px; /* Default size */
-  height: 24px;
-  max-width: 24px;
-  max-height: 24px;
-}
-
-/* Adjust size of arrow on mobile */
-@media (max-width: 768px) {
-  .arrow-icon {
-    width: 18px; /* Smaller size for mobile */
-    height: 18px;
-    max-width: 18px;
-    max-height: 18px;
+  .nav-links a:hover {
+    transform: translateY(-2px);
   }
 }

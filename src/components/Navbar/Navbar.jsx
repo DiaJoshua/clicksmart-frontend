@@ -1,43 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo/logo.png";
 import { Link } from "react-router-dom";
-import arrowIcon from "../../assets/icons/arrow.png"; 
+import menuIcon from "../../assets/icons/menu.svg";
+import closeIcon from "../../assets/icons/close.svg";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Toggle the menu
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  // Toggle menu
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  // Detect scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="logo">
         <Link to="/" aria-label="Navigate to Homepage">
           <img src={logo} alt="ClickSmart" />
         </Link>
       </div>
 
-      {/* Button for toggling the menu */}
-      <button
-        className="menu-toggle"
-        aria-label="Toggle menu"
-        onClick={toggleMenu}
-      >
+      {/* Mobile Menu Button */}
+      <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
         <img
-          src={arrowIcon}
-          alt="Toggle menu"
-          className={`arrow-icon ${menuOpen ? "rotate" : ""}`} 
+          src={menuOpen ? closeIcon : menuIcon}
+          alt="Menu Toggle"
+          className="menu-icon"
         />
       </button>
 
-      {/* Navigation menu */}
+      {/* Navigation Menu */}
       <nav className={`nav-center ${menuOpen ? "show" : ""}`} aria-label="Main Navigation">
         <ul className="nav-links">
-          <li><Link to="/Reporting">Cybercrime Guide</Link></li>
-          <li><Link to="/CybercrimeStats">Cybercrime Statistics</Link></li>
-          <li><Link to="/About">About Us</Link></li>
-          <li><Link to="/ResourcesHub">Resources Hub</Link></li>
+          <li><Link to="/Reporting" onClick={() => setMenuOpen(false)}>Cybercrime Guide</Link></li>
+          <li><Link to="/CybercrimeStats" onClick={() => setMenuOpen(false)}>Cybercrime Statistics</Link></li>
+          <li><Link to="/About" onClick={() => setMenuOpen(false)}>About Us</Link></li>
+          <li><Link to="/ResourcesHub" onClick={() => setMenuOpen(false)}>Resources Hub</Link></li>
         </ul>
       </nav>
     </header>
