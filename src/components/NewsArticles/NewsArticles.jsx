@@ -12,11 +12,12 @@ const NewsArticles = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          'https://clicksmart-backend.onrender.com/fetch-cybercrime-news'
+          'http://localhost:5000/fetch-cybercrime-news'
         );
         setArticles(response.data);
         setLoading(false);
       } catch (error) {
+        console.error("News API Error:", error.response?.status, error.response?.data);
         setError("Failed to fetch news. Please try again later.");
         setLoading(false);
       }
