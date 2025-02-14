@@ -14,6 +14,11 @@ const Navbar = () => {
     setMenuOpen((prev) => !prev);
   };
 
+  // Close menu when clicking a link (Mobile Fix)
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   // Detect scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -47,11 +52,11 @@ const Navbar = () => {
 
       {/* Navigation Menu */}
       <nav className={`nav-center ${menuOpen ? "show" : ""}`} aria-label="Main Navigation">
-        <ul className="nav-links">
-          <li><Link to="/Reporting" onClick={() => setMenuOpen(false)}>Cybercrime Guide</Link></li>
-          <li><Link to="/CybercrimeStats" onClick={() => setMenuOpen(false)}>Cybercrime Statistics</Link></li>
-          <li><Link to="/About" onClick={() => setMenuOpen(false)}>About Us</Link></li>
-          <li><Link to="/ResourcesHub" onClick={() => setMenuOpen(false)}>Resources Hub</Link></li>
+        <ul className={`nav-links ${menuOpen ? "show" : ""}`}>
+          <li><Link to="/Reporting" onClick={closeMenu}>Cybercrime Guide</Link></li>
+          <li><Link to="/CybercrimeStats" onClick={closeMenu}>Cybercrime Statistics</Link></li>
+          <li><Link to="/About" onClick={closeMenu}>About Us</Link></li>
+          <li><Link to="/ResourcesHub" onClick={closeMenu}>Resources Hub</Link></li>
         </ul>
       </nav>
     </header>

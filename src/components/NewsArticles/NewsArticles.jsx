@@ -10,17 +10,17 @@ const NewsArticles = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      try {
-        const response = await axios.get(
-          `https://clicksmart-backend.onrender.com/fetch-cybercrime-news`
-        );
-        setArticles(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("News API Error:", error.message);
-        setError("Failed to fetch news. Please try again later.");
-        setLoading(false);
-      }
+      // try {
+      //   const response = await axios.get(
+      //     `https://clicksmart-backend.onrender.com/fetch-cybercrime-news`
+      //   );
+      //   setArticles(response.data);
+      //   setLoading(false);
+      // } catch (error) {
+      //   console.error("News API Error:", error.message);
+      //   setError("Failed to fetch news. Please try again later.");
+      //   setLoading(false);
+      // }
     };
     fetchNews();
   }, []);
