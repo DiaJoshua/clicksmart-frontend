@@ -17,7 +17,7 @@
 /* 🔹 Navbar when scrolled */
 .navbar.scrolled {
   background: rgba(255, 255, 255, 1);
-  padding: 0.6rem 0;
+  padding: 0.8rem 0;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.4);
 }
 

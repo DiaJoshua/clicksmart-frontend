@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./NewsArticles.css";
+import manLaptop from "../../assets/manlaptop.png";
 
 const NewsArticles = () => {
   const [articles, setArticles] = useState([]);
@@ -10,17 +11,17 @@ const NewsArticles = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      // try {
-      //   const response = await axios.get(
-      //     `https://clicksmart-backend.onrender.com/fetch-cybercrime-news`
-      //   );
-      //   setArticles(response.data);
-      //   setLoading(false);
-      // } catch (error) {
-      //   console.error("News API Error:", error.message);
-      //   setError("Failed to fetch news. Please try again later.");
-      //   setLoading(false);
-      // }
+      try {
+        const response = await axios.get(
+          `https://clicksmart-backend.onrender.com/fetch-cybercrime-news`
+        );
+        setArticles(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("News API Error:", error.message);
+        setError("Failed to fetch news. Please try again later.");
+        setLoading(false);
+      }
     };
     fetchNews();
   }, []);
@@ -37,11 +38,6 @@ const NewsArticles = () => {
   const startIndex = currentBatch * 4;
   const displayedArticles = articles.slice(startIndex, startIndex + 4);
 
-  const truncateDescription = (text, maxLength = 100) => {
-    if (!text) return "";
-    return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
-  };
-
   return (
     <div className="news-articles">
       {loading && (
@@ -55,7 +51,10 @@ const NewsArticles = () => {
         <div className="news-error-screen">
           <div className="news-error-icon">⚠️</div>
           <p className="news-error-text">{error}</p>
-          <button onClick={() => window.location.reload()} className="news-retry-button">
+          <button
+            onClick={() => window.location.reload()}
+            className="news-retry-button"
+          >
             Retry
           </button>
         </div>
@@ -66,16 +65,31 @@ const NewsArticles = () => {
           <h1 className="news-articles-title">News and Articles</h1>
           <div className="news-articles-container">
             {displayedArticles.map((article, index) => (
-              <a key={index} href={article.url} target="_blank" rel="noopener noreferrer" className="news-articles-card">
+              <a
+                key={index}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="news-articles-card"
+              >
+                {/* Inside the map function */}
                 <div className="news-articles-image">
-                  <img src={article.image || "default-image.jpg"} alt={article.title} />
+                  <img
+                    src={
+                      article.image && article.image.trim() !== ""
+                        ? article.image
+                        : manLaptop
+                    }
+                    alt={article.title || "News Image"}
+                    onError={(e) => {
+                      e.target.src = manLaptop;
+                    }} // Force fallback if image fails to load
+                  />
                 </div>
                 <div className="news-articles-header">
                   <h3>{article.title}</h3>
                 </div>
-                <div className="news-articles-body">
-                  <p>{truncateDescription(article.description)}</p>
-                </div>
+
                 <div className="news-articles-footer">
                   <p className="published-date">{article.publishedAt}</p>
                 </div>
@@ -83,7 +97,9 @@ const NewsArticles = () => {
             ))}
           </div>
           <div className="news-articles-controls">
-            <button onClick={() => handleBatchChange("prev")}>&lt; Previous</button>
+            <button onClick={() => handleBatchChange("prev")}>
+              &lt; Previous
+            </button>
             <button onClick={() => handleBatchChange("next")}>Next &gt;</button>
           </div>
         </>

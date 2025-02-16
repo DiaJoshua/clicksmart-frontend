@@ -12,22 +12,26 @@ const AssessmentForm = () => {
 
   // ✅ Correct Answers Mapping
   const correctAnswers = {
-    question1: "10",
-    question2: "10",
-    question3: "10",
-    question4: "10",
-    question5: "10",
-    question6: "10",
-    question7: "10",
-    question8: "10",
-    question9: "10",
-    question10: "10",
-    question11: "10",
-    question12: "10",
-    question13: "10",
-    question14: "10",
-    question15: "10",
-    question16: "10",
+    question1: "1",
+    question2: "1",
+    question3: "1",
+    question4: "1",
+    question5: "1",
+    question6: "1",
+    question7: "1",
+    question8: "1",
+    question9: "1",
+    question10: "1",
+    question11: "1",
+    question12: "1",
+    question13: "1",
+    question14: "1",
+    question15: "1",
+    question16: "1",
+    question17: "1",
+    question18: "1",
+    question19: "1",
+    question20: "1",
   };
 
   // ✅ Define the survey JSON structure
@@ -51,22 +55,10 @@ const AssessmentForm = () => {
             title: "What is considered a cybercrime under Philippine law?",
             isRequired: true,
             choices: [
-              {
-                value: "2",
-                text: "Unauthorized access to computer systems",
-              },
-              {
-                value: "3",
-                text: "Cyberbullying",
-              },
-              {
-                value: "4",
-                text: "Online scams or phishing",
-              },
-              {
-                value: "10",
-                text: "All of the above",
-              },
+              { value: "2", text: "Unauthorized access to computer systems" },
+              { value: "3", text: "Cyberbullying" },
+              { value: "4", text: "Online scams or phishing" },
+              { value: "1", text: "All of the above" },
             ],
           },
           {
@@ -76,22 +68,10 @@ const AssessmentForm = () => {
               "What is the name of the Philippine law that addresses cybercrime?",
             isRequired: true,
             choices: [
-              {
-                value: "2",
-                text: "Data Privacy Act of 2012",
-              },
-              {
-                value: "10",
-                text: "Cybercrime Prevention Act of 2012",
-              },
-              {
-                value: "3",
-                text: "E-Commerce Act of 2000",
-              },
-              {
-                value: "4",
-                text: "Anti-Hacking Act",
-              },
+              { value: "2", text: "Data Privacy Act of 2012" },
+              { value: "1", text: "Cybercrime Prevention Act of 2012" },
+              { value: "3", text: "E-Commerce Act of 2000" },
+              { value: "4", text: "Anti-Hacking Act" },
             ],
           },
           {
@@ -101,12 +81,9 @@ const AssessmentForm = () => {
               "Which government agency handles cybercrime complaints in the Philippines?",
             isRequired: true,
             choices: [
+              { value: "2", text: "Department of Trade and Industry (DTI)" },
               {
-                value: "2",
-                text: "Department of Trade and Industry (DTI)",
-              },
-              {
-                value: "10",
+                value: "1",
                 text: "National Bureau of Investigation (NBI) Cybercrime Division",
               },
               {
@@ -125,22 +102,13 @@ const AssessmentForm = () => {
             title: "What is a phishing attack?",
             isRequired: true,
             choices: [
+              { value: "2", text: "A type of fishing game played online" },
               {
-                value: "2",
-                text: "A type of fishing game played online",
-              },
-              {
-                value: "10",
+                value: "1",
                 text: "An attempt to steal sensitive information by pretending to be a trustworthy entity",
               },
-              {
-                value: "3",
-                text: "A computer virus that deletes files",
-              },
-              {
-                value: "4",
-                text: "A hacking method used to overload servers",
-              },
+              { value: "3", text: "A computer virus that deletes files" },
+              { value: "4", text: "A hacking method used to overload servers" },
             ],
           },
         ],
@@ -156,22 +124,16 @@ const AssessmentForm = () => {
               "What is the best way to ensure the security of your online accounts?",
             isRequired: true,
             choices: [
-              {
-                value: "2",
-                text: "Use the same password for all accounts (0 points)",
-              },
+              { value: "2", text: "Use the same password for all accounts" },
               {
                 value: "3",
                 text: "Share your password with friends for safekeeping",
               },
               {
-                value: "10",
+                value: "1",
                 text: "Use strong, unique passwords and enable two-factor authentication",
               },
-              {
-                value: "4",
-                text: "Avoid using passwords altogether",
-              },
+              { value: "4", text: "Avoid using passwords altogether" },
             ],
           },
           {
@@ -192,10 +154,7 @@ const AssessmentForm = () => {
                 value: "4",
                 text: "Receiving a message with poor grammar and an urgent tone",
               },
-              {
-                value: "10",
-                text: "All of the above",
-              },
+              { value: "1", text: "All of the above" },
             ],
           },
           {
@@ -204,22 +163,13 @@ const AssessmentForm = () => {
             title: "If you encounter a suspicious link, what should you do?",
             isRequired: true,
             choices: [
-              {
-                value: "2",
-                text: "Click it to see where it goes",
-              },
-              {
-                value: "3",
-                text: "Ignore it and delete it immediately",
-              },
+              { value: "2", text: "Click it to see where it goes" },
+              { value: "3", text: "Ignore it and delete it immediately" },
               {
                 value: "4",
                 text: "Report it to the platform or website administrator",
               },
-              {
-                value: "10",
-                text: "Both b and c",
-              },
+              { value: "1", text: "Both b and c" },
             ],
           },
           {
@@ -229,22 +179,13 @@ const AssessmentForm = () => {
               "What should you avoid doing to minimize risks of cyberbullying?",
             isRequired: true,
             choices: [
-              {
-                value: "2",
-                text: "Engaging in online arguments",
-              },
-              {
-                value: "3",
-                text: "Sharing personal information publicly",
-              },
+              { value: "2", text: "Engaging in online arguments" },
+              { value: "3", text: "Sharing personal information publicly" },
               {
                 value: "4",
                 text: "Ignoring threatening or harassing messages",
               },
-              {
-                value: "10",
-                text: "All of the above",
-              },
+              { value: "1", text: "All of the above" },
             ],
           },
         ],
@@ -260,22 +201,16 @@ const AssessmentForm = () => {
               "What is the first step you should take if you are a victim of cybercrime?",
             isRequired: true,
             choices: [
+              { value: "2", text: "Ignore it and hope it goes away" },
               {
-                value: "2",
-                text: "Ignore it and hope it goes away",
-              },
-              {
-                value: "10",
+                value: "1",
                 text: "Gather evidence (e.g., screenshots, chat logs)",
               },
               {
                 value: "3",
                 text: "Report the incident to friends on social media",
               },
-              {
-                value: "4",
-                text: "Change your email password",
-              },
+              { value: "4", text: "Change your email password" },
             ],
           },
           {
@@ -285,28 +220,19 @@ const AssessmentForm = () => {
               "Where can you officially report cybercrime incidents in the Philippines?",
             isRequired: true,
             choices: [
+              { value: "2", text: "Barangay Hall" },
+              { value: "3", text: "Police Station" },
               {
-                value: "2",
-                text: "Barangay Hall",
-              },
-              {
-                value: "3",
-                text: "Police Station",
-              },
-              {
-                value: "10",
+                value: "1",
                 text: "NBI Cybercrime Division or PNP Anti-Cybercrime Group",
               },
-              {
-                value: "4",
-                text: "All of the above",
-              },
+              { value: "4", text: "All of the above" },
             ],
           },
           {
             type: "radiogroup",
             name: "question11",
-            title: "What is the importance of reporting cybercrime?\n",
+            title: "What is the importance of reporting cybercrime?",
             isRequired: true,
             choices: [
               {
@@ -321,10 +247,7 @@ const AssessmentForm = () => {
                 value: "4",
                 text: "To help improve laws and policies on cybercrime",
               },
-              {
-                value: "10",
-                text: "All of the above",
-              },
+              { value: "1", text: "All of the above" },
             ],
           },
           {
@@ -338,12 +261,9 @@ const AssessmentForm = () => {
                 value: "2",
                 text: "Ignore the situation to avoid getting involved",
               },
+              { value: "3", text: "Join in to protect yourself" },
               {
-                value: "3",
-                text: "Join in to protect yourself",
-              },
-              {
-                value: "10",
+                value: "1",
                 text: "Offer support to the victim and report the behavior",
               },
               {
@@ -365,18 +285,12 @@ const AssessmentForm = () => {
               'You receive an email from your bank asking for your account password to "verify your identity." What should you do?',
             isRequired: true,
             choices: [
+              { value: "2", text: "Reply with the information immediately" },
               {
-                value: "2",
-                text: "Reply with the information immediately",
-              },
-              {
-                value: "10",
+                value: "1",
                 text: "Call your bank using their official hotline to verify the request",
               },
-              {
-                value: "3",
-                text: "Ignore the email",
-              },
+              { value: "3", text: "Ignore the email" },
               {
                 value: "4",
                 text: "Forward the email to your friends for advice",
@@ -390,22 +304,16 @@ const AssessmentForm = () => {
               "A friend tells you they won an online raffle but needs your account to claim the prize. What should you do?",
             isRequired: true,
             choices: [
+              { value: "2", text: "Give them access to your account" },
               {
-                value: "2",
-                text: "Give them access to your account",
-              },
-              {
-                value: "10",
+                value: "1",
                 text: "Ask them for more details about the raffle",
               },
               {
                 value: "3",
                 text: "Warn them it could be a scam and suggest verifying its legitimacy",
               },
-              {
-                value: "4",
-                text: "Ignore the situation",
-              },
+              { value: "4", text: "Ignore the situation" },
             ],
           },
           {
@@ -416,20 +324,39 @@ const AssessmentForm = () => {
             isRequired: true,
             choices: [
               {
-                value: "10",
+                value: "1",
                 text: "Report the transactions to your bank immediately",
               },
               {
                 value: "2",
                 text: "Post about it on social media to warn others",
               },
-              {
-                value: "3",
-                text: "Try to reverse the transactions yourself",
-              },
+              { value: "3", text: "Try to reverse the transactions yourself" },
               {
                 value: "4",
                 text: "Do nothing and wait for your bank to contact you",
+              },
+            ],
+          },
+          {
+            type: "radiogroup",
+            name: "question16",
+            title:
+              "A fake online store scammed you. What is the first action you should take?",
+            isRequired: true,
+            choices: [
+              {
+                value: "1",
+                text: "Report the scam to authorities and the e-commerce platform",
+              },
+              {
+                value: "2",
+                text: "Post about it on social media to warn others",
+              },
+              { value: "3", text: "Forget about it and move on" },
+              {
+                value: "4",
+                text: "Try to contact the seller and request a refund",
               },
             ],
           },
@@ -437,31 +364,77 @@ const AssessmentForm = () => {
       },
       {
         name: "page5",
-        title: "Last Question:",
+        title: "Section 5: Cybercrime Laws and Enforcement",
         elements: [
           {
             type: "radiogroup",
-            name: "question16",
-            title:
-              "Why is cybersecurity awareness critical in the Philippines, especially in the digital age?",
+            name: "question17",
+            title: "Which Philippine law specifically addresses cybercrime?",
             isRequired: true,
             choices: [
               {
-                value: "2",
-                text: "To ensure safe and secure online transactions",
+                value: "1",
+                text: "Republic Act No. 10175 (Cybercrime Prevention Act of 2012)",
               },
+              { value: "2", text: "Republic Act No. 10844 (DICT Act of 2015)" },
               {
                 value: "3",
-                text: "To protect personal and financial information from cyber threats",
+                text: "Republic Act No. 8792 (E-Commerce Act of 2000)",
               },
               {
                 value: "4",
-                text: "To help combat the rising number of cybercrime cases and hold perpetrators accountable",
+                text: "Republic Act No. 9239 (Optical Media Act of 2003)",
+              },
+            ],
+          },
+          {
+            type: "radiogroup",
+            name: "question18",
+            title:
+              "What is the main purpose of the Cybercrime Prevention Act of 2012?",
+            isRequired: true,
+            choices: [
+              { value: "2", text: "To regulate online businesses" },
+              { value: "3", text: "To strengthen laws against online piracy" },
+              { value: "4", text: "To promote cybersecurity awareness" },
+              {
+                value: "1",
+                text: "To prevent, investigate, and penalize cybercrimes",
+              },
+            ],
+          },
+          {
+            type: "radiogroup",
+            name: "question19",
+            title: "Which of the following is a cybercrime under RA 10175?",
+            isRequired: true,
+            choices: [
+              { value: "1", text: "Cyber libel" },
+              { value: "2", text: "Unauthorized access to computer systems" },
+              { value: "3", text: "Online fraud and identity theft" },
+              { value: "4", text: "All of the above" },
+            ],
+          },
+          {
+            type: "radiogroup",
+            name: "question20",
+            title:
+              "Who is responsible for enforcing the Cybercrime Prevention Act in the Philippines?",
+            isRequired: true,
+            choices: [
+              {
+                value: "1",
+                text: "Cybercrime Investigation and Coordinating Center (CICC)",
               },
               {
-                value: "10",
-                text: "All of the above",
+                value: "2",
+                text: "Department of Information and Communications Technology (DICT)",
               },
+              {
+                value: "3",
+                text: "Philippine National Police Anti-Cybercrime Group (PNP-ACG)",
+              },
+              { value: "4", text: "All of the above" },
             ],
           },
         ],
@@ -604,22 +577,26 @@ const AssessmentForm = () => {
 
     // ✅ Calculate score using requested logic
     const totalScore =
-      (results.question1 === "10" ? 10 : 0) +
-      (results.question2 === "10" ? 10 : 0) +
-      (results.question3 === "10" ? 10 : 0) +
-      (results.question4 === "10" ? 10 : 0) +
-      (results.question5 === "10" ? 10 : 0) +
-      (results.question6 === "10" ? 10 : 0) +
-      (results.question7 === "10" ? 10 : 0) +
-      (results.question8 === "10" ? 10 : 0) +
-      (results.question9 === "10" ? 10 : 0) +
-      (results.question10 === "10" ? 10 : 0) +
-      (results.question11 === "10" ? 10 : 0) +
-      (results.question12 === "10" ? 10 : 0) +
-      (results.question13 === "10" ? 10 : 0) +
-      (results.question14 === "10" ? 10 : 0) +
-      (results.question15 === "10" ? 10 : 0) +
-      (results.question16 === "10" ? 10 : 0);
+      (results.question1 === "1" ? 1 : 0) +
+      (results.question2 === "1" ? 1 : 0) +
+      (results.question3 === "1" ? 1 : 0) +
+      (results.question4 === "1" ? 1 : 0) +
+      (results.question5 === "1" ? 1 : 0) +
+      (results.question6 === "1" ? 1 : 0) +
+      (results.question7 === "1" ? 1 : 0) +
+      (results.question8 === "1" ? 1 : 0) +
+      (results.question9 === "1" ? 1 : 0) +
+      (results.question10 === "1" ? 1 : 0) +
+      (results.question11 === "1" ? 1 : 0) +
+      (results.question12 === "1" ? 1 : 0) +
+      (results.question13 === "1" ? 1 : 0) +
+      (results.question14 === "1" ? 1 : 0) +
+      (results.question15 === "1" ? 1 : 0) +
+      (results.question16 === "1" ? 1 : 0) +
+      (results.question17 === "1" ? 1 : 0) +
+      (results.question18 === "1" ? 1 : 0) +
+      (results.question19 === "1" ? 1 : 0) +
+      (results.question20 === "1" ? 1 : 0);
 
     setScore(totalScore);
     setIsCompleted(true);
@@ -627,13 +604,13 @@ const AssessmentForm = () => {
 
   // ✅ Improved Score Messages
   const getScoreMessage = () => {
-    if (score >= 140)
+    if (score >= 20)
       return "🌟 Excellent! You have a deep understanding of cybercrime awareness.";
-    if (score >= 100)
+    if (score >= 16)
       return "✅ Great job! You are well-informed, but there's always more to learn.";
-    if (score >= 70)
+    if (score >= 12)
       return "⚠️ Good effort! Review some concepts to strengthen your awareness.";
-    if (score >= 40)
+    if (score >= 6)
       return "🔎 Keep learning! Cyber threats evolve—stay informed.";
     return "❌ Don't worry! Keep learning to improve your cybercrime awareness.";
   };
@@ -649,7 +626,6 @@ const AssessmentForm = () => {
     setIsCompleted(true);
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top when completed
   };
-  
 
   return (
     <div className="assessment-container">
@@ -658,7 +634,7 @@ const AssessmentForm = () => {
       ) : !showReview ? (
         <div className="completion-section">
           <h3 className="completion-message">{getScoreMessage()}</h3>
-          <h4 className="score-display">Your Score: {score} / 160</h4>
+          <h4 className="score-display">Your Score: {score} / 20</h4>
           <div className="completion-buttons">
             <button
               className="review-button"
@@ -666,10 +642,15 @@ const AssessmentForm = () => {
             >
               Review Answers
             </button>
-            <button className="try-again-button" onClick={() => {
-                {handleTryAgain()}; 
+            <button
+              className="try-again-button"
+              onClick={() => {
+                {
+                  handleTryAgain();
+                }
                 window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top smoothly
-              }}>
+              }}
+            >
               Try Again
             </button>
           </div>
@@ -713,16 +694,21 @@ const AssessmentForm = () => {
             <button
               className="back-to-results-button"
               onClick={() => {
-                setShowReview(false); 
+                setShowReview(false);
                 window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top smoothly
               }}
             >
               Back to Results
             </button>
-            <button className="try-again-button"  onClick={() => {
-                {handleTryAgain()}; 
+            <button
+              className="try-again-button"
+              onClick={() => {
+                {
+                  handleTryAgain();
+                }
                 window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top smoothly
-              }}>
+              }}
+            >
               Try Again
             </button>
           </div>
