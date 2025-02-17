@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./NewsArticles.css";
-import manLaptop from "../../assets/manlaptop.png";
+import manLaptop from "../../assets/cybercrime.jpg";
 
 const NewsArticles = () => {
   const [articles, setArticles] = useState([]);
@@ -9,22 +9,22 @@ const NewsArticles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await axios.get(
-          `https://clicksmart-backend.onrender.com/fetch-cybercrime-news`
-        );
-        setArticles(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("News API Error:", error.message);
-        setError("Failed to fetch news. Please try again later.");
-        setLoading(false);
-      }
-    };
-    fetchNews();
-  }, []);
+  // useEffect(() => {
+  //   const fetchNews = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://clicksmart-backend.onrender.com/fetch-cybercrime-news`
+  //       );
+  //       setArticles(response.data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("News API Error:", error.message);
+  //       setError("Failed to fetch news. Please try again later.");
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchNews();
+  // }, []);
 
   const handleBatchChange = (direction) => {
     setCurrentBatch((prev) => {
