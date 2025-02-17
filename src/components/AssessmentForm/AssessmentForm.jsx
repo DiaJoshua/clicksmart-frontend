@@ -624,9 +624,12 @@ const AssessmentForm = () => {
 
   const handleComplete = () => {
     setIsCompleted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top when completed
+  
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
   };
-
+  
   return (
     <div className="assessment-container">
       {!isCompleted ? (
