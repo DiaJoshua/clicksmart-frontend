@@ -1,6 +1,5 @@
 import React from "react";
 import "./About.css";
-import Chatbot from "../Chatbot/Chatbot";
 import computerBG from "../../assets/background/computerBG.png";  // Adjust the import path accordingly
 
 const About = () => {
@@ -41,9 +40,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* Chatbot */}
-      <Chatbot />
     </div>
   );
 };

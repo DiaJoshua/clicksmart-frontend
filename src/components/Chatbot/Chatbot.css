@@ -159,44 +159,45 @@
 }
 
 /* Suggested Questions */
-.chatbox-suggestions {
-  background: #f0f4ff;
-  padding: 10px;
+.chatbot-suggestions-container {
+  position: fixed;
+  bottom: 25px;
+  right: 100px; /* Position next to chatbot button */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-top: 1px solid #ddd;
-}
-
-.suggestions-title {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 6px;
-}
-
-.suggestions-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 8px;
+  z-index: 999;
+  transition: transform 0.3s ease-in-out;
 }
 
+/* Shift when chatbox is open */
+.chatbot-suggestions-container.shifted {
+  right: 370px; /* Moves further when chatbox opens */
+}
+
+/* Floating Suggestions Buttons */
 .suggestion-button {
   background: #1a1a3e;
   color: white;
-  font-size: 12px;
-  padding: 6px 12px;
+  font-size: 13px;
+  padding: 8px 14px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .suggestion-button:hover {
   background: #29295a;
+  transform: scale(1.05);
 }
 
+.suggestion-button:active {
+  transform: scale(0.95);
+}
 
 /* Animations */
 @keyframes fadeInMessage {
@@ -246,6 +247,19 @@
     padding: 8px 12px;
     font-size: 14px;
   }
+
+  .chatbot-suggestions-container {
+    right: 80px;
+  }
+
+  .chatbot-suggestions-container.shifted {
+    right: 320px;
+  }
+
+  .suggestion-button {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
 }
 
 /* Mobile (480px and below) */
@@ -286,9 +300,19 @@
     font-size: 13px;
   }
 
-  .suggestions-list {
-    flex-direction: column;
-    gap: 5px;
+  .chatbot-suggestions-container {
+    right: 20px;
+    bottom: 80px; /* Move slightly up */
+  }
+
+  .chatbot-suggestions-container.shifted {
+    right: 10px; /* No shifting, stays beside chatbot */
+  }
+
+  .suggestion-button {
+    font-size: 12px;
+    padding: 8px 10px;
+    width: 100%;
   }
 }
 

@@ -10,6 +10,7 @@ import About from "./components/About/About"
 import Reporting from "./components/Reporting/Reporting"
 import CybercrimeStats from "./components/CybercrimeStats/CybercrimeStats"
 import ResourcesHub from "./components/ResourcesHub/ResourcesHub";
+import Chatbot from "./components/Chatbot/Chatbot"
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/ResourcesHub" element={<ResourcesHub />} />
       </Routes>
       <Footer />
+      {location.pathname !== "/AssessmentForm" && <Chatbot />}
     </BrowserRouter>
   );
 }

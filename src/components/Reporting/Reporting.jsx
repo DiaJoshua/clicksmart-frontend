@@ -1,6 +1,5 @@
 import React from "react";
 import "./Reporting.css";
-import Chatbot from "../Chatbot/Chatbot";
 import { Link } from "react-router-dom"
 import identify from "../../assets/icons/identify.png";
 import evidence from "../../assets/icons/cevidence.png";
@@ -40,8 +39,6 @@ const Reporting = () => {
           <p>Follow up and ensure that your report is being processed.</p>
         </div>
       </section>
-      {/* Chatbot */}
-      <Chatbot />
     </>
   );
 };

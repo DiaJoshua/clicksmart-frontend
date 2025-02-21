@@ -224,13 +224,24 @@ const Chatbot = () => {
     return costs[s2.length];
   };
 
+
+  
   return (
     <>
       {/* Floating Chatbot Button */}
       <button className="chatbot-widget" onClick={toggleChatbox} aria-label="Open chatbot">
         <img src={bot} alt="Chatbot" />
       </button>
-
+  
+      {/* Floating Suggestions (Always Visible) */}
+      <div className={`chatbot-suggestions-container ${isOpen ? "shifted" : ""}`}>
+        {suggestions.map((suggestion, index) => (
+          <button key={index} className="suggestion-button" onClick={() => setInput(suggestion)}>
+            {suggestion}
+          </button>
+        ))}
+      </div>
+  
       {/* Chatbox */}
       {isOpen && (
         <div className="chatbox-container">
@@ -238,7 +249,7 @@ const Chatbot = () => {
             ClickSmart Chatbot
             <button className="chatbox-close" aria-label="Close chatbot">✖</button>
           </div>
-
+  
           <div className="chatbox-body">
             {messages.map((msg, index) => (
               <div key={index} className={`chat-message ${msg.sender}`} dangerouslySetInnerHTML={{ __html: msg.text }} />
@@ -246,20 +257,7 @@ const Chatbot = () => {
             {botTyping && <div className="bot-typing">...</div>}
             <div ref={chatEndRef} />
           </div>
-
-          {/* Suggested Questions Section */}
-          <div className="chatbox-suggestions">
-            <p className="suggestions-title">Try asking:</p>
-            <div className="suggestions-list">
-              {["What is phishing?", "How do I report fraud?", "Give me a cybersecurity tip"].map((suggestion, idx) => (
-                <button key={idx} className="suggestion-button" onClick={() => setInput(suggestion)}>
-                  {suggestion}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Chatbox Footer */}
+  
           <div className="chatbox-footer">
             <input
               type="text"
@@ -274,6 +272,8 @@ const Chatbot = () => {
       )}
     </>
   );
+  
+  
 };
 
 export default Chatbot;

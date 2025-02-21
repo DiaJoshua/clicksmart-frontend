@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Chatbot from "../Chatbot/Chatbot";
 import { Bar, Line, Pie, Radar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -268,9 +267,6 @@ const CybercrimeStats = () => {
         <h2>Monthly Cybercrime Trends (2024)</h2>
         <Radar data={processMonthlyData()} options={{ responsive: true }} />
       </div>
-
-      {/* Chatbot */}
-      <Chatbot />
     </div>
   );
 };

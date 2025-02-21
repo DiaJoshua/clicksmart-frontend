@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import Chatbot from "../Chatbot/Chatbot";
 import NewsArticles from "../NewsArticles/NewsArticles";
 import heroSection from "../../assets/heroSection.png";
 import whatBG from "../../assets/background/whatBG.svg";
@@ -288,9 +287,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Chatbot */}
-      <Chatbot />
     </>
   );
 };

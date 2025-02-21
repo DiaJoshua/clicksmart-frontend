@@ -144,13 +144,12 @@
 /* Section Styles for ClickSmart Info */
 .clicksmart-info {
   background: #F1F1F1; 
-  padding: 3rem 0; /* Slightly increase padding */
+  padding: 5rem 0; /* Slightly increase padding */
   display: flex;
   align-items: center;
   justify-content: center; /* Centers content */
   margin: auto;
   position: relative;
-  z-index: 3;
   min-height: 70vh;
   transition: min-height 0.3s ease-in-out;
   opacity: 0;
@@ -228,8 +227,7 @@
 ======================================        
 */
 .how-it-works {
-  width: 100vw; /* Full viewport width */
-  max-width: 100%; /* Ensures it does not shrink */
+  max-width: 90%; /* Ensures it does not shrink */
   padding: 60px 5%; /* Responsive padding */
   background: url('../../assets/background/howitworkBG.svg') no-repeat right center, 
               url('../../assets/background/indexBG.png') no-repeat center;
