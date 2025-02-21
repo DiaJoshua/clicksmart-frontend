@@ -68,17 +68,10 @@
 /* Hero Image */
 .about-hero-right img {
   width: 100%;
-  max-width: 500px; /* Limits the width */
   height: auto;
-  border-radius: 12px; /* Rounded corners for a modern look */
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* Lifelike shadow */
+  border-radius: 12px;
   transition: all 0.3s ease-in-out;
-}
-
-/* Image Hover Effect */
-.about-hero-right img:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
 }
 
 /* ====================================== */
@@ -133,7 +126,7 @@
 
 /* Heading */
 .about-page-made h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 550;
   letter-spacing: 0.088rem;
   line-height: 4.5rem;
@@ -151,39 +144,50 @@
 /*            MEDIA QUERIES               */
 /* ====================================== */
 @media (max-width: 1024px) {
-  .about-page-hero,
-  .about-page-made {
-      text-align: center;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 6%;
+  .about-page-hero .about-container {
+    flex-direction: column-reverse; /* Stack image below text */
+    align-items: center;
+    text-align: center;
   }
 
   .about-hero-left,
   .about-hero-right {
-      max-width: 100%;
-      text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure full width */
+    margin-top: 1rem; /* Add spacing */
+    max-width: 90%;
+    padding: 1.5rem;
   }
 
-  .about-hero-left h1 {
-      font-size: 3.5rem;
+  .about-hero-left img {
+    width: 100%; /* Ensure responsiveness */
+    max-width: 500px; /* Prevents excessive scaling */
+    height: auto;
   }
 
-  .about-hero-left p {
-      text-align: center;
-      max-width: 100%;
+  .about-page-hero h1 {
+    font-size: 2rem; /* Adjust heading size */
+    margin-bottom: 1rem;
+  }
+
+  .about-page-hero .about-hero-right p {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    max-width: 90%;
+    margin-bottom: 1rem;
   }
 
   .about-hero-right {
-      max-width: 100%;
+    padding-left: 0; /* Remove left padding */
+    text-align: center;
   }
 
   .about-hero-right img {
-      width: 80%;
+      width: 100%;
       max-width: 350px;
       transform: none;
-      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
   }
 
   .about-made-left,
@@ -195,70 +199,114 @@
   .about-made-right h1 {
       font-size: 3rem;
   }
+
+  .about-page-made .about-container .about-made-right p {
+    font-size: 1.2rem !important;
+    line-height: 1.6rem !important;
+    max-width: 95% !important;
+  }  
 }
 
 @media (max-width: 768px) {
   .about-page-hero {
-      flex-direction: column;
-      text-align: center;
-      padding: 3rem;
-      gap: 2rem;
-  }
-
-  .about-hero-right {
-      display: none;
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem 1.5rem; /* Reduce padding */
+    gap: 1.5rem;
   }
 
   .about-hero-left {
-      align-items: center;
+    align-items: center;
+    max-width: 100%;
   }
 
   .about-hero-left h1 {
-      font-size: 3rem;
-      line-height: 3.5rem;
+    font-size: 2.5rem; /* Reduce heading size */
+    line-height: 3rem;
   }
 
   .about-hero-left p {
-      font-size: 1.2rem;
+    font-size: 1rem; /* Reduce paragraph size */
+    line-height: 1.6rem;
+    max-width: 90%;
   }
 
+  /* About Page Made */
   .about-page-made {
-      flex-direction: column;
-      padding: 3rem 2rem;
-  }
-
-  .about-made-left {
-      display: none;
+    flex-direction: column;
+    padding: 2.5rem 1.5rem; /* Reduce padding */
   }
 
   .about-made-right {
-      align-items: center;
+    align-items: center;
+    max-width: 90%;
   }
 
-  .about-made-right h1, .about-made-right p {
-      text-align: center;
-      width: 100%;
+  .about-made-right h1,
+  .about-made-right p {
+    text-align: center;
+    width: 100%;
   }
+
+  .about-made-right h1 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+
+  .about-page-made .about-container .about-made-right p {
+    font-size: 1rem !important;
+    line-height: 1.6rem !important;
+    max-width: 90% !important;
+  }  
+  
 }
 
 @media (max-width: 480px) {
   .about-hero-left h1 {
-      font-size: 2.2rem;
-      line-height: 2.5rem;
+    font-size: 2rem; /* Further reduce for very small screens */
+    line-height: 2.4rem;
   }
 
   .about-hero-left p {
-      font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
   }
 
   .about-made-right h1 {
-      font-size: 2.2rem;
+    font-size: 2rem;
+    line-height: 2.4rem;
   }
 
-  .about-made-right p {
-      font-size: 1.2rem;
-  }
+  .about-page-made .about-container .about-made-right p {
+    font-size: 0.9rem !important;
+    line-height: 1.5rem !important;
+    max-width: 85% !important;
+  }  
 }
+
+@media (max-width: 360px) {
+  .about-hero-left h1 {
+    font-size: 1.8rem; /* Further reduce */
+    line-height: 2.2rem;
+  }
+
+  .about-hero-left p {
+    font-size: 0.85rem;
+    line-height: 1.4rem;
+  }
+
+  .about-made-right h1 {
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+  }
+
+  .about-page-made .about-container .about-made-right p {
+    font-size: 0.9rem !important;
+    line-height: 1.4rem !important;
+    max-width: 80% !important;
+  }  
+}
+
 
 /* ====================================== */
 /*             ANIMATIONS                 */

@@ -38,10 +38,38 @@ const CybercrimeStats = () => {
 
   useEffect(() => {
     axios
-      .get("https://clicksmart-backend.onrender.com/api/cybercrime-stats") // Ensure this matches backend
+      .get("http://localhost:5000/api/cases")
       .then((response) => {
         console.log("Data received:", response.data);
-        setCybercrimeData(response.data);
+  
+        if (!Array.isArray(response.data)) {
+          console.error("API response is not an array:", response.data);
+          setError("Invalid API response format.");
+          setLoading(false);
+          return;
+        }
+  
+        // Process each record
+        const formattedData = response.data.map(record => {
+          let barangayData = {};
+  
+          // Extract barangay cases dynamically (ignoring `_id`, `district`, and `NATURE OF CASES`)
+          Object.entries(record).forEach(([key, value]) => {
+            if (key.startsWith("Brgy.") && value !== null) {
+              barangayData[key] = value;
+            }
+          });
+  
+          return {
+            district: record.district || "Unknown",
+            nature_of_cases: record["NATURE OF CASES"] || "Unknown",
+            barangayData: barangayData,
+            total_cases: record["TOTAL CASES PER CYBERCRIME"] || 0
+          };
+        });
+  
+        console.log("Formatted data:", formattedData);
+        setCybercrimeData(formattedData);
         setLoading(false);
       })
       .catch((error) => {
@@ -50,6 +78,8 @@ const CybercrimeStats = () => {
         setLoading(false);
       });
   }, []);
+  
+  
 
   if (loading) {
     return (
@@ -60,7 +90,8 @@ const CybercrimeStats = () => {
     );
   }
 
-  /*if (error) {
+  
+  if (error) {
     return (
       <div className="error-screen">
         <div className="error-icon">⚠️</div>
@@ -69,24 +100,21 @@ const CybercrimeStats = () => {
         <button onClick={() => window.location.reload()} className="retry-button">Retry</button>
       </div>
     );
-  }*/
+  }
+
 
   // 🟢 Process barangay-level data
   const processBarangayData = () => {
     let barangayCases = {};
-
+  
     cybercrimeData.forEach((record) => {
-      Object.entries(record.Brgy || {}).forEach(([barangay, cases]) => {
-        if (typeof cases === "object") {
-          Object.entries(cases).forEach(([subBrgy, subCases]) => {
-            barangayCases[subBrgy] = (barangayCases[subBrgy] || 0) + subCases;
-          });
-        } else {
+      Object.entries(record.barangayData || {}).forEach(([barangay, cases]) => {
+        if (!isNaN(cases)) {
           barangayCases[barangay] = (barangayCases[barangay] || 0) + cases;
         }
       });
     });
-
+  
     return {
       labels: Object.keys(barangayCases),
       datasets: [
@@ -100,6 +128,8 @@ const CybercrimeStats = () => {
       ],
     };
   };
+  
+  
 
   // 🟢 Process quarterly trend data
   const processQuarterlyData = () => {
@@ -134,22 +164,17 @@ const CybercrimeStats = () => {
 
   // 🟢 Process Crime Type Data (Pie Chart)
   const processCrimeTypeData = () => {
-    let crimeTypes = {
-      Fraud: 0,
-      Hacking: 0,
-      Phishing: 0,
-      IdentityTheft: 0,
-      Others: 0,
-    };
-
+    let crimeTypes = {};
+  
     cybercrimeData.forEach((record) => {
-      if (record.CrimeType) {
-        record.CrimeType.forEach((type) => {
-          crimeTypes[type] = (crimeTypes[type] || 0) + 1;
-        });
+      let crimeType = record.nature_of_cases ? record.nature_of_cases.trim().toUpperCase() : null;
+  
+      // 🛑 Exclude "TOTAL CASES", "TOTAL CASES PER BARANGAY", and "UNKNOWN"
+      if (crimeType && !crimeType.includes("TOTAL CASES") && crimeType !== "UNKNOWN") {
+        crimeTypes[crimeType] = (crimeTypes[crimeType] || 0) + 1;
       }
     });
-
+  
     return {
       labels: Object.keys(crimeTypes),
       datasets: [
@@ -175,6 +200,9 @@ const CybercrimeStats = () => {
       ],
     };
   };
+  
+  
+  
 
   // 🟢 Process Monthly Data for Radar Chart (Trends in months of 2024)
   const processMonthlyData = () => {
@@ -216,6 +244,7 @@ const CybercrimeStats = () => {
     };
   };
 
+  
   return (
     <div className="cybercrime-container">
       <h1>Cybercrime Statistics</h1>

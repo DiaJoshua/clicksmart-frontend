@@ -1,5 +1,4 @@
-/* General Reset 
-Reset margin, padding, and box-sizing for all elements */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,132 +8,326 @@ Reset margin, padding, and box-sizing for all elements */
 html, body {
   max-width: 100%;
   overflow-x: hidden;
-}
-
-/* Global body styles */
-body {
+  background: #0a0a0a;
+  color: #fff;
   font-family: 'Roboto Flex', sans-serif;
-  line-height: 1.6; /* Improves readability */
-  background: #f7f7f7; /* Light background for a cleaner feel */
-  color: #333; /* Dark text for better contrast */
 }
 
-/* Central container for consistent width */
-.container {
-  width: auto;
-  max-width: 1400px;
-  margin: 0 auto; /* Centers the container */
-  margin-left: 5%;
-  margin-right: 3%;
-}
-
-/* Hero Section */
+/* PAGE TRANSITION EFFECT */
 .report-page {
   text-align: center;
   padding: 5rem 0;
-  background: linear-gradient(135deg, #f1f1f1 0%, #ffffff 100%); /* Gradient background */
-  margin-bottom: 3rem;
-  border-radius: 15px; /* Soft rounded corners for a modern look */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  background: linear-gradient(135deg, #111 0%, #222 100%);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1s ease-out forwards;
 }
 
+/* Page Load Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* GLITCH TEXT EFFECT */
 .report-page h1 {
-  font-size: 3rem; /* Bigger title for better prominence */
-  margin-bottom: 1.5rem;
-  color: #111;
-  font-weight: 600;
+  font-size: 3.5rem;
+  font-weight: 700;
+  position: relative;
+  color: #00ffff;
+  text-transform: uppercase;
+  animation: glitch 1.5s infinite alternate;
 }
 
-.report-page p {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: #666;
-  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1.5rem; /* Space below paragraph */
+@keyframes glitch {
+  0% { text-shadow: 4px 4px 10px rgba(0, 255, 255, 0.8); }
+  50% { text-shadow: -4px -4px 10px rgba(255, 0, 0, 0.8); }
+  100% { text-shadow: 4px -4px 10px rgba(0, 255, 255, 0.8); }
 }
 
-.report-page .quiz-btn {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 1rem 2rem;
-  background: #e63946;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.125rem; /* Slightly larger font */
-  border-radius: 30px; /* Rounded button for a more modern look */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.report-page .quiz-btn:hover {
-  background: #d62839;
-  transform: translateY(-3px); /* Slight lift effect */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-}
-
-/* Steps Section */
+/* Cybercrime Steps Section */
 .steps-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
   padding: 3rem 0;
-  padding-top: 10rem;
   margin-bottom: 100px;
+  transform: scale(0.9);
+  opacity: 0;
+  animation: scaleIn 1.2s ease-out 0.5s forwards;
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .step-card {
-  background: #ffffff;
+  background: #1a1a1a;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
   padding: 2rem;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s ease;
+  transition: transform 0.4s, box-shadow 0.4s ease;
+  cursor: pointer;
 }
 
 .step-card:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 255, 255, 0.4);
 }
 
-.step-card img {
+/* CYBERCRIMINALS SECTION */
+.cybercriminals {
+  text-align: center;
+  padding: 50px 20px;
+  background: radial-gradient(circle, #111 0%, #000 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  transition: background 0.3s ease-in-out;
+}
+
+.cybercriminals h2 {
+  font-size: 3.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+.cybercriminal-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+  padding-top: 20px;
+  justify-content: center;
+  position: relative;
+}
+
+/* Cybercriminal Cards */
+.cybercriminal-card {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  min-height: 150px;
+  width: 180px;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover & Active Effects */
+.cybercriminal-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 0px 25px rgba(0, 255, 255, 1);
+}
+
+.cybercriminal-card.active {
+  width: 90%;
+  position: relative;
+  z-index: 20;
+  background: linear-gradient(to bottom, #111, #000);
+  box-shadow: 0px 8px 20px rgba(0, 255, 255, 1);
+  padding: 30px;
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Glitch Effect on Active Cards */
+.cybercriminal-card.active h3 {
+  font-size: 2rem;
+  color: #d32f2f;
+  font-weight: bold;
+  animation: glitchText 1s infinite alternate;
+}
+
+@keyframes glitchText {
+  0% { text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.8); }
+  50% { text-shadow: -2px -2px 8px rgba(255, 0, 0, 0.8); }
+  100% { text-shadow: 2px -2px 8px rgba(0, 255, 255, 0.8); }
+}
+
+/* Cyber Laws Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 180px;
-  height: auto;
-  margin-bottom: 1.5rem;
-  border-radius: 50%; /* Circular images */
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
 }
 
-.step-card h3 {
-  font-size: 1.5rem; /* Larger heading */
-  margin-bottom: 0.75rem;
-  color: #333;
-  font-weight: 500;
-  text-transform: uppercase; /* Adding uppercase for emphasis */
+.modal-content {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 255, 255, 0.8);
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleIn 0.4s ease-in-out 0.2s forwards;
 }
 
-.step-card p {
-  font-size: 1rem;
-  color: #777;
-  line-height: 1.5;
-  font-weight: 400;
-  margin-bottom: 1.25rem;
+.close-btn {
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+.close-btn:hover {
+  color: #d32f2f;
+}
+
+/* Responsive Design for Different Screen Sizes */
+@media (max-width: 1200px) {
   .report-page h1 {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
   }
 
-  .report-page p {
-    font-size: 1rem;
+  .cybercriminals h2 {
+    font-size: 2.8rem;
+  }
+
+  .cybercriminal-card {
+    width: 160px;
+    padding: 15px;
+  }
+
+  .cybercriminal-card.active {
+    width: 85%;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .report-page h1 {
+    font-size: 2.4rem;
+  }
+
+  .cybercriminals h2 {
+    font-size: 2.4rem;
+  }
+
+  .cybercriminal-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cybercriminal-card {
+    width: 80%;
   }
 
   .steps-section {
-    grid-template-columns: 1fr; /* Stack the cards on small screens */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .report-page h1 {
+    font-size: 2rem;
+  }
+
+  .cybercriminals h2 {
+    font-size: 2rem;
+  }
+
+  .cybercriminal-grid {
+    flex-direction: column;
+  }
+
+  .cybercriminal-card {
+    width: 90%;
+  }
+
+  .steps-section {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .step-card {
     padding: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .quiz-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .report-page h1 {
+    font-size: 1.8rem;
+  }
+
+  .cybercriminals h2 {
+    font-size: 1.8rem;
+  }
+
+  .cybercriminal-grid {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .cybercriminal-card {
+    width: 100%;
+  }
+
+  .steps-section {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card {
+    padding: 1.2rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .quiz-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
   }
 }

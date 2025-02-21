@@ -32,7 +32,6 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
   padding: 0 1rem;
 }
 
@@ -63,12 +62,11 @@ body {
   justify-content: center;
   align-items: center;
   padding: 0;
-  margin: 0;
+  margin-left: 1rem;
 }
 
 /* 🔹 Adjust spacing between nav items */
 .nav-links li {
-  margin: 0 1.5rem;
   position: relative;
 }
 
@@ -122,6 +120,18 @@ body {
 }
 
 /* 🔹 Mobile & Tablet Fix (Centered at 1024px) */
+@media (max-width: 1124px) {
+  .nav-links {
+    margin-left: 3.5rem;
+  }
+}
+
+@media (max-width: 1044px) {
+  .nav-links {
+    margin-left: 6.5rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .navbar {
     display: flex;
@@ -129,7 +139,6 @@ body {
     align-items: center;
     text-align: center;
     width: 100%;
-    padding: 0.8rem 1rem;
   }
 
   .navbar .container {
@@ -177,11 +186,11 @@ body {
     max-width: 350px;
     height: 100vh;
     background: rgba(255, 255, 255, 0.95);
-    flex-direction: column;
+    flex-direction: column !important;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 2rem 1.5rem;
+    padding: 3rem 0.5rem;
     transition: right 0.4s ease-in-out;
     box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -197,7 +206,6 @@ body {
 
   .nav-links li {
     margin: 1rem 0;
-    text-align: center;
     width: 100%;
   }
 
@@ -205,7 +213,7 @@ body {
     font-size: 1.4rem;
     font-weight: 500;
     display: block;
-    padding: 0.7rem;
+    padding: 2rem;
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease-in-out;

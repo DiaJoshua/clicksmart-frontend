@@ -104,16 +104,9 @@
 
 .hero-right img {
   width: 100%;
-  max-width: 400px;
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease-in-out;
-}
-
-/* Hover Effect */
-.hero-right img:hover {
-  transform: scale(1.05) rotateY(-3deg);
 }
 
 /* Hero Section Link Styling */
@@ -190,14 +183,8 @@
   transform-origin: center;
   perspective: 1000px;
   transform: scale(1.1) rotateY(8deg) rotateX(4deg);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
 }
 
-/* Smooth 3D Hover Effect */
-.clicksmart-left img:hover {
-  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.4);
-}
 
 /* Add More Realistic Perspective */
 .clicksmart-left {
@@ -300,6 +287,7 @@
 .circle-arrow-btn img {
   width: 30px;
   height: 30px;
+  transition: transform 0.3s ease-in-out;
 }
 
 /* Accordion Content */
@@ -354,7 +342,7 @@
 
 /* Rotate Icon on Expand */
 .accordion-header.open .circle-arrow-btn img {
-  transform: rotate(180deg);
+  transform: rotate(90deg) !important;
 }
 
 /*
@@ -451,7 +439,47 @@
   .news-grid {
     grid-template-columns: repeat(2, 1fr); /* Two news cards per row */
   }
+
+    .clicksmart-info .container {
+      flex-direction: column-reverse; /* Stack image below text */
+      align-items: center;
+      text-align: center;
+    }
   
+    .clicksmart-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%; /* Ensure full width */
+      margin-top: 2rem; /* Add spacing */
+      max-width: 90%;
+      padding: 1.5rem;
+    }
+  
+    .clicksmart-left img {
+      width: 100%; /* Ensure responsiveness */
+      max-width: 500px; /* Prevents excessive scaling */
+      height: auto;
+      transform: none; /* Remove rotation effect */
+      box-shadow: none; /* Reduce shadow for cleaner look */
+    }
+  
+    .clicksmart-right {
+      padding-left: 0; /* Remove left padding */
+      text-align: center;
+    }
+  
+    .clicksmart-info h1 {
+      font-size: 2rem; /* Adjust heading size */ 
+      margin-bottom: 1rem;
+    }
+  
+    .clicksmart-info .clicksmart-right p {
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      max-width: 90%;
+      margin-bottom: 1rem;
+    }  
 }
 
 /* Hide menu toggle button by default (for desktops) */
@@ -541,10 +569,6 @@
     max-width: 45rem;
   }
 
-  /* Hide SVG Image */
-  .clicksmart-left {
-    display: none; /* Remove SVG when zoomed */
-  }
 
   /* Center Align Content */
   .clicksmart-right {

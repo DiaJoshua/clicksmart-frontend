@@ -4,7 +4,7 @@
   z-index: 5;
   background: #f4f4f4; /* Light gray background */
   padding: 2rem 0; /* Spacing around content */
-  box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.5);
   text-align: center;
   min-width: 100vw;
   animation: fadeInUp 0.8s ease-in-out;
@@ -118,22 +118,38 @@
 }
 
 /* Mobile-Friendly Footer */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .footer .container {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 2rem 1rem; /* Adjusted padding */
   }
 
   .footer-column {
     width: 100%;
     text-align: center;
+    margin-bottom: 1.5rem; /* Adds spacing between columns */
+  }
+
+  .footer-column h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .footer-column h3::after {
     margin: 0 auto;
   }
-  
+
+  .footer-column ul {
+    padding: 0;
+  }
+
+  .footer-column ul a {
+    font-size: 1rem;
+    display: block; /* Ensures each link is spaced well */
+    margin: 0.3rem 0;
+  }
 
   .footer .logo {
     justify-content: center;
@@ -143,26 +159,72 @@
   .footer .logo img {
     max-height: 80px;
   }
+
+  .footer-bottom {
+    font-size: 0.9rem;
+    text-align: center;
+    padding-top: 1rem;
+  }
 }
 
-/* Small Mobile Screens */
+/* 📱 Small Mobile Screens */
 @media (max-width: 480px) {
   .footer {
-    padding: 1.5rem 0;
+    padding: 1.2rem 0;
+  }
+
+  .footer-column {
+    margin-bottom: 1rem;
   }
 
   .footer-column h3 {
     font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-column ul {
+    padding: 0;
+    list-style: none;
   }
 
   .footer-column ul a {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+  }
+
+  .footer .logo img {
+    max-height: 60px; /* Reduce size for smaller screens */
   }
 
   .footer-bottom {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    padding-top: 0.5rem;
   }
 }
+
+/* 📱 Extra Small Screens (320px and below) */
+@media (max-width: 320px) {
+  .footer {
+    padding: 1rem 0;
+  }
+
+  .footer-column h3 {
+    font-size: 1.1rem;
+  }
+
+  .footer-column ul a {
+    font-size: 0.85rem;
+  }
+
+  .footer .logo img {
+    max-height: 50px;
+  }
+
+  .footer-bottom {
+    font-size: 0.7rem;
+  }
+}
+
 
 /* Animations */
 @keyframes fadeInUp {

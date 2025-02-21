@@ -201,12 +201,17 @@
 
   .news-articles-card {
     height: 280px;
+    width: 320px; /* Make it more square */
   }
 }
 
 @media (max-width: 768px) {
   .news-articles-container {
     grid-template-columns: repeat(1, 1fr);
+    justify-content: center; /* Centers cards */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Space between cards */
   }
 
   .news-articles-title {
@@ -215,7 +220,8 @@
   }
 
   .news-articles-card {
-    height: 250px;
+    height: 240px;
+    width: 240px; /* Keep it square */
   }
 }
 
@@ -226,6 +232,7 @@
 
   .news-articles-card {
     height: 200px;
+    width: 200px;
   }
 }
 
@@ -236,9 +243,11 @@
 
   .news-articles-card {
     height: 180px;
-    width: 260px;
+    width: 180px; /* Keep the shape square */
+    margin: auto; /* Center it */
   }
 }
+
 
 
 /* 🔵 News Articles Loading Screen */

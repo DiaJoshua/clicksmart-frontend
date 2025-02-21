@@ -624,12 +624,12 @@ const AssessmentForm = () => {
 
   const handleComplete = () => {
     setIsCompleted(true);
-  
+
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 0);
   };
-  
+
   return (
     <div className="assessment-container">
       {!isCompleted ? (
@@ -641,7 +641,10 @@ const AssessmentForm = () => {
           <div className="completion-buttons">
             <button
               className="review-button"
-              onClick={() => setShowReview(true)}
+              onClick={() => {
+                setShowReview(true);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
             >
               Review Answers
             </button>
