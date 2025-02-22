@@ -1,3 +1,7 @@
+/* ======================================================================
+   Chatbot Module - Dark Blue Resource Hub Theme
+   ====================================================================== */
+
 /* Floating Chatbot Button */
 .chatbot-widget {
   position: fixed;
@@ -65,7 +69,7 @@
 
 /* Chatbox Header */
 .chatbox-header {
-  background: #1a1a3e;
+  background: #1a1a3e; /* Dark blue background */
   color: #fff;
   padding: 14px;
   font-size: 17px;
@@ -85,7 +89,7 @@
   cursor: pointer;
 }
 
-/* Chatbox Messages */
+/* Chatbox Body */
 .chatbox-body {
   flex: 1;
   padding: 12px;
@@ -116,7 +120,7 @@
 
 .chat-message.user {
   background: #1a1a3e;
-  color: white;
+  color: #fff;
   align-self: flex-end;
 }
 
@@ -130,6 +134,11 @@
   opacity: 0.6;
   font-size: 14px;
   animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* Chatbox Footer */
@@ -152,17 +161,17 @@
   margin-left: 8px;
   padding: 8px 12px;
   background: #1a1a3e;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-/* Suggested Questions */
+/* Floating Suggestions Container (only visible when chatbox is open) */
 .chatbot-suggestions-container {
   position: fixed;
   bottom: 25px;
-  right: 100px; /* Position next to chatbot button */
+  right: 100px; /* Positioned next to the chatbot button */
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -170,15 +179,14 @@
   transition: transform 0.3s ease-in-out;
 }
 
-/* Shift when chatbox is open */
 .chatbot-suggestions-container.shifted {
-  right: 370px; /* Moves further when chatbox opens */
+  right: 370px; /* Shifts when chatbox is open */
 }
 
-/* Floating Suggestions Buttons */
+/* Suggestion Buttons */
 .suggestion-button {
   background: #1a1a3e;
-  color: white;
+  color: #fff;
   font-size: 13px;
   padding: 8px 14px;
   border: none;
@@ -199,18 +207,8 @@
   transform: scale(0.95);
 }
 
-/* Animations */
+/* Fade In Message Animation */
 @keyframes fadeInMessage {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-@keyframes slideIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
@@ -220,11 +218,10 @@
 /* Tablets (768px and below) */
 @media (max-width: 768px) {
   .chatbot-widget {
-    width: 65px; /* Increased size */
+    width: 65px;
     height: 65px;
     bottom: 20px;
     right: 20px;
-    z-index: 1000;
   }
 
   .chatbot-widget img {
@@ -234,7 +231,7 @@
 
   .chatbox-container {
     width: 300px;
-    height: 400px; /* Slightly taller for better readability */
+    height: 400px;
     bottom: 100px;
   }
 
@@ -265,11 +262,10 @@
 /* Mobile (480px and below) */
 @media (max-width: 480px) {
   .chatbot-widget {
-    width: 62px; /* Larger than before */
+    width: 62px;
     height: 62px;
     bottom: 20px;
     right: 15px;
-    z-index: 1000;
   }
 
   .chatbot-widget img {
@@ -279,14 +275,14 @@
 
   .chatbox-container {
     width: 95%;
-    height: 380px; /* Slightly taller for better readability */
+    height: 380px;
     right: 2.5%;
     left: 2.5%;
     bottom: 95px;
   }
 
   .chatbox-header {
-    font-size: 16px; /* Make the title more readable */
+    font-size: 16px;
     padding: 12px;
   }
 
@@ -302,11 +298,11 @@
 
   .chatbot-suggestions-container {
     right: 20px;
-    bottom: 80px; /* Move slightly up */
+    bottom: 80px;
   }
 
   .chatbot-suggestions-container.shifted {
-    right: 10px; /* No shifting, stays beside chatbot */
+    right: 10px;
   }
 
   .suggestion-button {

@@ -115,54 +115,54 @@
 /* ======================================================================
    Chart Container (Cards)
    ====================================================================== */
-.chart-container {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  margin: 2rem auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  overflow: hidden;
-  position: relative;
-  min-height: 400px;
-  width: 90%;
-}
-
-.chart-container:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.chart-container::after {
-  content: "View Details";
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background: rgba(0,34,68,0.8);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.chart-container:hover::after {
-  opacity: 1;
-}
-
-.chart-container h2 {
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: #002244;
-  margin-bottom: 1.25rem;
-}
-
-.chart-description {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.75rem;
-}
+   .chart-container {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: auto; /* Allow scrolling if necessary */
+    position: relative;
+    min-height: 400px;
+    width: 72vw;
+  }
+  
+  .chart-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .chart-container::after {
+    content: "View Details";
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(0, 34, 68, 0.8);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .chart-container:hover::after {
+    opacity: 1;
+  }
+  
+  .chart-container h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #002244;
+    margin-bottom: 1.25rem;
+  }
+  
+  .chart-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.75rem;
+  }
 
 /* ======================================================================
    Modal Styles (Full-Viewport Chart View)

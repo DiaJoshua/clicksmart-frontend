@@ -93,7 +93,10 @@ const CybercrimeStats = () => {
       .then((response) => {
         console.log("Year Dataset received:", response.data);
         if (!Array.isArray(response.data)) {
-          console.error("Year dataset API response is not an array:", response.data);
+          console.error(
+            "Year dataset API response is not an array:",
+            response.data
+          );
           setYearError("Invalid Year dataset API response format.");
           setYearLoading(false);
           return;
@@ -127,8 +130,22 @@ const CybercrimeStats = () => {
 
   // Apply filter to year dataset data
   const filteredYearData = yearData.filter((item) =>
-    item.natureOfCybercrimeCases.toLowerCase().includes(filterText.toLowerCase())
+    item.natureOfCybercrimeCases
+      .toLowerCase()
+      .includes(filterText.toLowerCase())
   );
+
+  // Compute unique case types from both datasets for the dropdown filter
+  const uniqueCases = Array.from(
+    new Set([
+      ...cybercrimeData.map((record) => record.nature_of_cases),
+      ...yearData.map((item) => item.natureOfCybercrimeCases),
+    ])
+  ).filter((caseType) => {
+    if (!caseType) return false;
+    const upper = caseType.toUpperCase();
+    return !upper.includes("UNKNOWN");
+  });
 
   // ------------------- District-based Chart Processing -------------------
 
@@ -163,7 +180,11 @@ const CybercrimeStats = () => {
       const crimeType = record.nature_of_cases
         ? record.nature_of_cases.trim().toUpperCase()
         : null;
-      if (crimeType && !crimeType.includes("TOTAL CASES") && crimeType !== "UNKNOWN") {
+      if (
+        crimeType &&
+        !crimeType.includes("TOTAL CASES") &&
+        crimeType !== "UNKNOWN"
+      ) {
         crimeTypes[crimeType] = (crimeTypes[crimeType] || 0) + 1;
       }
     });
@@ -290,7 +311,7 @@ const CybercrimeStats = () => {
     <div className="cybercrime-container">
       <h1>Cybercrime District & Year Dataset Statistics</h1>
 
-      {/* Tab Navigation */}
+      {/* Tab Navigation & Filter Dropdown */}
       <div className="tabs-container">
         <div className="tabs">
           <div
@@ -306,13 +327,22 @@ const CybercrimeStats = () => {
             Year Dataset
           </div>
         </div>
-        <input
-          type="text"
-          placeholder="Filter by Nature of Case..."
-          value={filterText}
-          onChange={(e) => setFilterText(e.target.value)}
-          className="filter-input"
-        />
+        <div className="filter-container">
+          <label htmlFor="filter-dropdown">Filter by Nature of Case: </label>
+          <select
+            id="filter-dropdown"
+            value={filterText}
+            onChange={(e) => setFilterText(e.target.value)}
+            className="filter-dropdown"
+          >
+            <option value="">All Cases</option>
+            {uniqueCases.map((caseType, index) => (
+              <option key={index} value={caseType}>
+                {caseType}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* Render Charts based on Active Tab */}
@@ -336,7 +366,10 @@ const CybercrimeStats = () => {
                 }
               >
                 <h2>Cybercrime Cases by Barangay (District Data)</h2>
-                <Bar data={processBarangayData()} options={{ responsive: true }} />
+                <Bar
+                  data={processBarangayData()}
+                  options={{ responsive: true }}
+                />
                 <p className="chart-description">Click to view full details</p>
               </div>
               <div
@@ -351,7 +384,10 @@ const CybercrimeStats = () => {
                 }
               >
                 <h2>Crime Type Distribution (District Data)</h2>
-                <Pie data={processCrimeTypeData()} options={{ responsive: true }} />
+                <Pie
+                  data={processCrimeTypeData()}
+                  options={{ responsive: true }}
+                />
                 <p className="chart-description">Click to view full details</p>
               </div>
             </>
@@ -379,7 +415,10 @@ const CybercrimeStats = () => {
                 }
               >
                 <h2>Year Dataset: Quarterly Cases Comparison</h2>
-                <Bar data={processYearDatasetQuarterly()} options={{ responsive: true }} />
+                <Bar
+                  data={processYearDatasetQuarterly()}
+                  options={{ responsive: true }}
+                />
                 <p className="chart-description">Click to view full details</p>
               </div>
               <div
@@ -394,7 +433,10 @@ const CybercrimeStats = () => {
                 }
               >
                 <h2>Year Dataset: Percentage Increase</h2>
-                <Bar data={processYearDatasetPercentage()} options={{ responsive: true }} />
+                <Bar
+                  data={processYearDatasetPercentage()}
+                  options={{ responsive: true }}
+                />
                 <p className="chart-description">Click to view full details</p>
               </div>
               <div
@@ -409,7 +451,10 @@ const CybercrimeStats = () => {
                 }
               >
                 <h2>Year Dataset: Combined Trend</h2>
-                <Line data={processCombinedYearTrend()} options={{ responsive: true }} />
+                <Line
+                  data={processCombinedYearTrend()}
+                  options={{ responsive: true }}
+                />
                 <p className="chart-description">Click to view full details</p>
               </div>
             </>
@@ -428,13 +473,22 @@ const CybercrimeStats = () => {
             <p>{modalChart.description}</p>
             <div className="modal-chart">
               {modalChart.chartType === "Bar" && (
-                <Bar data={modalChart.chartData} options={{ responsive: true, maintainAspectRatio: false }} />
+                <Bar
+                  data={modalChart.chartData}
+                  options={{ responsive: true, maintainAspectRatio: false }}
+                />
               )}
               {modalChart.chartType === "Line" && (
-                <Line data={modalChart.chartData} options={{ responsive: true, maintainAspectRatio: false }} />
+                <Line
+                  data={modalChart.chartData}
+                  options={{ responsive: true, maintainAspectRatio: false }}
+                />
               )}
               {modalChart.chartType === "Pie" && (
-                <Pie data={modalChart.chartData} options={{ responsive: true, maintainAspectRatio: false }} />
+                <Pie
+                  data={modalChart.chartData}
+                  options={{ responsive: true, maintainAspectRatio: false }}
+                />
               )}
             </div>
           </div>
