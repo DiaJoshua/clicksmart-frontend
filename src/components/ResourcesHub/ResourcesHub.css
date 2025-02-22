@@ -131,7 +131,6 @@
   line-height: 1.6;
   font-weight: 500;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
-  margin-right: 2rem;
   animation: fadeInText 1s ease-in-out;
 }
 
@@ -327,6 +326,9 @@
   .helpcenter-container {
     flex-direction: column;
     min-height: auto; /* Allow full dynamic height */
+  }
+  #content-text {
+    margin-right: 3rem;
   }
   .sidebar {
     width: 100%;
