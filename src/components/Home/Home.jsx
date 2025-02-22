@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import NewsArticles from "../NewsArticles/NewsArticles";
@@ -78,7 +78,7 @@ const Home = () => {
                  {" "} from a careless click can cost you, but a smart click can save
                 you.
               </span>
-              <span style={{ fontWeight: 600 }}>ClickSmart!</span>
+              <span style={{ fontWeight: 600 }}> ClickSmart!</span>
             </h1>
             <p>
               ClickSmart is here to empower you by providing tools, knowledge,
@@ -111,7 +111,7 @@ const Home = () => {
             </p>
 
             <p className="p2">
-              Cybercrime can affect anyone, but with ClickSmart's resources, you
+              Cybercrime can affect anyone, but with ClickSmart&apos;s resources, you
               can stay informed and protected. Join us today and take charge of
               your digital safety!
             </p>
@@ -125,7 +125,7 @@ const Home = () => {
       {/* How It Works */}
       <section className="how-it-works">
         <h2>
-          Here's how <span style={{ color: "#7F7EFC" }}>ClickSmart</span> works:
+          Here&apos;s how <span style={{ color: "#7F7EFC" }}>ClickSmart</span> works:
         </h2>
 
         <div className="accordion">

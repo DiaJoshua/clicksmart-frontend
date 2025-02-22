@@ -1,4 +1,3 @@
-import React from "react";
 import "./Reporting.css";
 import { Link } from "react-router-dom"
 import identify from "../../assets/icons/identify.png";
@@ -12,7 +11,7 @@ const Reporting = () => {
       <section className="report-page">
         <div className="container">
           <h1>Have anything to report?</h1>
-          <p>Here's a step-by-step guide in reporting cybercrime activities in your area.</p>
+          <p>Here&apos;s a step-by-step guide in reporting cybercrime activities in your area.</p>
           <Link to="/AssessmentForm" className="quiz-btn">Take a Quick Assessment</Link>
         </div>
       </section>

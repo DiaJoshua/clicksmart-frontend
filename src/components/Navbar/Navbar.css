@@ -1,45 +1,50 @@
-/* 🔹 General Navbar */
+/* General Navbar */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 4vh;
-  background: rgba(244, 244, 244, 0.99);
-  padding: 1rem;
+  background: rgba(244, 244, 244, 0.98);
+  padding: 1rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+  border-bottom: 2px solid rgba(42, 42, 59, 1);
   transition: background 0.4s ease-in-out, padding 0.3s ease-in-out;
 }
 
-/* 🔹 Navbar when scrolled */
+/*  Navbar when scrolled */
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 1);
-  padding: 0.8rem 0;
-  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.4);
+  background: rgba(244, 244, 244, 1);
+  padding: 0.6rem 0;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* 🔹 Body Adjustments */
+/*  Body Padding (Ensure navbar doesn't overlap content) */
+body {
+  padding-top: 75px;
+}
 
-
-/* 🔹 Navbar Container */
+/*  Navbar Container */
 .navbar .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: relative;
   padding: 0 1rem;
 }
 
-/* 🔹 LOGO Fix */
+/* Logo */
 .navbar .logo {
   position: absolute;
   left: 1rem;
-  top: 50%;
-  transform: translateY(-50%); /* ✅ Ensures it is vertically centered */
+  top: 55%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
 }
 
 .navbar .logo img {
@@ -51,93 +56,82 @@
   transform: scale(1.03);
 }
 
-/* 🔹 Centering Nav Links */
+/*  Navbar Links */
 .nav-links {
   font-family: 'Roboto Mono', monospace;
   font-size: 16px;
-  font-weight: 450;
+  font-weight: 500;
   list-style: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin-left: 1rem;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  margin: 0 auto 0 2rem;
 }
 
-/* 🔹 Adjust spacing between nav items */
+/*  Navbar Items */
 .nav-links li {
+  margin: 0 1.5rem;
   position: relative;
 }
 
-/* 🔹 Navbar Links */
+/*  Navbar Links - Text */
 .nav-links a {
   text-decoration: none;
   color: #333;
   font-size: 1rem;
+  position: relative;
   transition: color 0.3s ease-in-out;
 }
 
-/* 🔹 Hover Effect */
+/*  Navbar Hover Effect */
 .nav-links a::after {
-  content: '';
+  content: "";
   display: block;
-  height: 2px;
+  height: 3px;
   width: 0;
   background: #2a2a3b;
-  transition: width 0.3s ease-in-out;
   position: absolute;
-  left: 0;
+  left: 50%;
   bottom: -5px;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
 .nav-links a:hover::after {
   width: 100%;
+  left: 0;
 }
 
 .nav-links a:hover {
-  color: #2a2a3b;
+  color: #000;
 }
 
-/* 🔹 Mobile Menu Button */
 .menu-toggle {
   display: none;
+  font-size: 2rem;
   background: none;
   border: none;
   cursor: pointer;
-  position: relative;
+  position: absolute;
+  right: 1.5rem;
+  top: 40%;
+  transform: translateY(-50%);
   z-index: 1001;
+  width: 40px;
+  height: 40px;
 }
 
-.menu-icon {
-  width: 32px;
-  height: 32px;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+.menu-toggle:focus,
+.menu-toggle:active {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
 }
 
-.menu-toggle:hover .menu-icon {
-  transform: scale(1.1);
-}
-
-/* 🔹 Mobile & Tablet Fix (Centered at 1024px) */
-@media (max-width: 1124px) {
-  .nav-links {
-    margin-left: 3.5rem;
-  }
-}
-
-@media (max-width: 1044px) {
-  .nav-links {
-    margin-left: 6.5rem;
-  }
-}
-
+/* Mobile & Tablet Navbar */
 @media (max-width: 1024px) {
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    width: 100%;
+  .menu-toggle {
+    display: block !important;
+    width: 35px;
   }
 
   .navbar .container {
@@ -145,107 +139,47 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-  }
-
-  /* ✅ Logo Fix for 764px */
-  .navbar .logo {
     position: relative;
-    left: 0;
-    transform: translateY(0); /* ✅ Fixes logo being pushed down */
-    text-align: center;
-    width: 100%;
+    padding: 15px 1rem;
   }
 
-  .menu-toggle {
-    display: flex !important;
-    margin-left: auto;
-    margin-right: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
+  body {
+    padding-top: 55px;
   }
 
-  .menu-icon {
-    width: 32px;
-    height: 32px;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .menu-toggle:hover .menu-icon {
-    transform: scale(1.1);
-  }
-
-  /* ✅ Fixed Navbar Layout */
   .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    max-width: 350px;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.95);
-    flex-direction: column !important;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 3rem 0.5rem;
-    transition: right 0.4s ease-in-out;
-    box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    opacity: 0;
     visibility: hidden;
-  }
-
-  .nav-links.show {
-    right: 0;
-    opacity: 1;
-    visibility: visible !important;
+    opacity: 0;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background: #f4f4f4;
+    position: absolute;
+    margin: 0;
+    top: 50px;
+    left: 0;
+    padding: 1rem 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
   }
 
   .nav-links li {
-    margin: 1rem 0;
-    width: 100%;
+    padding: 1rem;
   }
 
-  .nav-links a {
-    font-size: 1.4rem;
-    font-weight: 500;
-    display: block;
-    padding: 2.4rem;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-    width: 100%;
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .nav-links a:hover {
-    color: #2a2a3b;
-    transform: translateY(-2px);
+  .nav-links.show {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
-/* 🔹 Desktop Navbar */
+/* Desktop Navbar */
 @media (min-width: 769px) {
-  .navbar {
-    justify-content: center;
-  }
-
   .navbar .container {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  /* ✅ Fixed Logo Position */
-  .navbar .logo {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: left;
-    width: auto;
   }
 
   .nav-links {
@@ -262,10 +196,6 @@
   }
 
   .nav-links a {
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .nav-links a:hover {
-    transform: translateY(-2px);
+    font-size: 1rem;
   }
 }

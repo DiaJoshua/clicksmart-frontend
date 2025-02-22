@@ -51,7 +51,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 2rem;
   opacity: 0;
   transform: translateX(-50px);
   animation: slideInLeft 1.5s ease-in-out forwards 0.5s;
@@ -61,6 +61,7 @@
 /* Ensure <p> is aligned with <h1> */
 .hero-left h1,
 .hero-left p {
+  width: 85%;
   max-width: 750px;
   text-align: left;
   margin: 0; /* Remove auto margin */
@@ -100,6 +101,7 @@
   transform: scale(0.9);
   animation: fadeInImage 1.2s ease-in-out forwards 0.8s;
   will-change: transform, opacity;
+  user-select: none;
 }
 
 .hero-right img {
@@ -188,6 +190,7 @@
 /* Add More Realistic Perspective */
 .clicksmart-left {
   perspective: 1500px;
+  user-select: none;
 }
 
 .clicksmart-info img {
@@ -227,7 +230,7 @@
 ======================================        
 */
 .how-it-works {
-  max-width: 90%; /* Ensures it does not shrink */
+  max-width: 100%; /* Ensures it does not shrink */
   padding: 60px 5%; /* Responsive padding */
   background: url('../../assets/background/howitworkBG.svg') no-repeat right center, 
               url('../../assets/background/indexBG.png') no-repeat center;
@@ -237,6 +240,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin: 0 auto; /* Centers the content */
+  min-height: 55vh;
 }
 
 /* Section Title */
@@ -349,6 +353,68 @@
 ======================================        
 */
 /* Responsive Adjustments for Larger Desktops */
+/* MEDIA QUERY FOR 1300px */
+@media (max-width: 1300px) {
+  .clicksmart-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: auto;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+
+  .clicksmart-info .container {
+    display: flex;
+    flex-direction: column-reverse; /* Stack image below text */
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+  }
+
+  .clicksmart-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure full width */
+    margin-top: 2rem; /* Add spacing */
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  .clicksmart-left img {
+    width: 100%; /* Ensure responsiveness */
+    max-width: 500px; /* Prevents excessive scaling */
+    height: auto;
+    transform: none; /* Remove rotation effect */
+    box-shadow: none; /* Reduce shadow for cleaner look */
+  }
+
+  .clicksmart-right {
+    padding-left: 0; /* Remove left padding */
+    text-align: center;
+  }
+
+  .clicksmart-info h1 {
+    font-size: 2.5rem; /* Adjust heading size */
+    margin-bottom: 1rem;
+  }
+
+  .clicksmart-info .clicksmart-right p {
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+    max-width: 90%;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}
+
+
+/* MEDIA QUERY FOR 1024px */
 @media (min-width: 1024px) {
   .container {
     max-width: 1400px;
@@ -389,7 +455,7 @@
 /* Tablets and smaller desktops (768px - 1024px) */
 @media (max-width: 1024px) {
   .container {
-    max-width: 90%;
+    max-width: 100%;
     margin: 0 auto;
   }
 
@@ -489,7 +555,7 @@
 @media (max-width: 768px) {
   /* General Container Adjustment */
   .container {
-    max-width: 95%;
+    max-width: 100%;
   }
 
   /* Hero Section */
@@ -498,7 +564,7 @@
     flex-direction: column;
     align-items: center; /* Ensures everything is centered */
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 3.5rem 2rem;
   }
 
   .hero .container {
@@ -564,7 +630,7 @@
     text-align: center;
     min-height: auto;
     padding: 1rem 0 0 1.5rem;
-    max-width: 45rem;
+    max-width: 100%;
   }
 
 

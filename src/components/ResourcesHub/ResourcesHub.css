@@ -13,11 +13,10 @@
 
 /* Help Center Layout (White Minimalist) */
 .helpcenter-container {
-  margin-top: 2.5rem;
   display: flex;
   align-items: stretch; /* Ensures both sidebar and content grow together */
   min-height: 100vh; /* At least full height */
-  background: #ffffff;  /* White background for minimalist design */
+  background: #f9f9f9;  /* White background for minimalist design */
   animation: fadeInNews 1s ease-in-out;
 }
 

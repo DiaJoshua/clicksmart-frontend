@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./ResourcesHub.css";
 import ThesisPDF from "../../assets/downloadables/clicksmart-thesis.pdf";
 
@@ -164,6 +164,7 @@ const ResourcesHub = () => {
         },
       ],
     },
+
     devcontacts: {
       title: "The Developer Team Contacts",
       text: "For support or collaboration, contact the development team.",
@@ -195,6 +196,7 @@ const ResourcesHub = () => {
         },
       ],
     },
+
     offline: {
       title: "Downloadable Materials",
       text: "Access and download offline resources here.",
@@ -209,6 +211,7 @@ const ResourcesHub = () => {
         },
       ],
     },
+
     projects: {
       title: "Cybercrime Prevention Projects",
       text: "This section is still under development.",
@@ -217,11 +220,15 @@ const ResourcesHub = () => {
 
   // On mount, check if the URL has a hash (e.g., #pnp-acg)
   useEffect(() => {
-    const section = window.location.hash.substring(1);
+    const section = location.hash.substring(1); // get hash without '#'
     if (section && contentData[section]) {
       setSelectedSection(section);
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
-  }, []);
+  }, [location]);
 
   // Handler for sidebar button clicks
   const handleSectionClick = (key) => {

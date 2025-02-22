@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { Bar, Line, Pie, Radar } from "react-chartjs-2";
+import { Bar, Line, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   BarElement,
@@ -12,15 +12,13 @@ import {
   PointElement,
   LineElement,
   ArcElement,
-  RadialLinearScale,
 } from "chart.js";
 import "./CybercrimeStats.css";
 
-// Register Chart.js components
+// Register Chart.js components (including ArcElement for Pie charts)
 ChartJS.register(
   BarElement,
   CategoryScale,
-  RadialLinearScale,
   LinearScale,
   Tooltip,
   Legend,
@@ -31,89 +29,119 @@ ChartJS.register(
 );
 
 const CybercrimeStats = () => {
+  // Data states for district and YearDataset
   const [cybercrimeData, setCybercrimeData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loadingDistrict, setLoadingDistrict] = useState(true);
+  const [errorDistrict, setErrorDistrict] = useState(null);
 
+  const [yearData, setYearData] = useState([]);
+  const [yearLoading, setYearLoading] = useState(true);
+  const [yearError, setYearError] = useState(null);
+
+  // Modal state for full-view charts
+  const [modalChart, setModalChart] = useState(null);
+
+  // Filter state for searching data by case type keyword
+  const [filterText, setFilterText] = useState("");
+
+  // Tab state: "district" or "year"
+  const [activeTab, setActiveTab] = useState("district");
+
+  // Fetch district-based data
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/cases")
       .then((response) => {
-        console.log("Data received:", response.data);
-  
+        console.log("District data received:", response.data);
         if (!Array.isArray(response.data)) {
           console.error("API response is not an array:", response.data);
-          setError("Invalid API response format.");
-          setLoading(false);
+          setErrorDistrict("Invalid API response format.");
+          setLoadingDistrict(false);
           return;
         }
-  
-        // Process each record
-        const formattedData = response.data.map(record => {
+        const formattedData = response.data.map((record) => {
           let barangayData = {};
-  
-          // Extract barangay cases dynamically (ignoring `_id`, `district`, and `NATURE OF CASES`)
           Object.entries(record).forEach(([key, value]) => {
             if (key.startsWith("Brgy.") && value !== null) {
               barangayData[key] = value;
             }
           });
-  
           return {
             district: record.district || "Unknown",
             nature_of_cases: record["NATURE OF CASES"] || "Unknown",
             barangayData: barangayData,
-            total_cases: record["TOTAL CASES PER CYBERCRIME"] || 0
+            total_cases: record["TOTAL CASES PER CYBERCRIME"] || 0,
+            "4th Quarter of 2023": record["4th Quarter of 2023"],
+            "1st Quarter of 2024": record["1st Quarter of 2024"],
           };
         });
-  
-        console.log("Formatted data:", formattedData);
+        console.log("Formatted district data:", formattedData);
         setCybercrimeData(formattedData);
-        setLoading(false);
+        setLoadingDistrict(false);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
-        setError("There was an error fetching the data.");
-        setLoading(false);
+        console.error("Error fetching district data:", error);
+        setErrorDistrict("There was an error fetching the district data.");
+        setLoadingDistrict(false);
       });
   }, []);
-  
-  
 
-  if (loading) {
-    return (
-      <div className="loading-screen">
-        <div className="cyber-shield"></div>
-        <h1 className="glitch-text">Loading Cybercrime Data...</h1>
-      </div>
-    );
-  }
+  // Fetch YearDataset data
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/yeardataset")
+      .then((response) => {
+        console.log("Year Dataset received:", response.data);
+        if (!Array.isArray(response.data)) {
+          console.error("Year dataset API response is not an array:", response.data);
+          setYearError("Invalid Year dataset API response format.");
+          setYearLoading(false);
+          return;
+        }
+        const filteredData = response.data.filter(
+          (item) =>
+            item["Nature of Cybercrime Cases"] !== null &&
+            item["4th Quarter of 2023"] !== null &&
+            item["1st Quarter of 2024"] !== null
+        );
+        const formattedYearData = filteredData.map((item) => ({
+          natureOfCybercrimeCases: item["Nature of Cybercrime Cases"],
+          q4: Number(item["4th Quarter of 2023"]),
+          q1: Number(item["1st Quarter of 2024"]),
+          percentage: Number(item["Percentage Increased"]),
+        }));
+        setYearData(formattedYearData);
+        setYearLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching Year dataset:", error);
+        setYearError("Error fetching Year dataset");
+        setYearLoading(false);
+      });
+  }, []);
 
-  
-  if (error) {
-    return (
-      <div className="error-screen">
-        <div className="error-icon">⚠️</div>
-        <h1 className="glitch-text">Error Loading Data</h1>
-        <p>{error}</p>
-        <button onClick={() => window.location.reload()} className="retry-button">Retry</button>
-      </div>
-    );
-  }
+  // Apply filter to district data
+  const filteredDistrictData = cybercrimeData.filter((record) =>
+    record.nature_of_cases.toLowerCase().includes(filterText.toLowerCase())
+  );
 
+  // Apply filter to year dataset data
+  const filteredYearData = yearData.filter((item) =>
+    item.natureOfCybercrimeCases.toLowerCase().includes(filterText.toLowerCase())
+  );
 
-  // 🟢 Process barangay-level data
+  // ------------------- District-based Chart Processing -------------------
+
+  // Bar Chart: Cybercrime Cases per Barangay
   const processBarangayData = () => {
     let barangayCases = {};
-  
-    cybercrimeData.forEach((record) => {
+    filteredDistrictData.forEach((record) => {
       Object.entries(record.barangayData || {}).forEach(([barangay, cases]) => {
         if (!isNaN(cases)) {
           barangayCases[barangay] = (barangayCases[barangay] || 0) + cases;
         }
       });
     });
-  
     return {
       labels: Object.keys(barangayCases),
       datasets: [
@@ -127,53 +155,18 @@ const CybercrimeStats = () => {
       ],
     };
   };
-  
-  
 
-  // 🟢 Process quarterly trend data
-  const processQuarterlyData = () => {
-    const quarterlyTrends = {
-      "4th Quarter of 2023": 0,
-      "1st Quarter of 2024": 0,
-    };
-
-    cybercrimeData.forEach((record) => {
-      if (record["4th Quarter of 2023"]) {
-        quarterlyTrends["4th Quarter of 2023"] += record["4th Quarter of 2023"];
-      }
-      if (record["1st Quarter of 2024"]) {
-        quarterlyTrends["1st Quarter of 2024"] += record["1st Quarter of 2024"];
-      }
-    });
-
-    return {
-      labels: Object.keys(quarterlyTrends),
-      datasets: [
-        {
-          label: "Cybercrime Cases Over Time",
-          data: Object.values(quarterlyTrends),
-          backgroundColor: "rgba(255,99,132,0.6)",
-          borderColor: "rgba(255,99,132,1)",
-          borderWidth: 2,
-          fill: false,
-        },
-      ],
-    };
-  };
-
-  // 🟢 Process Crime Type Data (Pie Chart)
+  // Pie Chart: Crime Type Distribution (District Data)
   const processCrimeTypeData = () => {
     let crimeTypes = {};
-  
-    cybercrimeData.forEach((record) => {
-      let crimeType = record.nature_of_cases ? record.nature_of_cases.trim().toUpperCase() : null;
-  
-      // 🛑 Exclude "TOTAL CASES", "TOTAL CASES PER BARANGAY", and "UNKNOWN"
+    filteredDistrictData.forEach((record) => {
+      const crimeType = record.nature_of_cases
+        ? record.nature_of_cases.trim().toUpperCase()
+        : null;
       if (crimeType && !crimeType.includes("TOTAL CASES") && crimeType !== "UNKNOWN") {
         crimeTypes[crimeType] = (crimeTypes[crimeType] || 0) + 1;
       }
     });
-  
     return {
       labels: Object.keys(crimeTypes),
       datasets: [
@@ -199,74 +192,254 @@ const CybercrimeStats = () => {
       ],
     };
   };
-  
-  
-  
 
-  // 🟢 Process Monthly Data for Radar Chart (Trends in months of 2024)
-  const processMonthlyData = () => {
-    const monthlyTrends = {
-      January: 0,
-      February: 0,
-      March: 0,
-      April: 0,
-      May: 0,
-      June: 0,
-      July: 0,
-      August: 0,
-      September: 0,
-      October: 0,
-      November: 0,
-      December: 0,
-    };
+  // ------------------- YearDataset Chart Processing -------------------
 
-    cybercrimeData.forEach((record) => {
-      Object.entries(record.MonthlyData || {}).forEach(([month, cases]) => {
-        if (monthlyTrends[month] !== undefined) {
-          monthlyTrends[month] += cases;
-        }
-      });
-    });
-
+  // Bar Chart: Quarterly Cases Comparison (YearDataset)
+  const processYearDatasetQuarterly = () => {
+    if (filteredYearData.length === 0) return { labels: [], datasets: [] };
+    const labels = filteredYearData.map((item) => item.natureOfCybercrimeCases);
+    const q4Data = filteredYearData.map((item) => item.q4);
+    const q1Data = filteredYearData.map((item) => item.q1);
     return {
-      labels: Object.keys(monthlyTrends),
+      labels,
       datasets: [
         {
-          label: "Cybercrime Trend by Month in 2024",
-          data: Object.values(monthlyTrends),
-          backgroundColor: "rgba(153, 102, 255, 0.2)",
-          borderColor: "rgba(153, 102, 255, 1)",
-          borderWidth: 2,
-          pointBackgroundColor: "rgba(153, 102, 255, 1)",
+          label: "4th Quarter 2023",
+          data: q4Data,
+          backgroundColor: "rgba(54, 162, 235, 0.6)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
+        },
+        {
+          label: "1st Quarter 2024",
+          data: q1Data,
+          backgroundColor: "rgba(255, 206, 86, 0.6)",
+          borderColor: "rgba(255, 206, 86, 1)",
+          borderWidth: 1,
         },
       ],
     };
   };
 
-  
+  // Bar Chart: Percentage Increase (YearDataset)
+  const processYearDatasetPercentage = () => {
+    if (filteredYearData.length === 0) return { labels: [], datasets: [] };
+    const labels = filteredYearData.map((item) => item.natureOfCybercrimeCases);
+    const percentageData = filteredYearData.map((item) => item.percentage);
+    return {
+      labels,
+      datasets: [
+        {
+          label: "Percentage Increase",
+          data: percentageData,
+          backgroundColor: "rgba(153, 102, 255, 0.6)",
+          borderColor: "rgba(153, 102, 255, 1)",
+          borderWidth: 1,
+        },
+      ],
+    };
+  };
+
+  // Line Chart: Combined Trend (Quarterly & Percentage, YearDataset)
+  const processCombinedYearTrend = () => {
+    if (filteredYearData.length === 0) return { labels: [], datasets: [] };
+    const labels = filteredYearData.map((item) => item.natureOfCybercrimeCases);
+    const quarterlyData = processYearDatasetQuarterly().datasets;
+    const percentageData = processYearDatasetPercentage().datasets[0].data;
+    return {
+      labels,
+      datasets: [
+        {
+          label: "4th Quarter 2023",
+          data: quarterlyData[0].data,
+          borderColor: "rgba(54, 162, 235, 1)",
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          fill: false,
+          tension: 0.1,
+        },
+        {
+          label: "1st Quarter 2024",
+          data: quarterlyData[1].data,
+          borderColor: "rgba(255, 206, 86, 1)",
+          backgroundColor: "rgba(255, 206, 86, 0.2)",
+          fill: false,
+          tension: 0.1,
+        },
+        {
+          label: "Percentage Increase",
+          data: percentageData,
+          borderColor: "rgba(153, 102, 255, 1)",
+          backgroundColor: "rgba(153, 102, 255, 0.2)",
+          fill: false,
+          tension: 0.1,
+        },
+      ],
+    };
+  };
+
+  // Modal open/close functions
+  const openModal = (chartType, chartData, title, description) => {
+    setModalChart({ chartType, chartData, title, description });
+  };
+  const closeModal = () => {
+    setModalChart(null);
+  };
+
   return (
     <div className="cybercrime-container">
-      <h1>Cybercrime Statistics</h1>
+      <h1>Cybercrime District & Year Dataset Statistics</h1>
 
-      <div className="chart-container">
-        <h2>Cybercrime Cases by Barangay</h2>
-        <Bar data={processBarangayData()} options={{ responsive: true }} />
+      {/* Tab Navigation */}
+      <div className="tabs-container">
+        <div className="tabs">
+          <div
+            className={`tab ${activeTab === "district" ? "active" : ""}`}
+            onClick={() => setActiveTab("district")}
+          >
+            District Data
+          </div>
+          <div
+            className={`tab ${activeTab === "year" ? "active" : ""}`}
+            onClick={() => setActiveTab("year")}
+          >
+            Year Dataset
+          </div>
+        </div>
+        <input
+          type="text"
+          placeholder="Filter by Nature of Case..."
+          value={filterText}
+          onChange={(e) => setFilterText(e.target.value)}
+          className="filter-input"
+        />
       </div>
 
-      <div className="chart-container">
-        <h2>Quarterly Cybercrime Trends</h2>
-        <Line data={processQuarterlyData()} options={{ responsive: true }} />
-      </div>
+      {/* Render Charts based on Active Tab */}
+      {activeTab === "district" && (
+        <>
+          {loadingDistrict ? (
+            <p>Loading District Data...</p>
+          ) : errorDistrict ? (
+            <p>{errorDistrict}</p>
+          ) : (
+            <>
+              <div
+                className="chart-container"
+                onClick={() =>
+                  openModal(
+                    "Bar",
+                    processBarangayData(),
+                    "Cybercrime Cases by Barangay",
+                    "This bar chart shows the aggregated number of cybercrime cases for each barangay based on district data. It provides an overview of how cybercrime incidents are distributed at the local level."
+                  )
+                }
+              >
+                <h2>Cybercrime Cases by Barangay (District Data)</h2>
+                <Bar data={processBarangayData()} options={{ responsive: true }} />
+                <p className="chart-description">Click to view full details</p>
+              </div>
+              <div
+                className="chart-container"
+                onClick={() =>
+                  openModal(
+                    "Pie",
+                    processCrimeTypeData(),
+                    "Crime Type Distribution",
+                    "This pie chart displays the distribution of different types of cybercrime cases based on district data, helping you understand which crimes are more prevalent."
+                  )
+                }
+              >
+                <h2>Crime Type Distribution (District Data)</h2>
+                <Pie data={processCrimeTypeData()} options={{ responsive: true }} />
+                <p className="chart-description">Click to view full details</p>
+              </div>
+            </>
+          )}
+        </>
+      )}
 
-      <div className="chart-container">
-        <h2>Crime Type Distribution</h2>
-        <Pie data={processCrimeTypeData()} options={{ responsive: true }} />
-      </div>
+      {activeTab === "year" && (
+        <>
+          {yearLoading ? (
+            <p>Loading Year Dataset...</p>
+          ) : yearError ? (
+            <p>{yearError}</p>
+          ) : (
+            <>
+              <div
+                className="chart-container"
+                onClick={() =>
+                  openModal(
+                    "Bar",
+                    processYearDatasetQuarterly(),
+                    "Year Dataset: Quarterly Cases Comparison",
+                    "This bar chart compares the number of cases from the 4th Quarter 2023 and the 1st Quarter 2024 for each type of cybercrime case, showing the shift between the two periods."
+                  )
+                }
+              >
+                <h2>Year Dataset: Quarterly Cases Comparison</h2>
+                <Bar data={processYearDatasetQuarterly()} options={{ responsive: true }} />
+                <p className="chart-description">Click to view full details</p>
+              </div>
+              <div
+                className="chart-container"
+                onClick={() =>
+                  openModal(
+                    "Bar",
+                    processYearDatasetPercentage(),
+                    "Year Dataset: Percentage Increase",
+                    "This bar chart shows the percentage increase in cybercrime cases from the 4th Quarter 2023 to the 1st Quarter 2024 for each case type, highlighting the relative growth."
+                  )
+                }
+              >
+                <h2>Year Dataset: Percentage Increase</h2>
+                <Bar data={processYearDatasetPercentage()} options={{ responsive: true }} />
+                <p className="chart-description">Click to view full details</p>
+              </div>
+              <div
+                className="chart-container"
+                onClick={() =>
+                  openModal(
+                    "Line",
+                    processCombinedYearTrend(),
+                    "Year Dataset: Combined Trend",
+                    "This line chart combines quarterly case numbers and percentage increases to provide an overall trend overview for each cybercrime case type."
+                  )
+                }
+              >
+                <h2>Year Dataset: Combined Trend</h2>
+                <Line data={processCombinedYearTrend()} options={{ responsive: true }} />
+                <p className="chart-description">Click to view full details</p>
+              </div>
+            </>
+          )}
+        </>
+      )}
 
-      <div className="chart-container">
-        <h2>Monthly Cybercrime Trends (2024)</h2>
-        <Radar data={processMonthlyData()} options={{ responsive: true }} />
-      </div>
+      {/* Modal for Full-Viewport Chart */}
+      {modalChart && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>
+              Close
+            </button>
+            <h2>{modalChart.title}</h2>
+            <p>{modalChart.description}</p>
+            <div className="modal-chart">
+              {modalChart.chartType === "Bar" && (
+                <Bar data={modalChart.chartData} options={{ responsive: true, maintainAspectRatio: false }} />
+              )}
+              {modalChart.chartType === "Line" && (
+                <Line data={modalChart.chartData} options={{ responsive: true, maintainAspectRatio: false }} />
+              )}
+              {modalChart.chartType === "Pie" && (
+                <Pie data={modalChart.chartData} options={{ responsive: true, maintainAspectRatio: false }} />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

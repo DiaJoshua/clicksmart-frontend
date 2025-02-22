@@ -1,4 +1,3 @@
-import React from "react";
 import "./About.css";
 import computerBG from "../../assets/background/computerBG.png";  // Adjust the import path accordingly
 
