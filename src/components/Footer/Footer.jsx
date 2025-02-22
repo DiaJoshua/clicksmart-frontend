@@ -34,7 +34,7 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="footer-bottom">
         <p>
-          <Link to="/privacy-policy">Privacy Policy</Link> | <Link to="/terms-of-use">Terms of Use</Link> | &copy; 2025 ClickSmart. All Rights Reserved.
+          &copy; 2025 ClickSmart. All Rights Reserved.
         </p>
       </div>
     </footer>
