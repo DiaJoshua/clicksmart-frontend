@@ -1,4 +1,3 @@
-import React from "react";
 import "./Reporting.css";
 import Cybercriminals from "./Cybercriminals";
 import CybercrimeGuide from "./CybercrimeGuide";
@@ -60,9 +59,8 @@ const Reporting = () => {
       {/* Cybercrime Guide Section */}
       <CybercrimeGuide />
 
-       {/*How to Report Cybercrime Guide Section */}
-       <CybercrimeReporting />
-
+      {/*How to Report Cybercrime Guide Section */}
+      <CybercrimeReporting />
     </div>
   );
 };
