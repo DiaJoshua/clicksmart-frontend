@@ -46,7 +46,7 @@ const Reporting = () => {
                 <br /> Take a quick assessment to test your knowledge and learn
                 how to stay safe.
               </p>
-              <a href="#" className="quiz-btn">
+              <a href="/AssessmentForm" className="quiz-btn">
                 Take a Quick Assessment
               </a>
             </div>

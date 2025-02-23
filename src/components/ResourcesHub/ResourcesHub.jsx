@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useLocation } from "react-router-dom"; // Import useLocation
 import "./ResourcesHub.css";
 import ThesisPDF from "../../assets/downloadables/clicksmart-thesis.pdf";
 
 const ResourcesHub = () => {
   // State for the selected section (null means "welcome" state)
   const [selectedSection, setSelectedSection] = useState(null);
+  const location = useLocation(); // Get the location object
 
   // Content data object (converted from your JS)
-  const contentData = {
+  const contentData = useMemo(() => ({
     "pnp-acg": {
       title: "PNP-ACG Branches",
       text: "Find Philippine National Police Anti-Cybercrime Group branches near you.",
@@ -216,23 +218,27 @@ const ResourcesHub = () => {
       title: "Cybercrime Prevention Projects",
       text: "This section is still under development.",
     },
-  };
+  }), []); 
 
   // On mount, check if the URL has a hash (e.g., #pnp-acg)
   useEffect(() => {
     const section = location.hash.substring(1); // get hash without '#'
     if (section && contentData[section]) {
       setSelectedSection(section);
-      const element = document.getElementById(section);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      // Scroll after a short delay to ensure the element is rendered:
+      setTimeout(() => {
+        const element = document.getElementById(section);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
     }
   }, [location]);
 
   // Handler for sidebar button clicks
   const handleSectionClick = (key) => {
     setSelectedSection(key);
+    window.history.pushState(null, "", `#${key}`);
   };
 
   // Render the main content based on the selected section
@@ -453,8 +459,13 @@ const ResourcesHub = () => {
           </ul>
         </nav>
 
-        {/* Dynamic Content Area */}
-        <div className="content">{renderContent()}</div>
+        {/* Dynamic Content Area with ID matching the selected section */}
+        <div
+          className="content"
+          id={selectedSection ? selectedSection : "welcome"}
+        >
+          {renderContent()}
+        </div>
       </div>
     </>
   );

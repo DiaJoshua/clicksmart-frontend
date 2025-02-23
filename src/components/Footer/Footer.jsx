@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "./Footer.css";
 import { Link, useLocation } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const Footer = () => {
   const location = useLocation();
@@ -63,43 +64,19 @@ const Footer = () => {
           <h3>Support</h3>
           <ul>
             <li>
-              <Link
-                to="/ResourcesHub#pnp-acg"
-                onClick={() => {
-                  const element = document.getElementById("pnp-acg");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
+              <HashLink smooth to="/ResourcesHub#pnp-acg">
                 PNP-ACG Branches
-              </Link>
+              </HashLink>
             </li>
             <li>
-              <Link
-                to="/ResourcesHub#devcontacts"
-                onClick={() => {
-                  const element = document.getElementById("devcontacts");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
+              <HashLink smooth to="/ResourcesHub#devcontacts">
                 Developer Team Contacts
-              </Link>
+              </HashLink>
             </li>
             <li>
-              <Link
-                to="/ResourcesHub#offline"
-                onClick={() => {
-                  const element = document.getElementById("offline");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
+              <HashLink smooth to="/ResourcesHub#offline">
                 Downloadable Material
-              </Link>
+              </HashLink>
             </li>
             <li>
               <a
