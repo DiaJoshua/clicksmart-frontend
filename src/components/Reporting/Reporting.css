@@ -1,0 +1,1653 @@
+/* General Reset */
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Global body styles */
+  body {
+    font-family: 'Roboto Flex', sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Central container */
+  .container {
+    width: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-left: 5%;
+    margin-right: 3%;
+  }
+  
+  /*
+  ======================================
+                HERO SECTION
+  ======================================
+  */
+  .cybercrime-intro {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 5%;
+    background: url('../../assets/background/cyberGBG.png') no-repeat center;
+    background-size: cover;
+    color: #ffffff;
+    font-weight: 350;
+  }
+  
+  /* Vignette Effect */
+  .cybercrime-intro::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(5, 5, 5, 0.55) 100%);
+    z-index: 0;
+  }
+  
+  .cybercrime-intro .container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+  }
+  
+  /* Centered Hero Section */
+  .hero-center {
+    max-width: 1350px;
+    text-align: center;
+    position: relative;
+    padding: 30px 50px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+  
+  /* "What is Cybercrime?" Title */
+  .hero-center h1 {
+    font-size: 3.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 150, 255, 0.8);
+    background: rgba(0, 0, 0, 0.60);
+    padding: 35px 100px; 
+    width: 100%;
+  }
+  
+  /* Paragraph Under Hero Title */
+  .hero-center p {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    text-align: left;
+    align-items: center;
+    width: 100%;
+    margin-top: 0 auto;
+    padding-left: 15px;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7);
+  }
+  
+  .hero-center p::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 7px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+    margin-top: 35px;
+  }
+  
+  /* Content Section (Previously Left & Right Columns) */
+  .hero-content {
+    max-width: 1250px;
+    width: 100%;
+    text-align: left;
+    margin-top: 0rem;
+    padding-left: 15px; /* Aligns with hero-center p */
+  }
+  
+  /* Headings */
+  .hero-content h2 {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    text-shadow: 0 0 10px rgba(0, 150, 255, 0.8);
+  }
+  
+  /* Paragraphs */
+  .hero-content p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-top: 10px;
+  }
+  
+  /* Quiz Section */
+  .hero-quiz {
+    max-width: 1250px;
+    text-align: left;
+    margin-top: 3rem;
+  }
+  
+  /* Quiz Text */
+  .hero-quiz p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    width: 80%;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Quiz Button */
+  .hero-quiz .quiz-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    margin-bottom: 60px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background: #d32f2f;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  /* Button Hover Effect */
+  .hero-quiz .quiz-btn:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(230, 57, 70, 0.6);
+  }
+  
+  /* 
+  ======================================
+      Cybercriminals Guide Section
+  ======================================
+  */
+  .cybercriminals {
+    text-align: center;
+    padding: 50px 20px;
+    background: url('../../assets/background/cyberCriminalBG.png') no-repeat center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100vh; /* Prevents shrinking */
+    transition: background 0.3s ease-in-out;
+  }
+  
+  /* Dim Background When a Card is Active */
+  .cybercriminals.active-bg {
+    background: rgba(0, 0, 0, 0.1);
+    padding-bottom: 120px; /* Ensures enough space for expanded card */
+  }
+  
+  /* Title & Description Styling */
+  .cybercriminals h2 {
+    color: #f9f9f9;
+    font-size: 3.8rem;
+    text-shadow: 0 0 10px rgba(0, 150, 255, 0.8); /* Blue neon glow effect */
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .cybercriminals-intro {
+    color: #0077cc;
+    font-weight: 500;
+  }
+  
+  .cybercriminals p {
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease-in-out;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.6); /* Soft white glow */
+  }
+  
+  /* Grid Layout */
+  .cybercriminal-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 900px;
+    margin: auto;
+    padding-top: 20px;
+    justify-content: center;
+    position: relative;
+  }
+  
+  /* Individual Cards */
+  .cybercriminal-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out, width 0.4s ease-in-out, opacity 0.3s ease-in-out;
+    height: auto;
+    min-height: 150px;
+    width: 180px; /* Default small size */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+  }
+  
+  /* HOVER EFFECTS ON CARD */
+  .cybercriminal-card:hover {
+    transform: scale(1.08); /* Slightly enlarges the card */
+    box-shadow: 0px 0px 20px rgba(0, 150, 255, 0.7); /* Blue glowing effect */
+    background: rgba(255, 255, 255, 0.95); /* Slightly darkens card */
+  }
+  
+  /* Image inside Card */
+  .cybercriminal-card img {
+    width: 80px;
+    border-radius: 25%;
+    margin-bottom: 10px;
+    user-select: none;
+    pointer-events: none;
+  }
+  
+  /* Card Title */
+  .cybercriminal-card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px; /* Adjust based on your layout */
+    line-height: 1.2;
+  }
+  
+  /* Hide descriptions initially */
+  .cybercriminal-card p {
+    display: none; /* Hides all paragraph text */
+  }
+  
+  /* Show descriptions when a card is active */
+  .cybercriminal-card.active p {
+    display: block; /* Show description only on active card */
+  }
+  
+  .cyber-info {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    padding: 0;
+    visibility: hidden;
+  }
+  
+  /* Ensure only the active card expands fully */
+  .cybercriminal-card.active {
+    width: 800px;
+    position: relative; /* Ensure it expands inside the section */
+    z-index: 20;
+    background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+  
+  /* Ensure active card title styling */
+  .cybercriminal-card.active h3 {
+    font-size: 2rem;
+    color: #d32f2f; /* Red highlight for active card title */
+    font-weight: bold;
+  }
+  
+  /* Ensure active card description styling */
+  .cybercriminal-card.active .cyber-description {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 15px;
+  }
+  
+  /* Expand only the clicked card's content */
+  .cybercriminal-card.active .cyber-info {
+    opacity: 1;
+    max-height: 1000px;
+    padding: 10px;
+    visibility: visible;
+    width: 90%;
+    font-size: 1.2rem;
+    color: #222; /* Darker text for readability */
+  }
+  
+  /* When a card is selected, dim and disable other cards */
+  .cybercriminal-grid:has(.active) .cybercriminal-card:not(.active) {
+    opacity: 0.1;
+    pointer-events: none;
+  }
+  
+  /* Prevent bottom content from being pushed */
+  .cybercriminals.active-bg {
+    height: auto;
+    overflow: hidden;
+  }
+  
+  /* Ensure only the section title and general paragraph are dimmed */
+  .cybercriminals.active-bg h2,
+  .cybercriminals.active-bg p {
+    opacity: 0.1;
+  }
+  
+  /* Keep active card text fully visible */
+  .cybercriminal-card.active .cyber-description,
+  .cybercriminal-card.active .cyber-info {
+    opacity: 1 !important;
+    color: #181414 !important; /* Ensure visibility */
+  }
+  
+  /* Prevent Title & Other Content From Moving */
+  .cybercriminals {
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Dynamically Adjust Bottom */
+  .cybercriminals.active-bg {
+    height: auto;
+    overflow: hidden;
+    padding-bottom: 100px; /* Adds extra space */
+  }
+  
+  /* Prevent the active card from pushing down other elements */
+  .cybercriminals.active-bg .cybercriminal-grid {
+    position: relative; /* Prevents absolute positioning issue */
+    transform: none; /* Removes unnecessary transform */
+  }
+  
+  .cybercriminals-note {
+    font-size: 1rem;
+    position: relative; 
+    text-align: center;
+    align-items: center;
+    margin-top: 25px;
+    color: #ddd; 
+    max-width: 800px;
+    line-height: 1.6;
+  }
+  
+  /* ========================================
+           CYBERCRIME GUIDE SECTION
+  ======================================== */
+  
+  .cybercrime-guides {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 60px 20px;
+    background: url('../../assets/background/typesCBG.png') no-repeat center center;
+    background-size: cover;
+    min-height: 70vh;
+  }
+  
+  /* === Title & Description Styling === */
+  .cybercrime-guides h2 {
+    font-size: 3rem; 
+    font-weight: 700; 
+    color: #111; 
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #111, #444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .cybercrime-guides p {
+    font-size: 1.3rem; 
+    color: #444; 
+    max-width: 1100px; 
+    line-height: 1.6; 
+    margin: 0 auto 25px auto;
+    text-align: center;
+    font-weight: 500; 
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* === Grid Layout for Guide Cards === */
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+  }
+  
+  /* === Individual Guide Wrapper (Card + Text) === */
+  .guide-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  /* === Guide Card === */
+  .guide-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-decoration: none;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 560px;
+    height: 250px;
+    user-select: none;
+  }
+  
+  /* === Hover Effects: Soft Glow & Scale === */
+  .guide-wrapper:hover .guide-card {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  /* === Card Images Only === */
+  .guide-card img {
+    width: 185px;
+    transition: transform 0.3s ease-in-out;
+    user-select: none;
+  }
+  
+  /* === Image Hover Effect === */
+  .guide-wrapper:hover .guide-card img {
+    transform: scale(1.1);
+  }
+  
+  /* === Separated Clickable Text Below the Card === */
+  .guide-text {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #222;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+  }
+  
+  /* Make Text Clickable & Hover Effect */
+  .guide-text:hover {
+    color: #d32f2f; /* Change text color on hover */
+  }
+  
+  /* Remove default blue underline from links */
+  .guide-text {
+    text-decoration: none;
+  }
+  
+  .cybercrime-insight {
+    background: #f9f9f9;
+    margin: 40px auto;
+    padding: 20px 30px;
+    border-radius: 10px;
+    max-width: 1100px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cybercrime-insight p {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.8;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  /* Learn More Button */
+.learn-more-btn {
+  background: none;  /* Removes background */
+  border: none;  /* Removes border */
+  color: #c21830;  /* Keep the existing color */
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  padding-left: 5px;
+}
+
+.learn-more-btn:hover {
+  color: #b71c1c;
+  text-shadow: 0 0 6px rgba(214, 40, 57, 0.5);
+  text-decoration: underline;
+}
+
+  
+  /* Cybercrime Laws Modal Styling */
+.cybercrime-laws-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Make the modal visible when active */
+.cybercrime-laws-modal.active {
+  display: flex;
+}
+
+/* Modal Box */
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 70%;
+  max-width: 750px; /* Adjusted for better content fit */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: left; /* Align all content to the left */
+  position: relative;
+  max-height: 85vh;
+  overflow-y: auto; /* Ensure scrolling for long content */
+}
+
+/* Modal Header */
+.modal-content h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-align: left;
+  font-weight: bold;
+  color: #111;
+}
+
+/* Ensure all text inside modal is left-aligned */
+.modal-body {
+  text-align: left;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Ensure paragraphs inside the modal are left-aligned */
+.modal-body p {
+  text-align: left;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #333;
+}
+
+/* Ensure <strong> elements are also aligned to the left */
+.modal-body p strong {
+  font-size: 1.3rem;
+  color: #c21830;
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+}
+
+/* Fix List alignment inside modal */
+.modal-body ul {
+  padding-left: 25px; /* Increase indentation for better structure */
+  margin: 10px 0;
+  list-style-type: disc;
+  text-align: left;
+}
+
+.modal-body ul li {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  color: #333;
+  text-align: left;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+  background: none;
+  border: none;
+  transition: color 0.3s;
+  padding: 5px;
+}
+
+.close-btn:hover {
+  color: #d9534f;
+}
+
+/* Close Button in Footer */
+.close-section {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.close-section .close-btn {
+  font-size: 1rem;
+  padding: 8px 15px;
+  background: #c21830;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease-in-out;
+}
+
+.close-section .close-btn:hover {
+  background: #b71c1c;
+}
+
+/* Scrollbar Customization */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/* ========================================
+        First Modal (Cybercrime List)
+======================================== */
+    .cybercrime-modal.first-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7); /* Ensures background is present */
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    /* Activate First Modal */
+    .cybercrime-modal.first-modal.active {
+        display: flex;
+    }
+
+    /* First Modal Content */
+    .modal-content.first-modal-content {
+        background: white;
+        width: 80%;
+        max-width: 850px;
+        padding: 35px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        position: relative;
+        overflow-y: auto;
+        max-height: 95vh;
+    }
+
+    /* First Modal Title */
+    #modal-title {
+        all: unset;  /* Reset any inherited properties */
+        font-size: 2.2rem !important;
+        color: #0078ff !important;
+        font-family: 'Roboto Flex', sans-serif !important; /* Explicitly set it */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1) !important;
+        text-align: center !important;
+        font-weight: bold !important;
+        display: block !important;
+    }
+
+    /* First Modal Description */
+    #modal-description {
+        all: unset;
+        text-align: center;
+        font-size: 1rem !important;
+        font-weight: 500;
+        color: #444;
+        line-height: 1.6;
+        margin: 0 auto;
+        margin-bottom: 15px;
+    }
+
+    /* Modal Grid Layout */
+    #modal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    /* Cybercrime Card Style */
+    .cybercrime-card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 60px;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    /* Hover effect */
+    .cybercrime-card:hover {
+        transform: scale(1.05);
+        color: #b71c1c;
+        background-color: #f1f1f1;
+    }
+
+    /* Note Section */
+    .modal-note {
+        font-size: 0.8rem !important;
+        color: #555;
+        text-align: center;
+        margin-top: 30px;
+        background: #f9f9f9;
+        padding: 8px 12px;
+        border-radius: 6px;
+        border-left: 4px solid #ff9800;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-style: italic;
+    }
+
+    /* Scrollbar Customization */
+    .modal-content.first-modal-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .modal-content.first-modal-content::-webkit-scrollbar-thumb {
+        background: #aaa;
+        border-radius: 10px;
+    }
+
+    .modal-content.first-modal-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+/* ========================================
+     Second Modal (Cybercrime Details)
+======================================== */
+
+.cybercrime-details-modal {
+  display: none; /* Separate from first modal */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1100;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* Activate second modal */
+.cybercrime-details-modal.active {
+  display: flex;
+}
+
+/* Second Modal Content */
+.cybercrime-details-content {
+  background: white;
+  width: 90%;
+  max-width: 950px;
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: left; /* Ensures all text is left-aligned */
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+/* Add smooth scrolling inside second modal */
+.cybercrime-details-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cybercrime-details-content::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 10px;
+}
+
+.cybercrime-details-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Cybercrime Container */
+.cybercrime-details-container {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* Aligns text inside the container to the left */
+}
+
+/* Second Modal Title */
+.cybercrime-details-title {
+  all: unset;
+  font-size: 2.2rem !important;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* Section Headers */
+.cybercrime-details strong {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #111;
+}
+
+/* Force Left Alignment */
+.cybercrime-details-description {
+  font-size: 1.10rem !important; 
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 5px !important;
+  text-align: left !important; 
+  display: block; 
+  width: 100%; 
+}
+
+/* Section Headers */
+.cybercrime-details-description strong {
+  display: block; /* Keep inline-block for proper spacing */
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #111;
+  text-align: left !important; /* Force left alignment */
+}
+
+
+/* Lists */
+.cybercrime-details ul {
+  padding-left: 40px;
+  margin: 10px 0;
+  list-style-type: disc;
+  text-align: left;
+}
+
+.cybercrime-details ul li {
+  font-size: 1.12rem;
+  margin-bottom: 18px !important;
+  line-height: 1.22rem;
+  padding-bottom: 7px;
+  color: #444;
+  text-align: left;
+}
+
+/* Section Headers (Titles for each section) */
+.cybercrime-details strong {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.cybercrime-details .sectiontitle{
+  font-size: 1.5rem;
+}
+
+/* Section Spacing */
+.cybercrime-details .section-divider {
+  margin: 25px 0;
+  border-top: 2px solid #eee;
+  padding-top: 15px;
+}
+
+/* Highlight important sections */
+.cybercrime-details .highlight-section {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Prevent unwanted horizontal scrolling */
+.cybercrime-details-modal .cybercrime-details-content {
+  overflow-x: hidden;
+}
+  
+  /* ========================================
+      HOW TO REPORT CYBERCRIME SECTION
+  ======================================== */
+  .report-cybercrime {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    background: radial-gradient(circle, #ffffff 97%, #000000 140%);
+    border-top: 2px solid gray;
+  }
+  
+  .report-cybercrime .container {
+    max-width: 1200px; /* Set the maximum width */
+    width: 80%; /* Ensure responsiveness */
+    margin: 0 auto; /* Center the content */
+  }
+  
+  .report-cybercrime h2 {
+    font-size: 3rem;
+    color: #0078ff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .report-cybercrime {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .report-guide {
+    padding: 20px;
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto 20px;
+  }
+  
+  .report-guide h3 {
+    font-size: 1.6rem;
+    color: #111;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .report-guide ol {
+    padding-left: 20px;
+  }
+  
+  .report-guide ol li {
+    margin-bottom: 10px;
+    font-size: 1.rem;
+  }
+  
+  /* Cybercrime Selection */
+  .cybercrime-selection {
+    margin: 20px 0;
+    font-size: 1.3rem;
+  }
+  
+  .cybercrime-selection select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* What Should You Do? Section */
+  .what-to-do {
+    background: #f8f9fa;
+    padding: 20px;
+    border-left: 5px solid #007bff;
+    border-radius: 5px;
+    text-align: left;
+    margin: 20px auto;
+    width: 90%;
+  }
+  
+  .what-to-do h3 {
+    color: #007bff;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .what-to-do ul {
+    padding-left: 20px;
+    line-height: 1.6;
+  }
+  
+  .what-to-do p {
+    font-weight: bold;
+    margin-top: 15px;
+    color: #333;
+  }
+  
+  /* Warning Box */
+  .warning-box {
+    background: #ff9800;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 5px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .report-details {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on mobile */
+  }
+  
+  /* Report Table */
+  #report-details table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap; /* Prevents text wrapping */
+    min-width: 600px; /* Prevents columns from squishing on small screens */
+  }
+  
+  #report-details th {
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  #report-details td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  
+  #report-details tr:nth-child(even) {
+    background: #f2f2f2;
+  }
+  
+  /* Data Disclaimer Notice */
+  .data-disclaimer {
+    font-size: 0.95rem;
+    color: #666;
+    text-align: center;
+    max-width: 900px;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  
+  
+  /* Default - Desktop View (No changes needed) */
+  @media (max-width: 1440px) {
+    .cybercrime-intro .container {
+      max-width: 1200px;
+    }
+  }
+  
+  /* Large Screens (Max: 1200px) */
+  @media (max-width: 1300px) {
+    .cybercrime-intro {
+      text-align: center;
+      align-items: center;
+    }
+  
+    .hero-center {
+      max-width: 1000px;
+      padding: 25px 50px;
+      text-align: center;
+    }
+  
+    .hero-center h1 {
+      font-size: 3.5rem;
+      padding: 30px 60px;
+    }
+  
+    .hero-center p {
+      font-size: 1.4rem;
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+  
+    .hero-content {
+      max-width: 80%;
+      text-align: center;
+      padding-left: 0;
+    }
+  
+    .hero-content h2 {
+      font-size: 2.4rem;
+    }
+  
+    .hero-content p {
+      font-size: 1.3rem;
+      line-height: 1.7;
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .hero-quiz {
+      text-align: center;
+      max-width: 100%;
+    }
+  
+    .hero-quiz p {
+      font-size: 1.3rem;
+      width: 90%;
+      text-align: center;
+    }
+  
+    .hero-quiz .quiz-btn {
+      margin-top: 30px;
+      padding: 10px 25px;
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Large Tablets (Max: 1024px) */
+  @media (max-width: 1024px) {
+    .cybercrime-intro {
+      padding: 4rem 5%;
+      text-align: center;
+    }
+  
+    .hero-center {
+      max-width: 1000px;
+      padding: 25px 50px;
+    }
+  
+    .hero-center h1 {
+      font-size: 3.2rem;
+      padding: 25px 80px;
+    }
+  
+    .hero-center p {
+      font-size: 1.4rem;
+      width: 95%;
+      text-align: center;
+    }
+  
+    .hero-content {
+      max-width: 95%;
+      padding-left: 0;
+      text-align: center;
+    }
+  
+    .hero-content h2 {
+      font-size: 2.2rem;
+    }
+  
+    .hero-content p {
+      font-size: 1.3rem;
+      line-height: 1.7;
+    }
+  
+    .hero-quiz {
+      text-align: center;
+      max-width: 100%;
+    }
+  
+    .hero-quiz p {
+      width: 90%;
+      text-align: center;
+    }
+  
+    .cybercriminals h2 {
+      font-size: 3rem;
+    }
+  
+    .cybercriminals p {
+      font-size: 1.1rem;
+    }
+  
+    .cybercriminal-grid {
+      gap: 15px;
+    }
+  
+    .cybercriminal-card {
+      width: 160px;
+      padding: 12px;
+    }
+  
+    .cybercriminal-card img {
+      width: 70px;
+    }
+  
+    .cybercriminal-card.active {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .cybercriminal-card.active h3 {
+      font-size: 1.8rem;
+    }
+  
+    .cybercriminal-card.active .cyber-description {
+      font-size: 1.3rem;
+    }
+  
+    .cybercriminal-card.active .cyber-info {
+      font-size: 1rem;
+    }
+  
+    .guide-grid {
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+      gap: 30px;
+    }
+  
+    .cybercrime-guides h2 {
+      font-size: 2.6rem;
+    }
+    .cybercrime-guides p {
+      font-size: 1.2rem;
+      padding: 0 20px;
+    }
+  
+    .chatbot-widget {
+      display: none;
+    }
+  
+  .chatbox-container {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .cybercrime-intro {
+      padding: 3rem 5%;
+    }
+  
+    .hero-center {
+      max-width: 100%;
+      padding: 20px;
+    }
+  
+    .hero-center h1 {
+      font-size: 2.8rem;
+      padding: 20px 50px;
+    }
+  
+    .hero-center p {
+      font-size: 1.3rem;
+      width: 100%;
+    }
+  
+    .hero-content {
+      width: 100%;
+      text-align: center;
+      padding-left: 0;
+    }
+  
+    .hero-content h2 {
+      font-size: 2rem;
+    }
+  
+    .hero-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+  
+    .hero-quiz {
+      text-align: center;
+      max-width: 100%;
+    }
+  
+    .hero-quiz p {
+      font-size: 1.3rem;
+      width: 90%;
+      text-align: center;
+    }
+  
+    .hero-quiz .quiz-btn {
+      margin-top: 40px;
+      margin-bottom: 40px;
+      padding: 10px 30px;
+      font-size: 1.2rem;
+      
+    }
+  
+    .cybercriminals h2 {
+      font-size: 2.5rem;
+    }
+  
+    .cybercriminals p {
+      font-size: 1rem;
+    }
+  
+    .cybercriminal-grid {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    .cybercriminal-card {
+      width: 140px;
+      padding: 10px;
+    }
+  
+    .cybercriminal-card img {
+      width: 65px;
+    }
+  
+    .cybercriminal-card h3 {
+      font-size: 1rem;
+    }
+  
+    .cybercriminal-card.active {
+      width: 95%;
+      padding: 18px;
+    }
+  
+    .cybercriminal-card.active h3 {
+      font-size: 1.6rem;
+    }
+  
+    .cybercriminal-card.active .cyber-description {
+      font-size: 1.2rem;
+    }
+  
+    .cybercriminal-card.active .cyber-info {
+      font-size: 0.95rem;
+    }
+  
+    .cybercriminals-note {
+      font-size: 0.95rem;
+      padding: 0 15px;
+    }
+  
+    .guide-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  
+    .guide-card {
+      padding: 20px;
+      max-width: 220px;
+      height: 130px;
+    }
+  
+    .guide-card img {
+      width: 110px;
+    }
+  
+    .guide-text {
+      font-size: 1.1rem;
+    }
+  
+    .cybercrime-guides h2 {
+      font-size: 2.4rem;
+    }
+  
+    .cybercrime-guides p {
+      font-size: 1.1rem;
+    }
+  
+    #report-details {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+  
+    #report-details table {
+      min-width: 100%;
+    }
+  
+    /* Force table to fit within screen */
+    #report-details th, #report-details td {
+      padding: 8px;
+      font-size: 0.9rem;
+      white-space: wrap; 
+    }
+  
+    .report-cybercrime h2 {
+      font-size: 2rem;
+    }
+  
+    .report-guide {
+      max-width: 100%;
+      padding: 10px;
+    }
+  
+    .report-guide ol {
+      padding-left: 15px;
+    }
+  
+    .cybercrime-selection select {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .what-to-do {
+      width: 100%;
+    }
+  
+    .what-to-do h3 {
+      font-size: 1.5rem;
+    }
+  
+    .warning-box {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  
+    .chatbot-widget {
+      display: none;
+    }
+  
+  .chatbox-container {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 1024px) and (min-width: 400px) {
+    .guide-grid {
+      grid-template-columns: repeat(2, minmax(250px, 1fr)); 
+      gap: 20px;
+    }
+  }
+  
+  /* For extra small screens (max-width: 480px) */
+  @media (max-width: 600px) or (max-width: 480px) {
+    .cybercrime-intro {
+      padding: 2rem 4%;
+      text-align: center;
+      align-items: center;
+    }
+  
+    .hero-center {
+      max-width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+  
+    .hero-center h1 {
+      font-size: 2.6rem;
+      padding: 20px 30px;
+    }
+  
+    .hero-center p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+  
+    .hero-content {
+      text-align: center;
+      padding-left: 0;
+      width: 100%;
+    }
+  
+    .hero-content h2 {
+      font-size: 2rem;
+      text-align: center;
+    }
+  
+    .hero-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .hero-quiz {
+      text-align: center;
+      max-width: 100%;
+    }
+  
+    .hero-quiz p {
+      font-size: 1.2rem;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .hero-quiz .quiz-btn {
+      margin-top: 40px;
+      padding: 10px 25px;
+      font-size: 1.1rem;
+    }
+  
+    .cybercriminals {
+      padding: 40px 10px;
+    }
+  
+    .cybercriminals h2 {
+      font-size: 2.2rem;
+    }
+  
+    .cybercriminals p {
+      font-size: 0.95rem;
+    }
+  
+    .cybercriminal-grid {
+      flex-direction: column;
+      gap: 8px;
+    }
+  
+    .cybercriminal-card {
+      width: 100%;
+      padding: 12px;
+    }
+  
+    .cybercriminal-card img {
+      width: 60px;
+    }
+  
+    .cybercriminal-card h3 {
+      font-size: 1rem;
+    }
+  
+    .cybercriminal-card.active {
+      width: 100%;
+      padding: 16px;
+    }
+  
+    .cybercriminal-card.active h3 {
+      font-size: 1.4rem;
+    }
+  
+    .cybercriminal-card.active .cyber-description {
+      font-size: 1.1rem;
+    }
+  
+    .cybercriminal-card.active .cyber-info {
+      font-size: 0.9rem;
+    }
+    .guide-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .guide-card {
+      padding: 18px;
+      max-width: 200px;
+      height: 120px;
+    }
+  
+    .guide-card img {
+      width: 70px;
+    }
+  
+    .guide-text {
+      font-size: 1rem;
+    }
+  
+    .cybercrime-guides h2 {
+      font-size: 2rem;
+    }
+  
+    .cybercrime-guides p {
+      font-size: 1rem;
+    }
+  
+    .report-cybercrime h2 {
+      font-size: 1.8rem;
+    }
+  
+    .report-guide ol li {
+      font-size: 0.9rem;
+    }
+  
+    .cybercrime-selection select {
+      width: 100%;
+      font-size: 14px;
+    }
+  
+    .what-to-do h3 {
+      font-size: 1.3rem;
+    }
+  
+    .warning-box {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  
+    #report-details table {
+      min-width: 100%;
+    }
+  
+    .data-disclaimer {
+      font-size: 0.95rem;
+      color: #666;
+      text-align: center;
+      max-width: 900px;
+      margin: 10px auto;
+      padding: 10px;
+    }
+        
+  }

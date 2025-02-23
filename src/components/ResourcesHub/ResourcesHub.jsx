@@ -171,7 +171,7 @@ const ResourcesHub = () => {
       members: [
         {
           name: "Hanst Diether B. Abalos",
-          role: "Team Leader / Researcher",
+          role: "Project Manager / Researcher",
           email: "abaloshb@students.national-u.edu.ph",
         },
         {

@@ -1,44 +1,69 @@
+import React from "react";
 import "./Reporting.css";
-import { Link } from "react-router-dom"
-import identify from "../../assets/icons/identify.png";
-import evidence from "../../assets/icons/cevidence.png";
-import contactcop from "../../assets/icons/contactcop.png";
-import ensurereport from "../../assets/icons/ensurereport.png";
+import Cybercriminals from "./Cybercriminals";
+import CybercrimeGuide from "./CybercrimeGuide";
+import CybercrimeReporting from "./CybercrimeReporting";
 
 const Reporting = () => {
   return (
-    <>
-      <section className="report-page">
+    <div className="reporting-page">
+      {/* Cybercrime Hero Section */}
+      <section className="cybercrime-intro">
         <div className="container">
-          <h1>Have anything to report?</h1>
-          <p>Here&apos;s a step-by-step guide in reporting cybercrime activities in your area.</p>
-          <Link to="/AssessmentForm" className="quiz-btn">Take a Quick Assessment</Link>
+          <div className="hero-center">
+            <h1>What is Cybercrime?</h1>
+            <p>
+              Cybercrime includes illegal activities carried out using the
+              internet or digital systems, from online scams to hacking and
+              identity theft. With cyber threats evolving daily, knowing how to
+              spot and prevent them is your first line of defense—explore this
+              guide to stay protected.
+            </p>
+          </div>
+
+          <div className="hero-content">
+            <h2>Cybercrime in the Philippines</h2>
+            <p>
+              Cybercrime cases in the Philippines surged by{" "}
+              <strong>22% in 2024</strong>, with online scams, hacking, and
+              identity theft leading the threats. Many victims never report
+              these crimes due to lack of awareness or fear of legal
+              complexities.
+            </p>
+
+            <h2>Why It Matters Now More Than Ever</h2>
+            <p>
+              In a world where almost everything is connected online, cybercrime
+              is no longer just a threat—it’s a reality affecting millions. From
+              financial fraud to data breaches, understanding cyber risks is
+              essential for safeguarding yourself and your community.
+            </p>
+
+            {/* Quiz Call-to-Action */}
+            <div className="hero-quiz">
+              <p>
+                Are you prepared for the digital dangers ahead?
+                <br /> Take a quick assessment to test your knowledge and learn
+                how to stay safe.
+              </p>
+              <a href="#" className="quiz-btn">
+                Take a Quick Assessment
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="steps-section container">
-        <div className="step-card">
-          <img src={identify} alt="Step 1: Identify the crime type" />
-          <h3>Step 1</h3>
-          <p>Identify the type of cybercrime you want to report.</p>
-        </div>
-        <div className="step-card">
-          <img src={evidence} alt="Step 2: Collect evidence" />
-          <h3>Step 2</h3>
-          <p>Collect all evidence and documentation related to the crime.</p>
-        </div>
-        <div className="step-card">
-          <img src={contactcop} alt="Step 3: Contact local authorities" />
-          <h3>Step 3</h3>
-          <p>Contact the appropriate local authorities or agencies.</p>
-        </div>
-        <div className="step-card">
-          <img src={ensurereport} alt="Step 4: Ensure report processing" />
-          <h3>Step 4</h3>
-          <p>Follow up and ensure that your report is being processed.</p>
-        </div>
-      </section>
-    </>
+      {/* Cybercriminals Section */}
+      <Cybercriminals />
+
+      {/* Cybercrime Guide Section */}
+      <CybercrimeGuide />
+
+       {/*How to Report Cybercrime Guide Section */}
+       <CybercrimeReporting />
+
+    </div>
   );
 };
 
