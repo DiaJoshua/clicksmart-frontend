@@ -9,22 +9,22 @@ const NewsArticles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // useEffect(() => {
-  //   const fetchNews = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:5000/fetch-cybercrime-news`
-  //       );
-  //       setArticles(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("News API Error:", error.message);
-  //       setError("Failed to fetch news. Please try again later.");
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchNews();
-  // }, []);
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/fetch-cybercrime-news`
+        );
+        setArticles(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("News API Error:", error.message);
+        setError("Failed to fetch news. Please try again later.");
+        setLoading(false);
+      }
+    };
+    fetchNews();
+  }, []);
 
   const handleBatchChange = (direction) => {
     setCurrentBatch((prev) => {

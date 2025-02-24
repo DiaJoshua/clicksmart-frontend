@@ -127,6 +127,12 @@ body {
   outline: none !important;
 }
 
+@media (max-width: 1724px) {
+  .logo img {
+    max-width: 12rem;
+  }
+}
+
 /* Mobile & Tablet Navbar */
 @media (max-width: 1024px) {
   .menu-toggle {

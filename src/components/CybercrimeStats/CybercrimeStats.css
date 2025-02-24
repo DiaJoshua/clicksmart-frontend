@@ -44,7 +44,7 @@
 .cybercrime-container h1::after {
   content: "";
   display: block;
-  width: 60px;
+  width: 30%;
   height: 4px;
   background: linear-gradient(to right, #002244, #001122);
   margin: 0.5rem auto;

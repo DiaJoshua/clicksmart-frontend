@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useMemo  } from "react";
 import "./Chatbot.css";
 import bot from "../../assets/icons/bot.png";
 
+// Utility functions for text similarity
 const editDistance = (s1, s2) => {
   let costs = [];
   for (let i = 0; i <= s1.length; i++) {
@@ -33,6 +34,7 @@ const similarityScore = (str1, str2) => {
 };
 
 const Chatbot = () => {
+  // Basic states
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -43,18 +45,38 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const chatEndRef = useRef(null);
   const [botTyping, setBotTyping] = useState(false);
-  const [chatbotData, setChatbotData] = useState({});
-  const [conversationHistory, setConversationHistory] = useState([]);
-  const [suggestions, setSuggestions] = useState([]);
-  const [suggestionsData, setSuggestionsData] = useState({});
-
   const MAX_INPUT_WORDS = 75;
 
+  // States for rules-based responses (from chatbot_dataset.json)
+  const [chatbotData, setChatbotData] = useState({});
+  const [conversationHistory, setConversationHistory] = useState([]);
+
+  // Hierarchical menu states for category → title → question navigation
+  const [menuLevel, setMenuLevel] = useState("categories"); // "categories", "titles", "questions"
+  const [categoriesData, setCategoriesData] = useState({}); // Data loaded from category JSON files
+  const [currentCategory, setCurrentCategory] = useState(null);
+  const [setCurrentTitle] = useState(null);
+  const [currentSuggestions, setCurrentSuggestions] = useState([]);
+
+  // List of category file names and display names
+  const categoryFiles = useMemo(() => [
+    { key: "Cybercrime", file: "CybercrimeCategory.json" },
+    { key: "Cyber Espionage", file: "CyberEspionageCategory.json" },
+    { key: "Data Breach", file: "DataBreachCategory.json" },
+    { key: "Financial Fraud", file: "FinancialFraudCategory.json" },
+    { key: "Hacking", file: "HackingCategory.json" },
+    { key: "Identity Theft", file: "IdentityTheftCategory.json" },
+    { key: "Ransomware", file: "Ransomware%20Category.json" },
+    { key: "DDoS Attack", file: "DdosAttackCategory.json" },
+  ], []);
+
+  // Load conversation history from localStorage
   useEffect(() => {
     const storedHistory = localStorage.getItem("chatConversationHistory");
     if (storedHistory) setConversationHistory(JSON.parse(storedHistory));
   }, []);
 
+  // Save conversation history on change
   useEffect(() => {
     localStorage.setItem(
       "chatConversationHistory",
@@ -62,108 +84,144 @@ const Chatbot = () => {
     );
   }, [conversationHistory]);
 
-  const getCategoryForQuery = useCallback(
-    (query) => {
-      if (!query) return null;
-      let bestCategory = null,
-        bestScore = 0;
-      Object.keys(suggestionsData).forEach((category) => {
-        const score = similarityScore(
-          query.toLowerCase(),
-          category.toLowerCase()
-        );
-        if (score > bestScore) {
-          bestScore = score;
-          bestCategory = category;
+  // Fetch hierarchical category data from each JSON file
+  useEffect(() => {
+    const fetchAllCategories = async () => {
+      let loadedData = {};
+      for (let cat of categoryFiles) {
+        try {
+          const response = await fetch(
+            `http://localhost:3000/Chatbot/${cat.file}`
+          );
+          const data = await response.json();
+          // Each JSON file is expected to have an object with an array "categories"
+          loadedData[cat.key] = data.categories;
+        } catch (error) {
+          console.error(`Error loading ${cat.file}:`, error);
         }
-      });
-      return bestScore > 0.3 ? bestCategory : null;
-    },
-    [suggestionsData]
-  );
+      }
+      setCategoriesData(loadedData);
+      // Set suggestions as the category keys
+      setCurrentSuggestions(Object.keys(loadedData));
+    };
 
-  const updateSuggestions = useCallback(
-    (lastInput) => {
-      if (!suggestionsData || Object.keys(suggestionsData).length === 0) {
-        setSuggestions([]);
-        return;
-      }
-      if (!lastInput && conversationHistory.length === 0) {
-        const general = Object.keys(suggestionsData).map(
-          (cat) => suggestionsData[cat][0]
-        );
-        setSuggestions(general);
-        return;
-      }
-      const category = getCategoryForQuery(lastInput);
-      if (category && suggestionsData[category]) {
-        setSuggestions(suggestionsData[category]);
-      } else {
-        const fallback = Object.keys(suggestionsData).map(
-          (cat) => suggestionsData[cat][0]
-        );
-        setSuggestions(fallback);
-      }
-    },
-    [suggestionsData, conversationHistory, getCategoryForQuery]
-  );
+    fetchAllCategories();
+  }, [categoryFiles]);
 
+  // Fetch rules-based chatbot dataset
   useEffect(() => {
     fetch("http://localhost:3000/Chatbot/chatbot_dataset.json")
       .then((response) => response.json())
       .then((data) => {
         setChatbotData(data);
         console.log("Chatbot dataset loaded!", data);
-        updateSuggestions("");
       })
       .catch((error) => console.error("Error loading chatbot dataset:", error));
-  }, [updateSuggestions]);
+  }, []);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/Chatbot/Suggestions.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setSuggestionsData(data);
-        console.log("Suggestions data loaded!", data);
-        updateSuggestions("");
-      })
-      .catch((error) =>
-        console.error("Error loading Suggestions.json:", error)
-      );
-  }, [updateSuggestions]);
-
+  // Auto-scroll to the bottom when messages update
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Toggle the chatbox open/closed and reset hierarchical menu if opening
   const toggleChatbox = () => {
     setIsOpen((prev) => !prev);
-    if (!isOpen && Object.keys(chatbotData).length > 0) {
-      updateSuggestions(input);
+    if (!isOpen && Object.keys(categoriesData).length > 0) {
+      resetMenu();
     }
   };
 
-  // Define the missing function for rules-based response.
+  // Hierarchical menu functions
+  const handleSuggestionSelect = (suggestion) => {
+    if (menuLevel === "categories") {
+      // When a category is selected, update to titles within that category
+      setCurrentCategory(suggestion);
+      setMenuLevel("titles");
+      const titles = categoriesData[suggestion].map((item) => item.title);
+      setCurrentSuggestions(titles);
+    } else if (menuLevel === "titles") {
+      // When a title is selected, update to the questions for that title
+      setCurrentTitle(suggestion);
+      setMenuLevel("questions");
+      const categoryItem = categoriesData[currentCategory].find(
+        (item) => item.title === suggestion
+      );
+      if (categoryItem) {
+        setCurrentSuggestions(categoryItem.questions);
+      }
+    } else if (menuLevel === "questions") {
+      // When a question is selected, send that question as input
+      setInput(suggestion);
+      handleSendMessage(suggestion);
+      resetMenu();
+    }
+  };
+
+  const handleBack = () => {
+    if (menuLevel === "questions") {
+      setMenuLevel("titles");
+      const titles = categoriesData[currentCategory].map((item) => item.title);
+      setCurrentSuggestions(titles);
+    } else if (menuLevel === "titles") {
+      setMenuLevel("categories");
+      setCurrentSuggestions(Object.keys(categoriesData));
+    }
+  };
+
+  const resetMenu = () => {
+    setMenuLevel("categories");
+    setCurrentCategory(null);
+    setCurrentTitle(null);
+    setCurrentSuggestions(Object.keys(categoriesData));
+  };
+
+  // Rules-based response lookup (if available)
   const get_rules_based_response = (question) => {
     const lowerQuestion = question.toLowerCase().trim();
     return chatbotData[lowerQuestion] || null;
   };
 
-  const handleSendMessage = async () => {
-    if (botTyping || !input.trim()) return;
-    // Trim input to MAX_INPUT_WORDS
-    const words = input.trim().split(/\s+/);
-    const trimmedInput = words.slice(0, MAX_INPUT_WORDS).join(" ");
+  // Similarity-based best match (if needed)
+  const getBestMatch = (input) => {
+    input = input.toLowerCase().trim();
+    if (!chatbotData || Object.keys(chatbotData).length === 0) return null;
+    let bestMatch = null,
+      highestScore = 0;
+    Object.keys(chatbotData).forEach((question) => {
+      let score = similarityScore(input, question.toLowerCase());
+      if (score > highestScore) {
+        highestScore = score;
+        bestMatch = question;
+      }
+    });
+    if (highestScore > 0.6) {
+      return chatbotData[bestMatch];
+    }
+    return null;
+  };
 
+  // Update conversation history for contextual responses
+  const updateConversationHistory = (newMessage) => {
+    setConversationHistory((prev) => {
+      const updated = [...prev, newMessage];
+      return updated.length > 3 ? updated.slice(1) : updated;
+    });
+  };
+
+  // Send message handler – uses overrideInput if provided (from hierarchical selection)
+  const handleSendMessage = async (overrideInput) => {
+    const userQuery = overrideInput ? overrideInput : input;
+    if (botTyping || !userQuery.trim()) return;
+    const words = userQuery.trim().split(/\s+/);
+    const trimmedInput = words.slice(0, MAX_INPUT_WORDS).join(" ");
     const userMsg = { text: trimmedInput, sender: "user" };
     setMessages((prev) => [...prev, userMsg]);
-    const userQuery = trimmedInput;
     setInput("");
     setBotTyping(true);
 
-    // Try to get a rules-based answer
-    const rulesResponse = get_rules_based_response(userQuery);
-    const bestMatchResponse = getBestMatch(userQuery);
+    const rulesResponse = get_rules_based_response(trimmedInput);
+    const bestMatchResponse = getBestMatch(trimmedInput);
 
     if (rulesResponse || bestMatchResponse) {
       const responseText = rulesResponse || bestMatchResponse;
@@ -173,16 +231,15 @@ const Chatbot = () => {
           { text: formatResponse(responseText), sender: "bot" },
         ]);
         setBotTyping(false);
-        updateSuggestions(userQuery);
-        updateConversationHistory(userQuery);
+        updateConversationHistory(trimmedInput);
+        resetMenu();
       }, 1000);
     } else {
-      // If no high-confidence rules-based answer, call the backend
       try {
         const response = await fetch("http://localhost:3000/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userQuery }),
+          body: JSON.stringify({ message: trimmedInput }),
         });
         const data = await response.json();
         setMessages((prev) => [
@@ -200,54 +257,11 @@ const Chatbot = () => {
         ]);
       }
       setBotTyping(false);
+      resetMenu();
     }
   };
 
-  const getBestMatch = (input) => {
-    input = input.toLowerCase().trim();
-    if (!chatbotData || Object.keys(chatbotData).length === 0) return null;
-    let bestMatch = null,
-      highestScore = 0;
-    Object.keys(chatbotData).forEach((question) => {
-      let score = similarityScore(input, question.toLowerCase());
-      if (score > highestScore) {
-        highestScore = score;
-        bestMatch = question;
-      }
-    });
-    // Only return a rules-based answer if the similarity is above threshold
-    if (highestScore > 0.6) {
-      return chatbotData[bestMatch];
-    }
-    // Otherwise, return null so that the backend model is used
-    return null;
-  };
-
-  const updateConversationHistory = (newMessage) => {
-    setConversationHistory((prev) => {
-      const updated = [...prev, newMessage];
-      return updated.length > 3 ? updated.slice(1) : updated;
-    });
-  };
-
-  // (Optional) Remove or comment out handleContextualQuestions if not used.
-  // const handleContextualQuestions = (input) => {
-  //   let lastQuestion = conversationHistory.length > 0 ? conversationHistory[conversationHistory.length - 1] : "";
-  //   if (input === "yes" || input === "tell me more")
-  //     return chatbotData[lastQuestion] || "Can you clarify what you want to know more about?";
-  //   if (input.includes("help") || input.includes("assist"))
-  //     return "I'm here to help! Ask me about online scams, cybercrime laws, or how to report fraud.";
-  //   if (input.includes("example") || input.includes("like what"))
-  //     return "You can ask me things like 'What is phishing?', 'How do I report a scam?', or 'What are the signs of fraud?'";
-  //   if (input.includes("explain") && lastQuestion)
-  //     return `Sure! Let me explain '${lastQuestion}' in a simpler way: ${chatbotData[lastQuestion]}`;
-  //   if (input.includes("joke"))
-  //     return "😂 Here's one: Why do hackers love dark mode? Because the light theme exposes too much data!";
-  //   if (input.includes("insight") || input.includes("tip"))
-  //     return "💡 Cybersecurity Tip: Always use multi-factor authentication (MFA) to secure your accounts.";
-  //   return "❓ I didn't quite get that. Could you try rephrasing your question? 😊";
-  // };
-
+  // Format bot responses with basic markup
   const formatResponse = (response) =>
     response
       .replace(/- /g, "✅ ")
@@ -275,64 +289,64 @@ const Chatbot = () => {
         <img src={bot} alt="Chatbot" />
       </button>
       {isOpen && (
-        <div className="chatbot-suggestions-container">
-          {suggestions.map((suggestion, index) => (
-            <button
-              key={index}
-              className="suggestion-button"
-              onClick={() => setInput(suggestion)}
+        <>
+          {/* Floating Suggestions Container rendered outside of chatbox */}
+          {currentSuggestions.length > 0 && (
+            <div className="chatbot-suggestions-container">
+              {currentSuggestions.map((suggestion, index) => (
+                <button
+                  key={index}
+                  className="suggestion-button"
+                  onClick={() => handleSuggestionSelect(suggestion)}
+                >
+                  {suggestion}
+                </button>
+              ))}
+              {menuLevel !== "categories" && (
+                <button className="back-button" onClick={handleBack}>
+                  Back
+                </button>
+              )}
+            </div>
+          )}
+          <div className="chatbox-container">
+            <div
+              className="chatbox-header"
+              onClick={toggleChatbox}
+              role="button"
+              tabIndex={0}
             >
-              {suggestion}
-            </button>
-          ))}
-        </div>
-      )}
-      {isOpen && (
-        <div className="chatbox-container">
-          <div
-            className="chatbox-header"
-            onClick={toggleChatbox}
-            role="button"
-            tabIndex={0}
-          >
-            ClickSmart Chatbot
-            <button className="chatbox-close" aria-label="Close chatbot">
-              ✖
-            </button>
-          </div>
-          <div className="chatbox-body">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`chat-message ${msg.sender}`}
-                dangerouslySetInnerHTML={{ __html: msg.text }}
+              ClickSmart Chatbot
+              <button className="chatbox-close" aria-label="Close chatbot">
+                ✖
+              </button>
+            </div>
+            <div className="chatbox-body">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`chat-message ${msg.sender}`}
+                  dangerouslySetInnerHTML={{ __html: msg.text }}
+                />
+              ))}
+              {botTyping && <div className="bot-typing">...</div>}
+              <div ref={chatEndRef} />
+            </div>
+            <div className="chatbox-footer">
+              <input
+                type="text"
+                placeholder="Type a message..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+                disabled={botTyping}
               />
-            ))}
-            {botTyping && <div className="bot-typing">...</div>}
-            <div ref={chatEndRef} />
+              <button onClick={handleSendMessage} disabled={botTyping}>
+                Send
+              </button>
+            </div>
           </div>
-          <div className="chatbox-footer">
-            <input
-              type="text"
-              placeholder="Type a message..."
-              value={input}
-              onChange={(e) => {
-                const newInput = e.target.value;
-                const words = newInput.trim().split(/\s+/);
-                // Only update the input if the word count is within the limit
-                if (words.length <= MAX_INPUT_WORDS) {
-                  setInput(newInput);
-                  updateSuggestions(newInput);
-                }
-              }}
-              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-              disabled={botTyping}
-            />
-            <button onClick={handleSendMessage} disabled={botTyping}>
-              Send
-            </button>
-          </div>
-        </div>
+        </>
       )}
     </>
   );

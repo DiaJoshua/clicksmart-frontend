@@ -163,7 +163,7 @@ const CybercrimeStats = () => {
       labels: Object.keys(barangayCases),
       datasets: [
         {
-          label: "Cybercrime Cases per Barangay",
+          label: "Cybercrime Cases per Barangay in Quezon City",
           data: Object.values(barangayCases),
           backgroundColor: "rgba(75,192,192,0.6)",
           borderColor: "rgba(75,192,192,1)",
@@ -195,11 +195,16 @@ const CybercrimeStats = () => {
           label: "Crime Type Distribution",
           data: Object.values(crimeTypes),
           backgroundColor: [
-            "rgba(255, 99, 132, 0.6)",
-            "rgba(54, 162, 235, 0.6)",
-            "rgba(255, 206, 86, 0.6)",
-            "rgba(75, 192, 192, 0.6)",
-            "rgba(153, 102, 255, 0.6)",
+            "rgba(255, 99, 132, 0.6)", // Vibrant Pinkish Red
+            "rgba(54, 162, 235, 0.6)", // Vivid Blue
+            "rgba(255, 206, 86, 0.6)", // Bright Yellow
+            "rgba(75, 192, 192, 0.6)", // Energetic Teal
+            "rgba(153, 102, 255, 0.6)", // Lively Purple
+            "rgba(255, 159, 64, 0.6)", // Dynamic Orange
+            "rgba(60, 179, 113, 0.6)", // Fresh Medium Sea Green
+            "rgba(219, 112, 147, 0.6)", // Bold Magenta (Medium Violet Red)
+            "rgba(65, 105, 225, 0.6)", // Deep Royal Blue
+            "rgba(255, 127, 80, 0.6)", // Warm Coral
           ],
           borderColor: [
             "rgba(255, 99, 132, 1)",
@@ -207,6 +212,11 @@ const CybercrimeStats = () => {
             "rgba(255, 206, 86, 1)",
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+            "rgba(60, 179, 113, 1)",
+            "rgba(219, 112, 147, 1)",
+            "rgba(65, 105, 225, 1)",
+            "rgba(255, 127, 80, 1)",
           ],
           borderWidth: 1,
         },
@@ -309,7 +319,7 @@ const CybercrimeStats = () => {
 
   return (
     <div className="cybercrime-container">
-      <h1>Cybercrime District & Year Dataset Statistics</h1>
+      <h1>Cybercrime District & Year Dataset Statistics (Quezon City)</h1>
 
       {/* Tab Navigation & Filter Dropdown */}
       <div className="tabs-container">
@@ -360,12 +370,14 @@ const CybercrimeStats = () => {
                   openModal(
                     "Bar",
                     processBarangayData(),
-                    "Cybercrime Cases by Barangay",
-                    "This bar chart shows the aggregated number of cybercrime cases for each barangay based on district data. It provides an overview of how cybercrime incidents are distributed at the local level."
+                    "Cybercrime Cases by Barangay in Quezon City (District Data)",
+                    "This bar chart shows the aggregated number of cybercrime cases for each barangay in Quezon City based on district data. It provides an overview of how cybercrime incidents are distributed at the local level."
                   )
                 }
               >
-                <h2>Cybercrime Cases by Barangay (District Data)</h2>
+                <h2>
+                  Cybercrime Cases by Barangay in Quezon City (District Data)
+                </h2>
                 <Bar
                   data={processBarangayData()}
                   options={{ responsive: true }}
@@ -378,12 +390,12 @@ const CybercrimeStats = () => {
                   openModal(
                     "Pie",
                     processCrimeTypeData(),
-                    "Crime Type Distribution",
-                    "This pie chart displays the distribution of different types of cybercrime cases based on district data, helping you understand which crimes are more prevalent."
+                    "Crime Type Distribution in Quezon City (District Data)",
+                    "This pie chart displays the distribution of different types of cybercrime cases based on district data in Quezon City, helping you understand which crimes are more prevalent."
                   )
                 }
               >
-                <h2>Crime Type Distribution (District Data)</h2>
+                <h2>Crime Type Distribution in Quezon City (District Data)</h2>
                 <Pie
                   data={processCrimeTypeData()}
                   options={{ responsive: true }}
@@ -409,12 +421,12 @@ const CybercrimeStats = () => {
                   openModal(
                     "Bar",
                     processYearDatasetQuarterly(),
-                    "Year Dataset: Quarterly Cases Comparison",
-                    "This bar chart compares the number of cases from the 4th Quarter 2023 and the 1st Quarter 2024 for each type of cybercrime case, showing the shift between the two periods."
+                    "Year Dataset: Quarterly Cases Comparison in Quezon City",
+                    "This bar chart compares the number of cases from the 4th Quarter 2023 and the 1st Quarter 2024 for each type of cybercrime case in Quezon City, showing the shift between the two periods."
                   )
                 }
               >
-                <h2>Year Dataset: Quarterly Cases Comparison</h2>
+                <h2>Year Dataset: Quarterly Cases Comparison in Quezon City</h2>
                 <Bar
                   data={processYearDatasetQuarterly()}
                   options={{ responsive: true }}
@@ -427,12 +439,12 @@ const CybercrimeStats = () => {
                   openModal(
                     "Bar",
                     processYearDatasetPercentage(),
-                    "Year Dataset: Percentage Increase",
-                    "This bar chart shows the percentage increase in cybercrime cases from the 4th Quarter 2023 to the 1st Quarter 2024 for each case type, highlighting the relative growth."
+                    "Year Dataset: Percentage Increase in Quezon City",
+                    "This bar chart shows the percentage increase in cybercrime cases from the 4th Quarter 2023 to the 1st Quarter 2024 for each case type in Quezon City, highlighting the relative growth."
                   )
                 }
               >
-                <h2>Year Dataset: Percentage Increase</h2>
+                <h2>Year Dataset: Percentage Increase in Quezon City</h2>
                 <Bar
                   data={processYearDatasetPercentage()}
                   options={{ responsive: true }}
@@ -445,12 +457,12 @@ const CybercrimeStats = () => {
                   openModal(
                     "Line",
                     processCombinedYearTrend(),
-                    "Year Dataset: Combined Trend",
-                    "This line chart combines quarterly case numbers and percentage increases to provide an overall trend overview for each cybercrime case type."
+                    "Year Dataset: Combined Trend in Quezon City",
+                    "This line chart combines quarterly case numbers and percentage increases to provide an overall trend overview for each cybercrime case type in Quezon City."
                   )
                 }
               >
-                <h2>Year Dataset: Combined Trend</h2>
+                <h2>Year Dataset: Combined Trend in Quezon City</h2>
                 <Line
                   data={processCombinedYearTrend()}
                   options={{ responsive: true }}
