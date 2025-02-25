@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Chatbot.css";
 import bot from "../../assets/icons/bot.png";
 
@@ -360,11 +360,11 @@ const Chatbot = () => {
   const [menuLevel, setMenuLevel] = useState("categories"); // "categories", "titles", "questions"
   const [categoriesData, setCategoriesData] = useState({}); // Data loaded from category JSON files
   const [currentCategory, setCurrentCategory] = useState(null);
-  const [setCurrentTitle] = useState(null);
+  const [currentTitle, setCurrentTitle] = useState(null);
   const [currentSuggestions, setCurrentSuggestions] = useState([]);
 
   // List of category file names and display names
-  const categoryFiles = useMemo(() => [
+  const categoryFiles = [
     { key: "Cybercrime", file: "CybercrimeCategory.json" },
     { key: "Cyber Espionage", file: "CyberEspionageCategory.json" },
     { key: "Data Breach", file: "DataBreachCategory.json" },
@@ -373,7 +373,7 @@ const Chatbot = () => {
     { key: "Identity Theft", file: "IdentityTheftCategory.json" },
     { key: "Ransomware", file: "Ransomware%20Category.json" },
     { key: "DDoS Attack", file: "DdosAttackCategory.json" },
-  ], []);
+  ];
 
   // Load conversation history from localStorage
   useEffect(() => {
@@ -411,7 +411,7 @@ const Chatbot = () => {
     };
 
     fetchAllCategories();
-  }, [categoryFiles]);
+  }, []);
 
   // Fetch rules-based chatbot dataset
   useEffect(() => {

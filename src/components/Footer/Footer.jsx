@@ -42,6 +42,14 @@ const Footer = () => {
             </li>
             <li>
               <Link
+                to="/CybercrimeStats"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
+                Cybercrime Statistics
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/about"
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
