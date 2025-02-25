@@ -387,7 +387,7 @@
     position: relative; 
     text-align: center;
     align-items: center;
-    margin-top: 25px;
+    margin: 25px auto;
     color: #ddd; 
     max-width: 800px;
     line-height: 1.6;
