@@ -29,7 +29,7 @@ ChartJS.register(
 );
 
 const CybercrimeStats = () => {
-  // Data states for district and YearDataset
+  // States for district and year dataset data
   const [cybercrimeData, setCybercrimeData] = useState([]);
   const [loadingDistrict, setLoadingDistrict] = useState(true);
   const [errorDistrict, setErrorDistrict] = useState(null);
@@ -47,7 +47,7 @@ const CybercrimeStats = () => {
   // Tab state: "district" or "year"
   const [activeTab, setActiveTab] = useState("district");
 
-  // Fetch district-based data
+  // --------------------- Fetch District Data ---------------------
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/cases")
@@ -59,9 +59,11 @@ const CybercrimeStats = () => {
           setLoadingDistrict(false);
           return;
         }
+        // Format the district data:
         const formattedData = response.data.map((record) => {
           let barangayData = {};
           Object.entries(record).forEach(([key, value]) => {
+            // Collect barangay keys (assuming they start with "Brgy.")
             if (key.startsWith("Brgy.") && value !== null) {
               barangayData[key] = value;
             }
@@ -86,7 +88,7 @@ const CybercrimeStats = () => {
       });
   }, []);
 
-  // Fetch YearDataset data
+  // --------------------- Fetch Year Dataset Data ---------------------
   useEffect(() => {
     axios
       .get("http://localhost:5000/yeardataset")
@@ -101,6 +103,7 @@ const CybercrimeStats = () => {
           setYearLoading(false);
           return;
         }
+        // Filter out any incomplete records and format the data:
         const filteredData = response.data.filter(
           (item) =>
             item["Nature of Cybercrime Cases"] !== null &&
@@ -111,7 +114,7 @@ const CybercrimeStats = () => {
           natureOfCybercrimeCases: item["Nature of Cybercrime Cases"],
           q4: Number(item["4th Quarter of 2023"]),
           q1: Number(item["1st Quarter of 2024"]),
-          percentage: Number(item["Percentage Increased"]),
+          percentage: parseFloat(item["Percentage Increase"].replace("%", "")),
         }));
         setYearData(formattedYearData);
         setYearLoading(false);
@@ -123,19 +126,18 @@ const CybercrimeStats = () => {
       });
   }, []);
 
-  // Apply filter to district data
+  // --------------------- Filtering Data ---------------------
   const filteredDistrictData = cybercrimeData.filter((record) =>
     record.nature_of_cases.toLowerCase().includes(filterText.toLowerCase())
   );
 
-  // Apply filter to year dataset data
   const filteredYearData = yearData.filter((item) =>
     item.natureOfCybercrimeCases
       .toLowerCase()
       .includes(filterText.toLowerCase())
   );
 
-  // Compute unique case types from both datasets for the dropdown filter
+  // Compute unique case types for the dropdown filter
   const uniqueCases = Array.from(
     new Set([
       ...cybercrimeData.map((record) => record.nature_of_cases),
@@ -147,9 +149,9 @@ const CybercrimeStats = () => {
     return !upper.includes("UNKNOWN");
   });
 
-  // ------------------- District-based Chart Processing -------------------
+  // --------------------- District-based Chart Processing ---------------------
 
-  // Bar Chart: Cybercrime Cases per Barangay
+  // Bar Chart: Aggregated Cybercrime Cases per Barangay (from district data)
   const processBarangayData = () => {
     let barangayCases = {};
     filteredDistrictData.forEach((record) => {
@@ -173,7 +175,7 @@ const CybercrimeStats = () => {
     };
   };
 
-  // Pie Chart: Crime Type Distribution (District Data)
+  // Pie Chart: Distribution of Crime Types (from district data)
   const processCrimeTypeData = () => {
     let crimeTypes = {};
     filteredDistrictData.forEach((record) => {
@@ -195,16 +197,16 @@ const CybercrimeStats = () => {
           label: "Crime Type Distribution",
           data: Object.values(crimeTypes),
           backgroundColor: [
-            "rgba(255, 99, 132, 0.6)", // Vibrant Pinkish Red
-            "rgba(54, 162, 235, 0.6)", // Vivid Blue
-            "rgba(255, 206, 86, 0.6)", // Bright Yellow
-            "rgba(75, 192, 192, 0.6)", // Energetic Teal
-            "rgba(153, 102, 255, 0.6)", // Lively Purple
-            "rgba(255, 159, 64, 0.6)", // Dynamic Orange
-            "rgba(60, 179, 113, 0.6)", // Fresh Medium Sea Green
-            "rgba(219, 112, 147, 0.6)", // Bold Magenta (Medium Violet Red)
-            "rgba(65, 105, 225, 0.6)", // Deep Royal Blue
-            "rgba(255, 127, 80, 0.6)", // Warm Coral
+            "rgba(255, 99, 132, 0.6)",
+            "rgba(54, 162, 235, 0.6)",
+            "rgba(255, 206, 86, 0.6)",
+            "rgba(75, 192, 192, 0.6)",
+            "rgba(153, 102, 255, 0.6)",
+            "rgba(255, 159, 64, 0.6)",
+            "rgba(60, 179, 113, 0.6)",
+            "rgba(219, 112, 147, 0.6)",
+            "rgba(65, 105, 225, 0.6)",
+            "rgba(255, 127, 80, 0.6)",
           ],
           borderColor: [
             "rgba(255, 99, 132, 1)",
@@ -224,9 +226,9 @@ const CybercrimeStats = () => {
     };
   };
 
-  // ------------------- YearDataset Chart Processing -------------------
+  // --------------------- Year-based Chart Processing ---------------------
 
-  // Bar Chart: Quarterly Cases Comparison (YearDataset)
+  // Bar Chart: Quarterly Cases Comparison (from year dataset)
   const processYearDatasetQuarterly = () => {
     if (filteredYearData.length === 0) return { labels: [], datasets: [] };
     const labels = filteredYearData.map((item) => item.natureOfCybercrimeCases);
@@ -253,7 +255,7 @@ const CybercrimeStats = () => {
     };
   };
 
-  // Bar Chart: Percentage Increase (YearDataset)
+  // Bar Chart: Percentage Increase (from year dataset)
   const processYearDatasetPercentage = () => {
     if (filteredYearData.length === 0) return { labels: [], datasets: [] };
     const labels = filteredYearData.map((item) => item.natureOfCybercrimeCases);
@@ -272,7 +274,7 @@ const CybercrimeStats = () => {
     };
   };
 
-  // Line Chart: Combined Trend (Quarterly & Percentage, YearDataset)
+  // Line Chart: Combined Trend (Quarterly Cases & Percentage Increase)
   const processCombinedYearTrend = () => {
     if (filteredYearData.length === 0) return { labels: [], datasets: [] };
     const labels = filteredYearData.map((item) => item.natureOfCybercrimeCases);
@@ -309,7 +311,7 @@ const CybercrimeStats = () => {
     };
   };
 
-  // Modal open/close functions
+  // --------------------- Modal Functions ---------------------
   const openModal = (chartType, chartData, title, description) => {
     setModalChart({ chartType, chartData, title, description });
   };
@@ -317,6 +319,7 @@ const CybercrimeStats = () => {
     setModalChart(null);
   };
 
+  // --------------------- Render Component ---------------------
   return (
     <div className="cybercrime-container">
       <h1>Cybercrime District & Year Dataset Statistics (Quezon City)</h1>
@@ -355,7 +358,7 @@ const CybercrimeStats = () => {
         </div>
       </div>
 
-      {/* Render Charts based on Active Tab */}
+      {/* --------------------- District Data Charts --------------------- */}
       {activeTab === "district" && (
         <>
           {loadingDistrict ? (
@@ -364,6 +367,7 @@ const CybercrimeStats = () => {
             <p>{errorDistrict}</p>
           ) : (
             <>
+              {/* Bar Chart: Barangay Cases */}
               <div
                 className="chart-container"
                 onClick={() =>
@@ -371,7 +375,7 @@ const CybercrimeStats = () => {
                     "Bar",
                     processBarangayData(),
                     "Cybercrime Cases by Barangay in Quezon City (District Data)",
-                    "This bar chart shows the aggregated number of cybercrime cases for each barangay in Quezon City based on district data. It provides an overview of how cybercrime incidents are distributed at the local level."
+                    "This bar chart shows the aggregated number of cybercrime cases for each barangay in Quezon City based on district data. Click for full details."
                   )
                 }
               >
@@ -384,6 +388,8 @@ const CybercrimeStats = () => {
                 />
                 <p className="chart-description">Click to view full details</p>
               </div>
+
+              {/* Pie Chart: Crime Type Distribution */}
               <div
                 className="chart-container"
                 onClick={() =>
@@ -391,7 +397,7 @@ const CybercrimeStats = () => {
                     "Pie",
                     processCrimeTypeData(),
                     "Crime Type Distribution in Quezon City (District Data)",
-                    "This pie chart displays the distribution of different types of cybercrime cases based on district data in Quezon City, helping you understand which crimes are more prevalent."
+                    "This pie chart displays the distribution of different cybercrime case types based on district data in Quezon City."
                   )
                 }
               >
@@ -407,6 +413,7 @@ const CybercrimeStats = () => {
         </>
       )}
 
+      {/* --------------------- Year Dataset Charts --------------------- */}
       {activeTab === "year" && (
         <>
           {yearLoading ? (
@@ -415,6 +422,7 @@ const CybercrimeStats = () => {
             <p>{yearError}</p>
           ) : (
             <>
+              {/* Bar Chart: Quarterly Cases Comparison */}
               <div
                 className="chart-container"
                 onClick={() =>
@@ -422,7 +430,7 @@ const CybercrimeStats = () => {
                     "Bar",
                     processYearDatasetQuarterly(),
                     "Year Dataset: Quarterly Cases Comparison in Quezon City",
-                    "This bar chart compares the number of cases from the 4th Quarter 2023 and the 1st Quarter 2024 for each type of cybercrime case in Quezon City, showing the shift between the two periods."
+                    "This bar chart compares the number of cases from the 4th Quarter 2023 and the 1st Quarter 2024 for each type of cybercrime case in Quezon City."
                   )
                 }
               >
@@ -433,6 +441,8 @@ const CybercrimeStats = () => {
                 />
                 <p className="chart-description">Click to view full details</p>
               </div>
+
+              {/* Bar Chart: Percentage Increase */}
               <div
                 className="chart-container"
                 onClick={() =>
@@ -440,7 +450,7 @@ const CybercrimeStats = () => {
                     "Bar",
                     processYearDatasetPercentage(),
                     "Year Dataset: Percentage Increase in Quezon City",
-                    "This bar chart shows the percentage increase in cybercrime cases from the 4th Quarter 2023 to the 1st Quarter 2024 for each case type in Quezon City, highlighting the relative growth."
+                    "This bar chart shows the percentage increase in cybercrime cases from the 4th Quarter 2023 to the 1st Quarter 2024 for each case type in Quezon City."
                   )
                 }
               >
@@ -451,6 +461,8 @@ const CybercrimeStats = () => {
                 />
                 <p className="chart-description">Click to view full details</p>
               </div>
+
+              {/* Line Chart: Combined Trend */}
               <div
                 className="chart-container"
                 onClick={() =>
@@ -458,7 +470,7 @@ const CybercrimeStats = () => {
                     "Line",
                     processCombinedYearTrend(),
                     "Year Dataset: Combined Trend in Quezon City",
-                    "This line chart combines quarterly case numbers and percentage increases to provide an overall trend overview for each cybercrime case type in Quezon City."
+                    "This line chart combines quarterly case numbers and percentage increases to provide an overall trend for each cybercrime case type in Quezon City."
                   )
                 }
               >
@@ -474,7 +486,7 @@ const CybercrimeStats = () => {
         </>
       )}
 
-      {/* Modal for Full-Viewport Chart */}
+      {/* --------------------- Modal for Full-Viewport Chart --------------------- */}
       {modalChart && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
