@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Chatbot.css";
 import bot from "../../assets/icons/bot.png";
 
@@ -867,19 +867,16 @@ const Chatbot = () => {
   const [currentSuggestions, setCurrentSuggestions] = useState([]);
 
   // List of category file names and display names
-  const categoryFiles = useMemo(
-    () => [
-      { key: "Cybercrime", file: "CybercrimeCategory.json" },
-      { key: "Cyber Espionage", file: "CyberEspionageCategory.json" },
-      { key: "Data Breach", file: "DataBreachCategory.json" },
-      { key: "Financial Fraud", file: "FinancialFraudCategory.json" },
-      { key: "Hacking", file: "HackingCategory.json" },
-      { key: "Identity Theft", file: "IdentityTheftCategory.json" },
-      { key: "Ransomware", file: "Ransomware%20Category.json" },
-      { key: "DDoS Attack", file: "DdosAttackCategory.json" },
-    ],
-    []
-  );
+  const categoryFiles = [
+    { key: "Cybercrime", file: "CybercrimeCategory.json" },
+    { key: "Cyber Espionage", file: "CyberEspionageCategory.json" },
+    { key: "Data Breach", file: "DataBreachCategory.json" },
+    { key: "Financial Fraud", file: "FinancialFraudCategory.json" },
+    { key: "Hacking", file: "HackingCategory.json" },
+    { key: "Identity Theft", file: "IdentityTheftCategory.json" },
+    { key: "Ransomware", file: "Ransomware%20Category.json" },
+    { key: "DDoS Attack", file: "DdosAttackCategory.json" },
+  ];
 
   // Load conversation history from localStorage
   useEffect(() => {
@@ -917,7 +914,7 @@ const Chatbot = () => {
     };
 
     fetchAllCategories();
-  }, [categoryFiles]);
+  }, []);
 
   // Fetch rules-based chatbot dataset
   useEffect(() => {
