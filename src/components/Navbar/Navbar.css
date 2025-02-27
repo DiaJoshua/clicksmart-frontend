@@ -11,7 +11,7 @@
   align-items: center;
   z-index: 1000;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-  border-bottom: 2px solid rgba(42, 42, 59, 1);
+  border-bottom: 3px solid rgba(42, 42, 59, 1);
   transition: background 0.4s ease-in-out, padding 0.3s ease-in-out;
 }
 
@@ -24,7 +24,7 @@
 
 /*  Body Padding (Ensure navbar doesn't overlap content) */
 body {
-  padding-top: 75px;
+  padding-top: 60px;
 }
 
 /*  Navbar Container */
@@ -48,7 +48,7 @@ body {
 }
 
 .navbar .logo img {
-  max-height: 40px;
+  max-height: 30px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -127,9 +127,16 @@ body {
   outline: none !important;
 }
 
-@media (max-width: 1724px) {
+@media (max-width: 1300px) {
   .logo img {
     max-width: 12rem;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .logo img {
+    max-width: 10rem;
   }
 }
 
@@ -150,7 +157,7 @@ body {
   }
 
   body {
-    padding-top: 55px;
+    padding-top: 50px;
   }
 
   .nav-links {

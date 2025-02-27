@@ -37,7 +37,6 @@ const normalizeText = (text) => {
   return text.toLowerCase().trim().replace(/['’]/g, ""); // Removes apostrophes
 };
 
-// Step 1: Define Approved Cybercrime Topics
 const approvedCybercrimeScope = [
   // General Cybercrime & Security Topics
   "cybercrime",
@@ -475,7 +474,7 @@ const isUnrelatedQuery = (query) => {
 
   // **Use Fuzzy Matching for Typos**
   for (let keyword of approvedCybercrimeScope) {
-    if (similarityScore(lowerQuery, keyword) >= 0.85) {
+    if (similarityScore(lowerQuery, keyword) >= 0.35) {
       return false; // Allow query if it's at least 85% similar
     }
   }
@@ -533,6 +532,7 @@ const isMaliciousQuery = (query) => {
     "hacker",
     "hackers",
     "ransom",
+    "hacking",
   ];
 
   // Allow queries that contain safe cybersecurity terms
@@ -581,7 +581,6 @@ const isMaliciousQuery = (query) => {
     "dark web access",
     "how to clone a credit card",
     "hacking tutorial",
-    "blackhat hacking",
     "how to install a keylogger",
     "how to create a keylogger",
     "rat malware",
@@ -593,7 +592,6 @@ const isMaliciousQuery = (query) => {
     "how to make a virus",
     "trojan virus",
     "brute force attack",
-    "sql injection",
     "how to perform sql injection",
     "wifi hacking",
     "how to hack wifi",
@@ -605,7 +603,6 @@ const isMaliciousQuery = (query) => {
     "hacking tutorial for beginners",
     "anonymous hacking guide",
     "how to become an anonymous hacker",
-    "stealing personal data",
     "how to create undetectable malware",
     "stealing social security numbers",
     "how to access someone’s phone remotely",
@@ -844,9 +841,10 @@ const isMaliciousQuery = (query) => {
 const Chatbot = () => {
   // Basic states
   const [isOpen, setIsOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const [messages, setMessages] = useState([
     {
-      text: "Hello there! I’m your cybercrime awareness assistant.",
+      text: "Hi! I'm ClickSmart, your cybercrime guide. Need tips to stay safe online?",
       sender: "bot",
     },
   ]);
@@ -863,7 +861,7 @@ const Chatbot = () => {
   const [menuLevel, setMenuLevel] = useState("categories"); // "categories", "titles", "questions"
   const [categoriesData, setCategoriesData] = useState({}); // Data loaded from category JSON files
   const [currentCategory, setCurrentCategory] = useState(null);
-  const [setCurrentTitle] = useState(null);
+  const [currentTitle, setCurrentTitle] = useState(null);
   const [currentSuggestions, setCurrentSuggestions] = useState([]);
 
   // List of category file names and display names
@@ -935,10 +933,42 @@ const Chatbot = () => {
   // Toggle the chatbox open/closed and reset hierarchical menu if opening
   const toggleChatbox = () => {
     setIsOpen((prev) => !prev);
-    if (!isOpen && Object.keys(categoriesData).length > 0) {
-      resetMenu();
-    }
+    if (!isOpen) setShowNotification(false); // Hide notification when opening
   };
+
+  useEffect(() => {
+    let initialDelay = setTimeout(() => {
+      setShowNotification(true); // Show notification 3 seconds after page load
+    }, 3000); // Adjust this to 5000 (5s) if you prefer a longer delay
+
+    return () => clearTimeout(initialDelay);
+  }, []);
+
+  useEffect(() => {
+    let timer;
+
+    if (showNotification) {
+      timer = setTimeout(() => {
+        setShowNotification(false);
+      }, 7000); // Hide after 7 seconds
+    }
+
+    return () => clearTimeout(timer);
+  }, [showNotification]);
+
+  useEffect(() => {
+    let showAgainInterval;
+
+    if (!isOpen) {
+      showAgainInterval = setInterval(() => {
+        setShowNotification(true);
+      }, 18000); // Reappears every 15 seconds
+    } else {
+      setShowNotification(false); // Ensure it doesn't show when chatbot is open
+    }
+
+    return () => clearInterval(showAgainInterval);
+  }, [isOpen]);
 
   // Hierarchical menu functions
   const handleSuggestionSelect = (suggestion) => {
@@ -1146,6 +1176,14 @@ const Chatbot = () => {
 
   return (
     <>
+      {/* Chatbot Notification */}
+      {showNotification && (
+        <div className="chatbot-notification">
+          Hi! I’m ClickSmart, your cyber safety buddy. Let’s chat!
+        </div>
+      )}
+
+      {/* Chatbot Widget Button */}
       <button
         className="chatbot-widget"
         onClick={toggleChatbox}
@@ -1153,6 +1191,8 @@ const Chatbot = () => {
       >
         <img src={bot} alt="Chatbot" />
       </button>
+
+      {/* Chatbox */}
       {isOpen && (
         <>
           {/* Floating Suggestions Container rendered outside of chatbox */}
@@ -1194,7 +1234,13 @@ const Chatbot = () => {
                   dangerouslySetInnerHTML={{ __html: msg.text }}
                 />
               ))}
-              {botTyping && <div className="bot-typing">...</div>}
+              {botTyping && (
+                <div className="bot-typing">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              )}
               <div ref={chatEndRef} />
             </div>
             <div className="chatbox-footer">

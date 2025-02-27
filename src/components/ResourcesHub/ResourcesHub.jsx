@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"; // Import useLocation
 import "./ResourcesHub.css";
 import ThesisPDF from "../../assets/downloadables/CLICKSMART-THESIS-2-FINAL-PAPER.pdf";
 import InfographicsPDF from "../../assets/downloadables/ClickSmart Cybercrime Awareness Infographic.pdf";
+import InfographicsTagalogPDF from "../../assets/downloadables/Infographic-tagalog.pdf";
 
 const ResourcesHub = () => {
   // State for the selected section (null means "welcome" state)
@@ -207,7 +208,12 @@ const ResourcesHub = () => {
         text: "Access and download offline resources here.",
         files: [
           {
-            name: "Cybercrime Awareness Infographic",
+            name: "Cybercrime Awareness Infographic in Tagalog Version",
+            url: InfographicsTagalogPDF,
+          },
+
+          {
+            name: "Cybercrime Awareness Infographic English Version",
             url: InfographicsPDF,
           },
           {
