@@ -7,7 +7,7 @@
   align-items: center;
   text-align: left;
   min-height: 100vh;
-  background: white;
+  background: #f9f9f9;
   color: black;
   gap: 8rem; /* Reduced gap slightly for better spacing */
   transition: all 0.4s ease-in-out;

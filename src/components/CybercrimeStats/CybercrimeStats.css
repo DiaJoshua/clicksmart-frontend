@@ -1,21 +1,16 @@
-/* ======================================================================
-   Cybercrime Statistics Module - Detailed Dark Blue Resource Hub Theme
-   ====================================================================== */
-
 /* ---------------------------
    Cybercrime Container & Layout
 ---------------------------- */
 .cybercrime-container {
   width: auto;
-  margin: 2rem auto;
+  margin: auto;
   padding: 2rem;
   text-align: center;
-  background: linear-gradient(135deg, #ffffff 0%, #e6f0ff 100%);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   flex-grow: 1;
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  background-color: #1e1e1e; /* Dark background */
+  color: #d1d1d1; /* Light text for contrast */
 }
 
 /* Decorative Background Pattern */
@@ -31,13 +26,30 @@
   z-index: -1;
 }
 
+.disclaimer {
+  background-color: #3a3a3a; /* Darker background */
+  color: #f8d7da; /* Light pinkish text */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #f5c6cb; 
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.disclaimer .highlight {
+  font-weight: bold;
+  color: #e74c3c; /* Vibrant red for emphasis */
+}
+
 /* Main Heading */
 .cybercrime-container h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #002244;
+  color: #f1f1f1 ; /* Light grey text for the heading */
   margin-bottom: 2rem;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
   position: relative;
 }
 
@@ -46,7 +58,7 @@
   display: block;
   width: 30%;
   height: 4px;
-  background: linear-gradient(to right, #002244, #001122);
+  background: linear-gradient(to right, #34495e, #2c3e50); /* Darker gradient */
   margin: 0.5rem auto;
   border-radius: 2px;
 }
@@ -60,9 +72,9 @@
   align-items: center;
   margin-bottom: 2rem;
   padding: 1rem;
-  background: #e6f0ff;
+  background: #2c3e50; /* Dark blue background */
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
 .tabs {
@@ -74,21 +86,21 @@
 
 .tab {
   padding: 0.75rem 1.25rem;
-  background: #cce0ff;
-  color: #002244;
+  background: #34495e; /* Darker button background */
+  color: #fff; /* Light text color */
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tab:hover {
-  background: #aaccff;
+  background: #5d6d7e; /* Lighter hover color */
   transform: translateY(-2px);
 }
 
 .tab.active {
-  background: #002244;
+  background: #2980b9; /* Active tab blue */
   color: #fff;
 }
 
@@ -100,305 +112,307 @@
   max-width: 400px;
   padding: 0.75rem 1rem;
   margin: 1rem auto;
-  border: 1px solid #002244;
+  border: 1px solid #34495e; /* Dark border */
   border-radius: 4px;
   font-size: 1rem;
-  color: #002244;
+  color: #ecf0f1; /* Light text color */
   outline: none;
   transition: border 0.3s ease;
+  background: #2c3e50; /* Dark input background */
 }
 
 .filter-input:focus {
-  border-color: #001122;
+  border-color: #1abc9c; /* Teal color for focus */
 }
 
 /* ======================================================================
    Chart Container (Cards)
    ====================================================================== */
-   .chart-container {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    margin: 2rem auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    overflow: auto; /* Allow scrolling if necessary */
-    position: relative;
-    min-height: 400px;
-    width: 72vw;
-  }
-  
-  .chart-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .chart-container::after {
-    content: "View Details";
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    background: rgba(0, 34, 68, 0.8);
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .chart-container:hover::after {
-    opacity: 1;
-  }
-  
-  .chart-container h2 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: #002244;
-    margin-bottom: 1.25rem;
-  }
-  
-  .chart-description {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 0.75rem;
-  }
+.chart-container {
+  background: #2f3640; /* Dark greyish background */
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: auto; /* Allow scrolling if necessary */
+  position: relative;
+  min-height: 400px;
+  width: 56vw;
+}
+
+.chart-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.chart-container::after {
+  content: "View Details";
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(44, 62, 80, 0.9); /* Darker overlay */
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.chart-container:hover::after {
+  opacity: 1;
+}
+
+.chart-container h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #f1f1f1; /* Light grey text */
+  margin-bottom: 1.25rem;
+}
+
+.chart-description {
+  font-size: 0.9rem;
+  color: #bdc3c7; /* Soft grey text for description */
+  margin-top: 0.75rem;
+}
+
 
 /* ======================================================================
    Modal Styles (Full-Viewport Chart View)
    ====================================================================== */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 90%;
-  max-height: 90%;
-  overflow-y: auto;
-  position: relative;
-  text-align: left;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.5s ease-out;
-}
-
-.modal-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #002244;
-  border-bottom: 2px solid #002244;
-  padding-bottom: 0.5rem;
-}
-
-.modal-content p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: #333;
-  line-height: 1.6;
-}
-
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: #002244;
-  border: none;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s ease;
-}
-
-.modal-close:hover {
-  background: #001122;
-}
-
-.modal-chart {
-  height: 350px;
-  margin-top: 1.5rem;
-}
-
 /* ======================================================================
-   Detailed Descriptions Section
+   Modal Overlay and Content
    ====================================================================== */
-.descriptions {
-  text-align: left;
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: #fdfdfd;
-  border-left: 5px solid #002244;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.descriptions h3 {
-  font-size: 1.5rem;
-  color: #002244;
-  margin-bottom: 0.5rem;
-}
-
-.descriptions p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #555;
-}
-
-/* ======================================================================
-   Footer Note
-   ====================================================================== */
-.footer-note {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ccc;
-  text-align: center;
-}
-
-
-/* ======================================================================
-   Advanced Grid & Layout Utilities
-   ====================================================================== */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ======================================================================
-   Custom Scrollbar (for modal and long sections)
-   ====================================================================== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #002244;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #001122;
-}
-
-/* ======================================================================
-   Keyframe Animations
-   ====================================================================== */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInText {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInCards {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ======================================================================
-   Extra Decorative Details & Extended Utilities
-   ====================================================================== */
-.bg-gradient-blue {
-  background: linear-gradient(45deg, #002244, #001122);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  display: inline-block;
-}
-
-.text-shadow-small {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.border-bottom-accent {
-  border-bottom: 2px solid #002244;
-  padding-bottom: 0.25rem;
-}
-
-.box-shadow-soft {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.rounded {
-  border-radius: 8px;
-}
-
-/* ======================================================================
-   Additional Decorative Details
-   ====================================================================== */
-/* Title Divider */
-.title-divider {
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(to right, #002244, #001122);
-  margin: 0.75rem auto;
-  border-radius: 2px;
-}
-
-/* Info Box for Additional Explanations */
-.info-box {
-  background: #f0f8ff;
-  border-left: 6px solid #002244;
-  padding: 1rem;
-  margin: 1.5rem auto;
-  max-width: 800px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.info-box h3 {
-  font-size: 1.5rem;
-  color: #002244;
-  margin-bottom: 0.5rem;
-}
-
-.info-box p {
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* Extended Footer Note */
-.footer-note-extended {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ccc;
-  text-align: center;
-}
-
-/* ======================================================================
-   End of Main Styles
-   ====================================================================== */
+   .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85); /* Darker overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal-content {
+    background: #1a1a1a; /* Dark background */
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s ease-out;
+    color: #f1f1f1; /* Light text color */
+  }
+  
+  .modal-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ffffff; /* White heading */
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.5rem;
+  }
+  
+  .modal-content p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #ccc; /* Lighter paragraph text */
+    line-height: 1.6;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #444; /* Dark close button */
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .modal-close:hover {
+    background: #333; /* Darker on hover */
+  }
+  
+  .modal-chart {
+    height: 350px;
+    margin-top: 1.5rem;
+  }
+  
+  /* ======================================================================
+     Detailed Descriptions Section
+     ====================================================================== */
+  .descriptions {
+    text-align: left;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #1f1f1f; /* Darker background for descriptions */
+    border-left: 5px solid #444;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: #ccc;
+  }
+  
+  .descriptions h3 {
+    font-size: 1.5rem;
+    color: #f1f1f1; /* White headings */
+    margin-bottom: 0.5rem;
+  }
+  
+  .descriptions p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ddd; /* Lighter paragraph text */
+  }
+  
+  /* ======================================================================
+     Footer Note
+     ====================================================================== */
+  .footer-note {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #444;
+    text-align: center;
+  }
+  
+  /* ======================================================================
+     Advanced Grid & Layout Utilities
+     ====================================================================== */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* ======================================================================
+     Custom Scrollbar (for modal and long sections)
+     ====================================================================== */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #444;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #444;
+  }
+  
+  /* ======================================================================
+     Keyframe Animations
+     ====================================================================== */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeInText {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInCards {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ======================================================================
+     Extra Decorative Details & Extended Utilities
+     ====================================================================== */
+  .bg-gradient-blue {
+    background: linear-gradient(45deg, #003366, #001122); /* Dark gradient */
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  .text-shadow-small {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .border-bottom-accent {
+    border-bottom: 2px solid #444; /* Darker border accent */
+    padding-bottom: 0.25rem;
+  }
+  
+  .box-shadow-soft {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
+  }
+  
+  .rounded {
+    border-radius: 8px;
+  }
+  
+  /* ======================================================================
+     Additional Decorative Details
+     ====================================================================== */
+  /* Title Divider */
+  .title-divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, #003366, #001122);
+    margin: 0.75rem auto;
+    border-radius: 2px;
+  }
+  
+  /* Info Box for Additional Explanations */
+  .info-box {
+    background: #333;
+    border-left: 6px solid #444;
+    padding: 1rem;
+    margin: 1.5rem auto;
+    max-width: 800px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .info-box h3 {
+    font-size: 1.5rem;
+    color: #ffffff; /* White heading */
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-box p {
+    font-size: 1rem;
+    color: #bbb;
+    line-height: 1.6;
+  }
+  
+  /* Extended Footer Note */
+  .footer-note-extended {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #444;
+    text-align: center;
+  }  
 
 /* ======================================================================
    Responsive Adjustments
@@ -427,6 +441,13 @@
   }
   .tabs {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .disclaimer {
+    font-size: 14px;
+    padding: 15px;
   }
 }
 
@@ -538,6 +559,87 @@
   line-height: 1.6;
 }
 
-/* ======================================================================
-   End of Detailed CSS for Cybercrime Statistics Module
-   ====================================================================== */
+
+
+
+/* ---------------------- Loading State Styles ---------------------- */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+.spinner {
+  display: flex;
+  justify-content: space-around;
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.spinner-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #3498db;
+  animation: spin 1.2s infinite ease-in-out;
+}
+
+.spinner-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.spinner-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.spinner-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes spin {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* ---------------------- Error State Styles ---------------------- */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffe6e6;
+  color: #e74c3c;
+  font-family: Arial, sans-serif;
+}
+
+.error-icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.error-container p {
+  font-size: 16px;
+  text-align: center;
+  color: #555;
+}

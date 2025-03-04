@@ -145,8 +145,7 @@
 
 /* Section Styles for ClickSmart Info */
 .clicksmart-info {
-  background: #F1F1F1; 
-  padding: 5rem 0; /* Slightly increase padding */
+  background: #fff; 
   display: flex;
   align-items: center;
   justify-content: center; /* Centers content */

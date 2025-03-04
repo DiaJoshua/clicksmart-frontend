@@ -21,15 +21,6 @@ const Reporting = () => {
           </div>
 
           <div className="hero-content">
-            <h2>Cybercrime in the Philippines</h2>
-            <p>
-              Cybercrime cases in the Philippines surged by{" "}
-              <strong>22% in 2024</strong>, with online scams, hacking, and
-              identity theft leading the threats. Many victims never report
-              these crimes due to lack of awareness or fear of legal
-              complexities.
-            </p>
-
             <h2>Why It Matters Now More Than Ever</h2>
             <p>
               In a world where almost everything is connected online, cybercrime
@@ -37,18 +28,34 @@ const Reporting = () => {
               financial fraud to data breaches, understanding cyber risks is
               essential for safeguarding yourself and your community.
             </p>
+          </div>
+        </div>
+      </section>
 
-            {/* Quiz Call-to-Action */}
-            <div className="hero-quiz">
-              <p>
-                Are you prepared for the digital dangers ahead?
-                <br /> Take a quick assessment to test your knowledge and learn
-                how to stay safe.
-              </p>
-              <a href="/AssessmentForm" className="quiz-btn">
-                Take a Quick Assessment
-              </a>
-            </div>
+      {/* Cybercrime in the Philippines Section */}
+      <section className="cybercrime-philippines">
+        <div className="container">
+         <div className="hero-center2">
+          <h2>Cybercrime in the Philippines</h2>
+          <p>
+            Cybercrime cases in the Philippines surged by{" "}
+            <strong>22% in 2024</strong>, with online scams, hacking, and
+            identity theft leading the threats. Many victims never report
+            these crimes due to lack of awareness or fear of legal
+            complexities.
+          </p>
+          </div>
+          
+          {/* Quiz Call-to-Action */}
+          <div className="hero-quiz">
+            <p>
+              <h3>Are you prepared for the digital dangers ahead?</h3>
+              Take a quick assessment to test your knowledge and learn
+              how to stay safe.
+            </p>
+            <a href="/AssessmentForm" className="quiz-btn">
+              Take a Quick Assessment
+            </a>
           </div>
         </div>
       </section>

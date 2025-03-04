@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Reporting.css";
 
 const CybercrimeReporting = () => {
@@ -372,7 +372,7 @@ const CybercrimeReporting = () => {
                     <td>{agency.name}</td>
                     <td>{agency.contact}</td>
                     <td>
-                      <a href={agency.link} target="_blank" rel="noopener noreferrer" style={{ color: "red", fontWeight: "bold" }}>
+                      <a href={agency.link} target="_blank" rel="noopener noreferrer" style={{ color: "#D14D4D  ", fontWeight: "bold" }}>
                         Report Here
                       </a>
                     </td>

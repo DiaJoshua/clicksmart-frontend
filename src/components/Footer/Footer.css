@@ -1,9 +1,9 @@
 /* Footer Styles */
 .footer {
-  border-top: 2px solid gray;
+  border-top: 2px solid rgba(42, 42, 59, 1);
   position: relative;
   z-index: 5;
-  background: #f4f4f4; /* Light gray background */
+  background: #f9f9f9; /* Light gray background */
   padding: 2rem 0; /* Spacing around content */
   box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.5);
   text-align: center; /* Ensures content is centered */

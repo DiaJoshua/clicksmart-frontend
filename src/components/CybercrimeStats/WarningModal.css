@@ -1,0 +1,102 @@
+.warning-modal-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: background 0.4s ease-in-out;
+}
+
+.warning-modal {
+  background: #2a2a3b;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  text-align: center;
+  color: #e0e0e0;
+  transition: all 0.3s ease-in-out;
+}
+
+.warning-modal h2 {
+  font-size: 2.2rem;
+  color: #ffd700;
+  margin-bottom: 1.2rem;
+}
+
+.warning-modal p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin-bottom: 1.2rem;
+}
+
+.warning-modal .highlight {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+.warning-modal strong {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.warning-modal button {
+  background-color: #3b3b50;
+  color: #e0e0e0;
+  border: none;
+  padding: 1rem 1.8rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.warning-modal button:hover {
+  background-color: #4a4a6a;
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .warning-modal {
+    padding: 1.5rem;
+    width: 95%;
+    border-radius: 10px;
+  }
+
+  .warning-modal h2 {
+    font-size: 1.8rem;
+  }
+
+  .warning-modal p {
+    font-size: 1rem;
+  }
+
+  .warning-modal button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .warning-modal {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .warning-modal h2 {
+    font-size: 1.6rem;
+  }
+
+  .warning-modal p {
+    font-size: 0.95rem;
+  }
+
+  .warning-modal button {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.95rem;
+  }
+}

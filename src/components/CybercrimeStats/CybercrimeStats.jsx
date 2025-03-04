@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
+import "./WarningModal.css";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -28,6 +30,53 @@ ChartJS.register(
   ArcElement
 );
 
+const WarningModal = ({ onAcknowledge }) => {
+  return (
+    <div className="warning-modal-overlay">
+      <div className="warning-modal">
+        <h2>⚠️ Warning</h2>
+        <p>
+          This module presents{" "}
+          <span className="highlight">Cybercrime Statistics</span> for various
+          barangays, visualized through{" "}
+          <span className="highlight">Simplified Charts</span> and descriptions
+          to provide a clearer understanding of the cybercrime landscape.
+        </p>
+
+        <p>
+          The data is sourced directly from the{" "}
+          <span className="highlight">Philippine National Police (PNP)</span>{" "}
+          and is publicly available, ensuring{" "}
+          <span className="highlight">Transparency and Accuracy</span>.
+        </p>
+
+        <p>
+          We recognize that viewing crime statistics may be{" "}
+          <span className="highlight">Sensitive</span> for some users. Our goal
+          is to <span className="highlight">Inform</span> and{" "}
+          <span className="highlight">Raise Awareness</span> about cybercrime
+          trends in different areas,{" "}
+          <span className="highlight">Not to cause Fear</span>.
+        </p>
+
+        <p>
+          Before proceeding, please acknowledge that this data is intended for{" "}
+          <span className="highlight">Informational Purposes Only</span> and
+          should be interpreted with caution.
+        </p>
+
+        <p>
+          By continuing, you confirm that you{" "}
+          <span className="highlight">understand the nature</span> of this
+          information and its public availability.
+        </p>
+
+        <button onClick={onAcknowledge}>I Acknowledge</button>
+      </div>
+    </div>
+  );
+};
+
 const CybercrimeStats = () => {
   // States for district and year dataset data
   const [cybercrimeData, setCybercrimeData] = useState([]);
@@ -37,6 +86,9 @@ const CybercrimeStats = () => {
   const [yearData, setYearData] = useState([]);
   const [yearLoading, setYearLoading] = useState(true);
   const [yearError, setYearError] = useState(null);
+
+  // Warning modal state
+  const [acknowledged, setAcknowledged] = useState(false);
 
   // Modal state for full-view charts
   const [modalChart, setModalChart] = useState(null);
@@ -125,6 +177,36 @@ const CybercrimeStats = () => {
         setYearLoading(false);
       });
   }, []);
+
+// --------------------- Render Loading and Error States ---------------------
+
+if (loadingDistrict || yearLoading) {
+  return (
+    <div className="loading-container">
+      <div className="spinner">
+        <div className="spinner-dot"></div>
+        <div className="spinner-dot"></div>
+        <div className="spinner-dot"></div>
+      </div>
+      <p>Loading Cybercrime Data...</p>
+    </div>
+  );
+}
+
+if (errorDistrict || yearError) {
+  return (
+    <div className="error-container">
+      <div className="error-icon">
+        <span role="img" aria-label="error">❌</span>
+      </div>
+      <p className="error-message">
+        <strong>Error:</strong> {errorDistrict || yearError}
+      </p>
+      <p>Something went wrong while fetching the data. Please try again later.</p>
+    </div>
+  );
+}
+
 
   // --------------------- Filtering Data ---------------------
   const filteredDistrictData = cybercrimeData.filter((record) =>
@@ -322,204 +404,279 @@ const CybercrimeStats = () => {
   // --------------------- Render Component ---------------------
   return (
     <div className="cybercrime-container">
-      <h1>Cybercrime District & Year Dataset Statistics (Quezon City)</h1>
-
-      {/* Tab Navigation & Filter Dropdown */}
-      <div className="tabs-container">
-        <div className="tabs">
-          <div
-            className={`tab ${activeTab === "district" ? "active" : ""}`}
-            onClick={() => setActiveTab("district")}
-          >
-            District Data
-          </div>
-          <div
-            className={`tab ${activeTab === "year" ? "active" : ""}`}
-            onClick={() => setActiveTab("year")}
-          >
-            Year Dataset
-          </div>
-        </div>
-        <div className="filter-container">
-          <label htmlFor="filter-dropdown">Filter by Nature of Case: </label>
-          <select
-            id="filter-dropdown"
-            value={filterText}
-            onChange={(e) => setFilterText(e.target.value)}
-            className="filter-dropdown"
-          >
-            <option value="">All Cases</option>
-            {uniqueCases.map((caseType, index) => (
-              <option key={index} value={caseType}>
-                {caseType}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* --------------------- District Data Charts --------------------- */}
-      {activeTab === "district" && (
+      {/* Show Warning Modal if not acknowledged */}
+      {!acknowledged ? (
+        <WarningModal onAcknowledge={() => setAcknowledged(true)} />
+      ) : (
         <>
-          {loadingDistrict ? (
-            <p>Loading District Data...</p>
-          ) : errorDistrict ? (
-            <p>{errorDistrict}</p>
-          ) : (
-            <>
-              {/* Bar Chart: Barangay Cases */}
-              <div
-                className="chart-container"
-                onClick={() =>
-                  openModal(
-                    "Bar",
-                    processBarangayData(),
-                    "Cybercrime Cases by Barangay in Quezon City (District Data)",
-                    "This bar chart shows the aggregated number of cybercrime cases for each barangay in Quezon City based on district data. Click for full details."
-                  )
-                }
-              >
-                <h2>
-                  Cybercrime Cases by Barangay in Quezon City (District Data)
-                </h2>
-                <Bar
-                  data={processBarangayData()}
-                  options={{ responsive: true }}
-                />
-                <p className="chart-description">Click to view full details</p>
-              </div>
+          <div className="disclaimer">
+            <p>
+              <strong>Disclaimer:</strong> The data shown in this module is
+              public information provided by the{" "}
+              <span className="highlight">
+                Philippine National Police (PNP)
+              </span>
+              . These statistics are for informational purposes only and aim to
+              raise awareness about cybercrime trends. Interpret the data
+              responsibly and use it with caution.
+            </p>
+          </div>
+          <h1>Cybercrime Statistics: Insights on Quezon City</h1>
 
-              {/* Pie Chart: Crime Type Distribution */}
+          {/* Tab Navigation & Filter Dropdown */}
+          <div className="tabs-container">
+            <div className="tabs">
               <div
-                className="chart-container"
-                onClick={() =>
-                  openModal(
-                    "Pie",
-                    processCrimeTypeData(),
-                    "Crime Type Distribution in Quezon City (District Data)",
-                    "This pie chart displays the distribution of different cybercrime case types based on district data in Quezon City."
-                  )
-                }
+                className={`tab ${activeTab === "district" ? "active" : ""}`}
+                onClick={() => setActiveTab("district")}
               >
-                <h2>Crime Type Distribution in Quezon City (District Data)</h2>
-                <Pie
-                  data={processCrimeTypeData()}
-                  options={{ responsive: true }}
-                />
-                <p className="chart-description">Click to view full details</p>
+                District Data Overview
               </div>
-            </>
-          )}
-        </>
-      )}
-
-      {/* --------------------- Year Dataset Charts --------------------- */}
-      {activeTab === "year" && (
-        <>
-          {yearLoading ? (
-            <p>Loading Year Dataset...</p>
-          ) : yearError ? (
-            <p>{yearError}</p>
-          ) : (
-            <>
-              {/* Bar Chart: Quarterly Cases Comparison */}
               <div
-                className="chart-container"
-                onClick={() =>
-                  openModal(
-                    "Bar",
-                    processYearDatasetQuarterly(),
-                    "Year Dataset: Quarterly Cases Comparison in Quezon City",
-                    "This bar chart compares the number of cases from the 4th Quarter 2023 and the 1st Quarter 2024 for each type of cybercrime case in Quezon City."
-                  )
-                }
+                className={`tab ${activeTab === "year" ? "active" : ""}`}
+                onClick={() => setActiveTab("year")}
               >
-                <h2>Year Dataset: Quarterly Cases Comparison in Quezon City</h2>
-                <Bar
-                  data={processYearDatasetQuarterly()}
-                  options={{ responsive: true }}
-                />
-                <p className="chart-description">Click to view full details</p>
+                Yearly Trends
               </div>
-
-              {/* Bar Chart: Percentage Increase */}
-              <div
-                className="chart-container"
-                onClick={() =>
-                  openModal(
-                    "Bar",
-                    processYearDatasetPercentage(),
-                    "Year Dataset: Percentage Increase in Quezon City",
-                    "This bar chart shows the percentage increase in cybercrime cases from the 4th Quarter 2023 to the 1st Quarter 2024 for each case type in Quezon City."
-                  )
-                }
+            </div>
+            <div className="filter-container">
+              <label htmlFor="filter-dropdown">Filter by Case Type: </label>
+              <select
+                id="filter-dropdown"
+                value={filterText}
+                onChange={(e) => setFilterText(e.target.value)}
+                className="filter-dropdown"
               >
-                <h2>Year Dataset: Percentage Increase in Quezon City</h2>
-                <Bar
-                  data={processYearDatasetPercentage()}
-                  options={{ responsive: true }}
-                />
-                <p className="chart-description">Click to view full details</p>
-              </div>
-
-              {/* Line Chart: Combined Trend */}
-              <div
-                className="chart-container"
-                onClick={() =>
-                  openModal(
-                    "Line",
-                    processCombinedYearTrend(),
-                    "Year Dataset: Combined Trend in Quezon City",
-                    "This line chart combines quarterly case numbers and percentage increases to provide an overall trend for each cybercrime case type in Quezon City."
-                  )
-                }
-              >
-                <h2>Year Dataset: Combined Trend in Quezon City</h2>
-                <Line
-                  data={processCombinedYearTrend()}
-                  options={{ responsive: true }}
-                />
-                <p className="chart-description">Click to view full details</p>
-              </div>
-            </>
-          )}
-        </>
-      )}
-
-      {/* --------------------- Modal for Full-Viewport Chart --------------------- */}
-      {modalChart && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal}>
-              Close
-            </button>
-            <h2>{modalChart.title}</h2>
-            <p>{modalChart.description}</p>
-            <div className="modal-chart">
-              {modalChart.chartType === "Bar" && (
-                <Bar
-                  data={modalChart.chartData}
-                  options={{ responsive: true, maintainAspectRatio: false }}
-                />
-              )}
-              {modalChart.chartType === "Line" && (
-                <Line
-                  data={modalChart.chartData}
-                  options={{ responsive: true, maintainAspectRatio: false }}
-                />
-              )}
-              {modalChart.chartType === "Pie" && (
-                <Pie
-                  data={modalChart.chartData}
-                  options={{ responsive: true, maintainAspectRatio: false }}
-                />
-              )}
+                <option value="">All Types</option>
+                {/* Generate filter options dynamically */}
+                {uniqueCases.map((caseType, index) => (
+                  <option key={index} value={caseType}>
+                    {caseType}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
-        </div>
+
+          {/* --------------------- District Data Overview --------------------- */}
+          {activeTab === "district" && (
+            <>
+              {loadingDistrict ? (
+                <p>Loading data... Please wait.</p>
+              ) : errorDistrict ? (
+                <p>{errorDistrict}</p>
+              ) : (
+                <>
+                  <div
+                    className="chart-container"
+                    onClick={() =>
+                      openModal(
+                        "Bar",
+                        processBarangayData(),
+                        "Cybercrime Cases by Barangay in Quezon City (District Data)",
+                        "This bar chart shows the number of cybercrime cases across each barangay in Quezon City."
+                      )
+                    }
+                  >
+                    <h2>Cybercrime Cases by Barangay</h2>
+                    <p className="chart-summary">
+                      This bar chart provides a breakdown of cybercrime cases
+                      across various barangays in Quezon City. Each bar
+                      represents the total number of cybercrime incidents
+                      reported in a specific area. By examining this chart, you
+                      can identify which barangays have the highest reported
+                      cases and assess the potential need for targeted
+                      interventions in those areas.
+                    </p>
+                    <Bar
+                      data={processBarangayData()}
+                      options={{ responsive: true }}
+                    />
+                    <p className="chart-description">
+                      Click to explore the detailed data for each barangay.
+                    </p>
+                  </div>
+
+                  <div
+                    className="chart-container"
+                    onClick={() =>
+                      openModal(
+                        "Pie",
+                        processCrimeTypeData(),
+                        "Distribution of Cybercrime Types in Quezon City",
+                        "This pie chart illustrates the distribution of different cybercrime types in Quezon City."
+                      )
+                    }
+                  >
+                    <h2>Crime Type Distribution</h2>
+                    <p className="chart-summary">
+                      This pie chart illustrates the distribution of different
+                      types of cybercrimes reported in Quezon City. It breaks
+                      down the total number of cases into categories such as
+                      hacking, online fraud, and identity theft. This chart
+                      helps visualize the prevalence of each cybercrime type,
+                      enabling a clearer understanding of the risks the
+                      community faces.
+                    </p>
+                    <Pie
+                      data={processCrimeTypeData()}
+                      options={{ responsive: true }}
+                    />
+                    <p className="chart-description">
+                      Click for a detailed view of each crime type Distribution.
+                    </p>
+                  </div>
+                </>
+              )}
+            </>
+          )}
+
+          {/* --------------------- Yearly Trends --------------------- */}
+          {activeTab === "year" && (
+            <>
+              {yearLoading ? (
+                <p>Loading yearly trends... Please wait.</p>
+              ) : yearError ? (
+                <p>{yearError}</p>
+              ) : (
+                <>
+                  <div
+                    className="chart-container"
+                    onClick={() =>
+                      openModal(
+                        "Bar",
+                        processYearDatasetQuarterly(),
+                        "Quarterly Cybercrime Cases Comparison",
+                        "This chart compares the number of cybercrime cases in the 4th Quarter of 2023 versus the 1st Quarter of 2024."
+                      )
+                    }
+                  >
+                    <h2>Quarterly Comparison: Cybercrime Cases</h2>
+                    <p className="chart-summary">
+                      This bar chart compares the number of cybercrime cases
+                      reported in the 4th Quarter of 2023 and the 1st Quarter of
+                      2024. It provides insight into seasonal trends, allowing
+                      us to track any significant increases or decreases in
+                      cybercrime activity. Analyzing these trends can help
+                      identify potential causes behind spikes in cybercrime
+                      cases.
+                    </p>
+                    <Bar
+                      data={processYearDatasetQuarterly()}
+                      options={{ responsive: true }}
+                    />
+                    <p className="chart-description">
+                      Click to see how cases have changed across quarters.
+                    </p>
+                  </div>
+
+                  <div
+                    className="chart-container"
+                    onClick={() =>
+                      openModal(
+                        "Bar",
+                        processYearDatasetPercentage(),
+                        "Percentage Increase in Cybercrime Cases",
+                        "This bar chart shows the percentage change in cybercrime cases from the 4th Quarter of 2023 to the 1st Quarter of 2024."
+                      )
+                    }
+                  >
+                    <h2>Percentage Change in Cases</h2>
+                    <p className="chart-summary">
+                      This bar chart highlights the percentage increase in
+                      cybercrime cases from the 4th Quarter of 2023 to the 1st
+                      Quarter of 2024. This data shows how rapidly the number of
+                      reported cases has grown, which could be useful for
+                      understanding the effectiveness of crime prevention
+                      strategies or identifying new patterns in cybercrime
+                      behavior.
+                    </p>
+                    <Bar
+                      data={processYearDatasetPercentage()}
+                      options={{ responsive: true }}
+                    />
+                    <p className="chart-description">
+                      Click to explore the percentage increase across cases.
+                    </p>
+                  </div>
+
+                  <div
+                    className="chart-container"
+                    onClick={() =>
+                      openModal(
+                        "Line",
+                        processCombinedYearTrend(),
+                        "Cybercrime Trend Overview",
+                        "This line chart combines data from both quarters to show the overall trend in cybercrime cases."
+                      )
+                    }
+                  >
+                    <h2>Combined Trend of Cybercrime Cases</h2>
+                    <p className="chart-summary">
+                      This line chart provides a comprehensive view of
+                      cybercrime trends, combining data from both the 4th
+                      Quarter of 2023 and the 1st Quarter of 2024. It shows how
+                      cybercrime activity has evolved over time, allowing you to
+                      track longer-term trends and assess the impact of various
+                      interventions.
+                    </p>
+                    <Line
+                      data={processCombinedYearTrend()}
+                      options={{ responsive: true }}
+                    />
+                    <p className="chart-description">
+                      Click to see how the overall trend evolves over time.
+                    </p>
+                  </div>
+                </>
+              )}
+            </>
+          )}
+
+          {/* --------------------- Modal for Full-Viewport Chart --------------------- */}
+          {modalChart && (
+            <div className="modal-overlay" onClick={closeModal}>
+              <div
+                className="modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button className="modal-close" onClick={closeModal}>
+                  Close
+                </button>
+                <h2>{modalChart.title}</h2>
+                <p>{modalChart.description}</p>
+                <div className="modal-chart">
+                  {modalChart.chartType === "Bar" && (
+                    <Bar
+                      data={modalChart.chartData}
+                      options={{ responsive: true, maintainAspectRatio: false }}
+                    />
+                  )}
+                  {modalChart.chartType === "Line" && (
+                    <Line
+                      data={modalChart.chartData}
+                      options={{ responsive: true, maintainAspectRatio: false }}
+                    />
+                  )}
+                  {modalChart.chartType === "Pie" && (
+                    <Pie
+                      data={modalChart.chartData}
+                      options={{ responsive: true, maintainAspectRatio: false }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
+};
+
+// Prop validation for the component
+WarningModal.propTypes = {
+  onAcknowledge: PropTypes.func.isRequired,
 };
 
 export default CybercrimeStats;

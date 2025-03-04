@@ -962,7 +962,7 @@ const Chatbot = () => {
     if (!isOpen) {
       showAgainInterval = setInterval(() => {
         setShowNotification(true);
-      }, 18000); // Reappears every 15 seconds
+      }, 18000); // Reappears every 18 seconds
     } else {
       setShowNotification(false); // Ensure it doesn't show when chatbot is open
     }
@@ -1075,6 +1075,28 @@ const Chatbot = () => {
     const trimmedInput = words.slice(0, MAX_INPUT_WORDS).join(" ");
     const userMsg = { text: trimmedInput, sender: "user" };
 
+      // Call Flask API to check the language
+      try {
+        const langResponse = await fetch("http://localhost:3000/detect_language", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: trimmedInput }),
+        });
+  
+        const langData = await langResponse.json();
+  
+        if (langData.language !== "en") {
+          setMessages((prev) => [
+            ...prev,
+            { text: "Sorry, I can only understand and respond in English. Could you please provide your input in English?", sender: "bot" },
+          ]);
+          setInput("");
+          return;
+        }
+      } catch (error) {
+        console.error("Language detection failed:", error);
+      }   
+
     // Immediately Block Malicious Queries (BEFORE Setting botTyping)
     if (isMaliciousQuery(trimmedInput)) {
       setMessages((prev) => [
@@ -1085,7 +1107,7 @@ const Chatbot = () => {
         },
       ]);
       setInput("");
-      setBotTyping(false); // Ensures chatbot does not get stuck
+      setBotTyping(false);
       inputRef.current?.focus();
       return;
     }

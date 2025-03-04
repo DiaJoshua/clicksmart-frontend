@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Reporting.css";
 import hackerImg from "../../assets/typesCCriminals/Hacker.png";
 import cyberOrgImg from "../../assets/typesCCriminals/cyberOrgs.png";
