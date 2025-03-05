@@ -37,8 +37,8 @@ const WarningModal = ({ onAcknowledge }) => {
         <h2>⚠️ Warning</h2>
         <p>
           This module presents{" "}
-          <span className="highlight">Cybercrime Statistics</span> for various
-          barangays, visualized through{" "}
+          <span className="highlight">Cybercrime Statistics</span> for
+          districts 3 to 6 in Quezon City, visualized through{" "}
           <span className="highlight">Simplified Charts</span> and descriptions
           to provide a clearer understanding of the cybercrime landscape.
         </p>

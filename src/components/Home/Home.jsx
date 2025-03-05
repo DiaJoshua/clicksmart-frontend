@@ -93,6 +93,21 @@ const Home = () => {
         </div>
       </section>
 
+
+      {/* Tutorial Video Section */}
+      <section className="tutorial-section">
+        <div className="container">
+          <h2>Website Walkthrough</h2>
+          <p>Watch the video below to learn how to navigate and use ClickSmart effectively.</p>
+          <video width="100%" controls>
+            <source src="../../.mp4" type="video/mp4" />
+            Your browser does not support the type of the video.
+          </video>
+        </div>
+      </section>
+
+
+
       {/* What is ClickSmart? */}
       <section id="clicksmart-for" className="clicksmart-info">
         <div className="container">

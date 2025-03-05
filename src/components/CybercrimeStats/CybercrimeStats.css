@@ -129,7 +129,7 @@
    Chart Container (Cards)
    ====================================================================== */
 .chart-container {
-  background: #2f3640; /* Dark greyish background */
+  background: #20252c; /* Dark greyish background */
   padding: 1.5rem;
   margin: 2rem auto;
   border-radius: 8px;
@@ -167,7 +167,7 @@
 .chart-container h2 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #f1f1f1; /* Light grey text */
+  color: #bdc3c7; /* Light grey text */
   margin-bottom: 1.25rem;
 }
 
