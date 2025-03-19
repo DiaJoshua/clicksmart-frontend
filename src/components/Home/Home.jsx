@@ -5,7 +5,7 @@ import NewsArticles from "../NewsArticles/NewsArticles";
 import heroSection from "../../assets/heroSection.png";
 import whatBG from "../../assets/background/whatBG.svg";
 import circleArrowBtn from "../../assets/circleArrowBtn.svg";
-import ClickSmartVideo from "../../assets/ClickSmart Web Video.mp4";
+// import ClickSmartVideo from "../../assets/ClickSmart Web Video.mp4";
 
 const Home = () => {
   const [openSections, setOpenSections] = useState([]);
@@ -108,7 +108,7 @@ const Home = () => {
           playsInline
           onError={() => console.error("Video failed to load.")}
         >
-          <source src={ClickSmartVideo} type="video/mp4" />
+          {/* <source src={ClickSmartVideo} type="video/mp4" /> */}
           Your browser does not support the video tag.
         </video>
       </div>
