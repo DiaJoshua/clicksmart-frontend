@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation
 import "./ResourcesHub.css";
-import ThesisPDF from "../../assets/downloadables/CLICKSMART-THESIS-2-FINAL-PAPER.pdf";
+// import ThesisPDF from "../../assets/downloadables/CLICKSMART-THESIS-2-FINAL-PAPER.pdf";
 import InfographicsPDF from "../../assets/downloadables/ClickSmart Cybercrime Awareness Infographic.pdf";
 import InfographicsTagalogPDF from "../../assets/downloadables/Infographic-tagalog.pdf";
 
@@ -216,10 +216,10 @@ const ResourcesHub = () => {
             name: "Cybercrime Awareness Infographic English Version",
             url: InfographicsPDF,
           },
-          {
-            name: "ClickSmart Research Thesis",
-            url: ThesisPDF,
-          },
+          // {
+          //   name: "ClickSmart Research Thesis",
+          //   url: ThesisPDF,
+          // },
         ],
       },
 
