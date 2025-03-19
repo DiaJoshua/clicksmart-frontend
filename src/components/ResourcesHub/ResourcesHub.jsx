@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation
 import "./ResourcesHub.css";
 import ThesisPDF from "../../assets/downloadables/CLICKSMART-THESIS-2-FINAL-PAPER.pdf";
-import InfographicsPDF from "../../assets/downloadables/[CLICKSMART] THESIS-2-FINAL-PAPER FOR HARDBOUND.pdf";
+import InfographicsPDF from "../../assets/downloadables/CLICKSMART THESIS-2-FINAL-PAPER FOR HARDBOUND.pdf";
 import InfographicsTagalogPDF from "../../assets/downloadables/Infographic-tagalog.pdf";
 
 const ResourcesHub = () => {
