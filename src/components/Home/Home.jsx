@@ -5,6 +5,7 @@ import NewsArticles from "../NewsArticles/NewsArticles";
 import heroSection from "../../assets/heroSection.png";
 import whatBG from "../../assets/background/whatBG.svg";
 import circleArrowBtn from "../../assets/circleArrowBtn.svg";
+import ClickSmartVideo from "../../assets/ClickSmart Web Video.mp4";
 
 const Home = () => {
   const [openSections, setOpenSections] = useState([]);
@@ -96,15 +97,22 @@ const Home = () => {
 
       {/* Tutorial Video Section */}
       <section className="tutorial-section">
-        <div className="container">
-          <h2>Website Walkthrough</h2>
-          <p>Watch the video below to learn how to navigate and use ClickSmart effectively.</p>
-          <video width="100%" controls>
-            <source src="../../.mp4" type="video/mp4" />
-            Your browser does not support the type of the video.
-          </video>
-        </div>
-      </section>
+      <div className="container">
+        <h2>Website Walkthrough (Tagalog)</h2>
+        <p>Watch the video below to learn how to navigate and use ClickSmart effectively.</p>
+        <video
+          width="100%"
+          controls
+          autoPlay
+          loop
+          playsInline
+          onError={() => console.error("Video failed to load.")}
+        >
+          <source src={ClickSmartVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
 
 
 

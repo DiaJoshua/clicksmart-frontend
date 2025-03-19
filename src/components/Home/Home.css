@@ -156,7 +156,7 @@
 
 .tutorial-section .container {
   width: 100%;
-  max-width: 1000px; /* Ensure this does not limit the video */
+  max-width: 60vw; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,8 +164,10 @@
 
 .tutorial-section h2 {
   font-size: 2rem;
+  font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .tutorial-section p {
@@ -177,10 +179,16 @@
 .tutorial-section video {
   max-width: 1200px;
   width: 100%;
-  height: auto;
+  max-height: 80vh;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   margin-right: 20px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.tutorial-section video:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 /*

@@ -102,7 +102,7 @@ const CybercrimeStats = () => {
   // --------------------- Fetch District Data ---------------------
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/cases")
+      .get("https://clicksmart-backend.onrender.com/api/cases")
       .then((response) => {
         console.log("District data received:", response.data);
         if (!Array.isArray(response.data)) {
@@ -143,7 +143,7 @@ const CybercrimeStats = () => {
   // --------------------- Fetch Year Dataset Data ---------------------
   useEffect(() => {
     axios
-      .get("http://localhost:5000/yeardataset")
+      .get("https://clicksmart-backend.onrender.com/yeardataset")
       .then((response) => {
         console.log("Year Dataset received:", response.data);
         if (!Array.isArray(response.data)) {
